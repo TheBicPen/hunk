@@ -1,0 +1,3057 @@
+[33mcommit bf2f2cd290390ee9af0ad61dd56dd671ed9a5b40[m
+Author: Alex <mashkal2000@gmail.com>
+Date:   Thu May 12 16:05:32 2022 -0700
+
+    Update npm lockfile to v2.
+
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mindex b089b05..53f875c 100644[m
+[1m--- a/package-lock.json[m
+[1m+++ b/package-lock.json[m
+[36m@@ -1,8 +1,1980 @@[m
+ {[m
+[31m-  "name": "1dchess",[m
+[31m-  "version": "1.0.0",[m
+[31m-  "lockfileVersion": 1,[m
+[32m+[m[32m  "name": "draft-chess",[m
+[32m+[m[32m  "version": "0.0.1",[m
+[32m+[m[32m  "lockfileVersion": 2,[m
+   "requires": true,[m
+[32m+[m[32m  "packages": {[m
+[32m+[m[32m    "": {[m
+[32m+[m[32m      "name": "draft-chess",[m
+[32m+[m[32m      "version": "0.0.1",[m
+[32m+[m[32m      "license": "ISC",[m
+[32m+[m[32m      "devDependencies": {[m
+[32m+[m[32m        "@tsconfig/recommended": "^1.0.1",[m
+[32m+[m[32m        "@types/node": "^17.0.5",[m
+[32m+[m[32m        "@typescript-eslint/eslint-plugin": "^5.15.0",[m
+[32m+[m[32m        "@typescript-eslint/parser": "^5.15.0",[m
+[32m+[m[32m        "eslint": "^8.11.0",[m
+[32m+[m[32m        "http-server": "^14.1.0",[m
+[32m+[m[32m        "typescript": "^4.6.2"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@eslint/eslintrc": {[m
+[32m+[m[32m      "version": "1.2.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-1.2.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-bxvbYnBPN1Gibwyp6NrpnFzA3YtRL3BBAyEAFVIpNTm2Rn4Vy87GA5M4aSn3InRrlsbX5N0GW7XIx+U4SAEKdQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ajv": "^6.12.4",[m
+[32m+[m[32m        "debug": "^4.3.2",[m
+[32m+[m[32m        "espree": "^9.3.1",[m
+[32m+[m[32m        "globals": "^13.9.0",[m
+[32m+[m[32m        "ignore": "^5.2.0",[m
+[32m+[m[32m        "import-fresh": "^3.2.1",[m
+[32m+[m[32m        "js-yaml": "^4.1.0",[m
+[32m+[m[32m        "minimatch": "^3.0.4",[m
+[32m+[m[32m        "strip-json-comments": "^3.1.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@eslint/eslintrc/node_modules/debug": {[m
+[32m+[m[32m      "version": "4.3.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ms": "2.1.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "supports-color": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@eslint/eslintrc/node_modules/ms": {[m
+[32m+[m[32m      "version": "2.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@humanwhocodes/config-array": {[m
+[32m+[m[32m      "version": "0.9.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.9.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@humanwhocodes/object-schema": "^1.2.1",[m
+[32m+[m[32m        "debug": "^4.1.1",[m
+[32m+[m[32m        "minimatch": "^3.0.4"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10.10.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@humanwhocodes/config-array/node_modules/debug": {[m
+[32m+[m[32m      "version": "4.3.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ms": "2.1.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "supports-color": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@humanwhocodes/config-array/node_modules/ms": {[m
+[32m+[m[32m      "version": "2.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@humanwhocodes/object-schema": {[m
+[32m+[m[32m      "version": "1.2.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@nodelib/fs.scandir": {[m
+[32m+[m[32m      "version": "2.1.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@nodelib/fs.stat": "2.0.5",[m
+[32m+[m[32m        "run-parallel": "^1.1.9"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@nodelib/fs.stat": {[m
+[32m+[m[32m      "version": "2.0.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@nodelib/fs.walk": {[m
+[32m+[m[32m      "version": "1.2.8",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz",[m
+[32m+[m[32m      "integrity": "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@nodelib/fs.scandir": "2.1.5",[m
+[32m+[m[32m        "fastq": "^1.6.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@tsconfig/recommended": {[m
+[32m+[m[32m      "version": "1.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@tsconfig/recommended/-/recommended-1.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-2xN+iGTbPBEzGSnVp/Hd64vKJCJWxsi9gfs88x4PPMyEjHJoA3o5BY9r5OLPHIZU2pAQxkSAsJFqn6itClP8mQ==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@types/json-schema": {[m
+[32m+[m[32m      "version": "7.0.10",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.10.tgz",[m
+[32m+[m[32m      "integrity": "sha512-BLO9bBq59vW3fxCpD4o0N4U+DXsvwvIcl+jofw0frQo/GrBFC+/jRZj1E7kgp6dvTyNmA4y6JCV5Id/r3mNP5A==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@types/node": {[m
+[32m+[m[32m      "version": "17.0.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@types/node/-/node-17.0.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-w3mrvNXLeDYV1GKTZorGJQivK6XLCoGwpnyJFbJVK/aTBQUxOCaa/GlFAAN3OTDFcb7h5tiFG+YXCO2By+riZw==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/eslint-plugin": {[m
+[32m+[m[32m      "version": "5.15.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.15.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-u6Db5JfF0Esn3tiAKELvoU5TpXVSkOpZ78cEGn/wXtT2RVqs2vkt4ge6N8cRCyw7YVKhmmLDbwI2pg92mlv7cA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@typescript-eslint/scope-manager": "5.15.0",[m
+[32m+[m[32m        "@typescript-eslint/type-utils": "5.15.0",[m
+[32m+[m[32m        "@typescript-eslint/utils": "5.15.0",[m
+[32m+[m[32m        "debug": "^4.3.2",[m
+[32m+[m[32m        "functional-red-black-tree": "^1.0.1",[m
+[32m+[m[32m        "ignore": "^5.1.8",[m
+[32m+[m[32m        "regexpp": "^3.2.0",[m
+[32m+[m[32m        "semver": "^7.3.5",[m
+[32m+[m[32m        "tsutils": "^3.21.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "type": "opencollective",[m
+[32m+[m[32m        "url": "https://opencollective.com/typescript-eslint"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "@typescript-eslint/parser": "^5.0.0",[m
+[32m+[m[32m        "eslint": "^6.0.0 || ^7.0.0 || ^8.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "typescript": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/eslint-plugin/node_modules/debug": {[m
+[32m+[m[32m      "version": "4.3.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ms": "2.1.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "supports-color": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/eslint-plugin/node_modules/ms": {[m
+[32m+[m[32m      "version": "2.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/parser": {[m
+[32m+[m[32m      "version": "5.15.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-5.15.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-NGAYP/+RDM2sVfmKiKOCgJYPstAO40vPAgACoWPO/+yoYKSgAXIFaBKsV8P0Cc7fwKgvj27SjRNX4L7f4/jCKQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@typescript-eslint/scope-manager": "5.15.0",[m
+[32m+[m[32m        "@typescript-eslint/types": "5.15.0",[m
+[32m+[m[32m        "@typescript-eslint/typescript-estree": "5.15.0",[m
+[32m+[m[32m        "debug": "^4.3.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "type": "opencollective",[m
+[32m+[m[32m        "url": "https://opencollective.com/typescript-eslint"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "eslint": "^6.0.0 || ^7.0.0 || ^8.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "typescript": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/parser/node_modules/debug": {[m
+[32m+[m[32m      "version": "4.3.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ms": "2.1.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "supports-color": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/parser/node_modules/ms": {[m
+[32m+[m[32m      "version": "2.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/scope-manager": {[m
+[32m+[m[32m      "version": "5.15.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-5.15.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-EFiZcSKrHh4kWk0pZaa+YNJosvKE50EnmN4IfgjkA3bTHElPtYcd2U37QQkNTqwMCS7LXeDeZzEqnsOH8chjSg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@typescript-eslint/types": "5.15.0",[m
+[32m+[m[32m        "@typescript-eslint/visitor-keys": "5.15.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "type": "opencollective",[m
+[32m+[m[32m        "url": "https://opencollective.com/typescript-eslint"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/type-utils": {[m
+[32m+[m[32m      "version": "5.15.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-5.15.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-KGeDoEQ7gHieLydujGEFLyLofipe9PIzfvA/41urz4hv+xVxPEbmMQonKSynZ0Ks2xDhJQ4VYjB3DnRiywvKDA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@typescript-eslint/utils": "5.15.0",[m
+[32m+[m[32m        "debug": "^4.3.2",[m
+[32m+[m[32m        "tsutils": "^3.21.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "type": "opencollective",[m
+[32m+[m[32m        "url": "https://opencollective.com/typescript-eslint"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "eslint": "*"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "typescript": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/type-utils/node_modules/debug": {[m
+[32m+[m[32m      "version": "4.3.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ms": "2.1.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "supports-color": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/type-utils/node_modules/ms": {[m
+[32m+[m[32m      "version": "2.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/types": {[m
+[32m+[m[32m      "version": "5.15.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@typescript-eslint/types/-/types-5.15.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-yEiTN4MDy23vvsIksrShjNwQl2vl6kJeG9YkVJXjXZnkJElzVK8nfPsWKYxcsGWG8GhurYXP4/KGj3aZAxbeOA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "type": "opencollective",[m
+[32m+[m[32m        "url": "https://opencollective.com/typescript-eslint"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/typescript-estree": {[m
+[32m+[m[32m      "version": "5.15.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-5.15.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Hb0e3dGc35b75xLzixM3cSbG1sSbrTBQDfIScqdyvrfJZVEi4XWAT+UL/HMxEdrJNB8Yk28SKxPLtAhfCbBInA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@typescript-eslint/types": "5.15.0",[m
+[32m+[m[32m        "@typescript-eslint/visitor-keys": "5.15.0",[m
+[32m+[m[32m        "debug": "^4.3.2",[m
+[32m+[m[32m        "globby": "^11.0.4",[m
+[32m+[m[32m        "is-glob": "^4.0.3",[m
+[32m+[m[32m        "semver": "^7.3.5",[m
+[32m+[m[32m        "tsutils": "^3.21.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "type": "opencollective",[m
+[32m+[m[32m        "url": "https://opencollective.com/typescript-eslint"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "typescript": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/typescript-estree/node_modules/debug": {[m
+[32m+[m[32m      "version": "4.3.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ms": "2.1.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "supports-color": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/typescript-estree/node_modules/ms": {[m
+[32m+[m[32m      "version": "2.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/utils": {[m
+[32m+[m[32m      "version": "5.15.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@typescript-eslint/utils/-/utils-5.15.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-081rWu2IPKOgTOhHUk/QfxuFog8m4wxW43sXNOMSCdh578tGJ1PAaWPsj42LOa7pguh173tNlMigsbrHvh/mtA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@types/json-schema": "^7.0.9",[m
+[32m+[m[32m        "@typescript-eslint/scope-manager": "5.15.0",[m
+[32m+[m[32m        "@typescript-eslint/types": "5.15.0",[m
+[32m+[m[32m        "@typescript-eslint/typescript-estree": "5.15.0",[m
+[32m+[m[32m        "eslint-scope": "^5.1.1",[m
+[32m+[m[32m        "eslint-utils": "^3.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "type": "opencollective",[m
+[32m+[m[32m        "url": "https://opencollective.com/typescript-eslint"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "eslint": "^6.0.0 || ^7.0.0 || ^8.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/@typescript-eslint/visitor-keys": {[m
+[32m+[m[32m      "version": "5.15.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-5.15.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-+vX5FKtgvyHbmIJdxMJ2jKm9z2BIlXJiuewI8dsDYMp5LzPUcuTT78Ya5iwvQg3VqSVdmxyM8Anj1Jeq7733ZQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@typescript-eslint/types": "5.15.0",[m
+[32m+[m[32m        "eslint-visitor-keys": "^3.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "type": "opencollective",[m
+[32m+[m[32m        "url": "https://opencollective.com/typescript-eslint"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/acorn": {[m
+[32m+[m[32m      "version": "8.7.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/acorn/-/acorn-8.7.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-V/LGr1APy+PXIwKebEWrkZPwoeoF+w1jiOBUmuxuiUIaOHtob8Qc9BTrYo7VuI5fR8tqsy+buA2WFooR5olqvQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "acorn": "bin/acorn"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.4.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/acorn-jsx": {[m
+[32m+[m[32m      "version": "5.3.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "acorn": "^6.0.0 || ^7.0.0 || ^8.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/ajv": {[m
+[32m+[m[32m      "version": "6.12.6",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ajv/-/ajv-6.12.6.tgz",[m
+[32m+[m[32m      "integrity": "sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "fast-deep-equal": "^3.1.1",[m
+[32m+[m[32m        "fast-json-stable-stringify": "^2.0.0",[m
+[32m+[m[32m        "json-schema-traverse": "^0.4.1",[m
+[32m+[m[32m        "uri-js": "^4.2.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "type": "github",[m
+[32m+[m[32m        "url": "https://github.com/sponsors/epoberezkin"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/ansi-regex": {[m
+[32m+[m[32m      "version": "5.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/ansi-styles": {[m
+[32m+[m[32m      "version": "4.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "color-convert": "^2.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/chalk/ansi-styles?sponsor=1"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/argparse": {[m
+[32m+[m[32m      "version": "2.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/argparse/-/argparse-2.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/array-union": {[m
+[32m+[m[32m      "version": "2.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/array-union/-/array-union-2.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/async": {[m
+[32m+[m[32m      "version": "2.6.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/async/-/async-2.6.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "lodash": "^4.17.14"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/balanced-match": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/basic-auth": {[m
+[32m+[m[32m      "version": "2.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/basic-auth/-/basic-auth-2.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "safe-buffer": "5.1.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/brace-expansion": {[m
+[32m+[m[32m      "version": "1.1.11",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz",[m
+[32m+[m[32m      "integrity": "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "balanced-match": "^1.0.0",[m
+[32m+[m[32m        "concat-map": "0.0.1"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/braces": {[m
+[32m+[m[32m      "version": "3.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/braces/-/braces-3.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "fill-range": "^7.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/call-bind": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/call-bind/-/call-bind-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "function-bind": "^1.1.1",[m
+[32m+[m[32m        "get-intrinsic": "^1.0.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/ljharb"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/callsites": {[m
+[32m+[m[32m      "version": "3.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/callsites/-/callsites-3.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/chalk": {[m
+[32m+[m[32m      "version": "4.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ansi-styles": "^4.1.0",[m
+[32m+[m[32m        "supports-color": "^7.1.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/chalk/chalk?sponsor=1"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/color-convert": {[m
+[32m+[m[32m      "version": "2.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "color-name": "~1.1.4"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=7.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/color-name": {[m
+[32m+[m[32m      "version": "1.1.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/concat-map": {[m
+[32m+[m[32m      "version": "0.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/corser": {[m
+[32m+[m[32m      "version": "2.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/corser/-/corser-2.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha1-jtolLsqrWEDc2XXOuQ2TcMgZ/4c=",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.4.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/cross-spawn": {[m
+[32m+[m[32m      "version": "7.0.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "path-key": "^3.1.0",[m
+[32m+[m[32m        "shebang-command": "^2.0.0",[m
+[32m+[m[32m        "which": "^2.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/debug": {[m
+[32m+[m[32m      "version": "3.2.7",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/debug/-/debug-3.2.7.tgz",[m
+[32m+[m[32m      "integrity": "sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ms": "^2.1.1"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/deep-is": {[m
+[32m+[m[32m      "version": "0.1.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/deep-is/-/deep-is-0.1.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/dir-glob": {[m
+[32m+[m[32m      "version": "3.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/dir-glob/-/dir-glob-3.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "path-type": "^4.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/doctrine": {[m
+[32m+[m[32m      "version": "3.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/doctrine/-/doctrine-3.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "esutils": "^2.0.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/escape-string-regexp": {[m
+[32m+[m[32m      "version": "4.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/sindresorhus"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint": {[m
+[32m+[m[32m      "version": "8.11.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/eslint/-/eslint-8.11.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-/KRpd9mIRg2raGxHRGwW9ZywYNAClZrHjdueHcrVDuO3a6bj83eoTirCCk0M0yPwOjWYKHwRVRid+xK4F/GHgA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@eslint/eslintrc": "^1.2.1",[m
+[32m+[m[32m        "@humanwhocodes/config-array": "^0.9.2",[m
+[32m+[m[32m        "ajv": "^6.10.0",[m
+[32m+[m[32m        "chalk": "^4.0.0",[m
+[32m+[m[32m        "cross-spawn": "^7.0.2",[m
+[32m+[m[32m        "debug": "^4.3.2",[m
+[32m+[m[32m        "doctrine": "^3.0.0",[m
+[32m+[m[32m        "escape-string-regexp": "^4.0.0",[m
+[32m+[m[32m        "eslint-scope": "^7.1.1",[m
+[32m+[m[32m        "eslint-utils": "^3.0.0",[m
+[32m+[m[32m        "eslint-visitor-keys": "^3.3.0",[m
+[32m+[m[32m        "espree": "^9.3.1",[m
+[32m+[m[32m        "esquery": "^1.4.0",[m
+[32m+[m[32m        "esutils": "^2.0.2",[m
+[32m+[m[32m        "fast-deep-equal": "^3.1.3",[m
+[32m+[m[32m        "file-entry-cache": "^6.0.1",[m
+[32m+[m[32m        "functional-red-black-tree": "^1.0.1",[m
+[32m+[m[32m        "glob-parent": "^6.0.1",[m
+[32m+[m[32m        "globals": "^13.6.0",[m
+[32m+[m[32m        "ignore": "^5.2.0",[m
+[32m+[m[32m        "import-fresh": "^3.0.0",[m
+[32m+[m[32m        "imurmurhash": "^0.1.4",[m
+[32m+[m[32m        "is-glob": "^4.0.0",[m
+[32m+[m[32m        "js-yaml": "^4.1.0",[m
+[32m+[m[32m        "json-stable-stringify-without-jsonify": "^1.0.1",[m
+[32m+[m[32m        "levn": "^0.4.1",[m
+[32m+[m[32m        "lodash.merge": "^4.6.2",[m
+[32m+[m[32m        "minimatch": "^3.0.4",[m
+[32m+[m[32m        "natural-compare": "^1.4.0",[m
+[32m+[m[32m        "optionator": "^0.9.1",[m
+[32m+[m[32m        "regexpp": "^3.2.0",[m
+[32m+[m[32m        "strip-ansi": "^6.0.1",[m
+[32m+[m[32m        "strip-json-comments": "^3.1.0",[m
+[32m+[m[32m        "text-table": "^0.2.0",[m
+[32m+[m[32m        "v8-compile-cache": "^2.0.3"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "eslint": "bin/eslint.js"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://opencollective.com/eslint"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint-scope": {[m
+[32m+[m[32m      "version": "5.1.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/eslint-scope/-/eslint-scope-5.1.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "esrecurse": "^4.3.0",[m
+[32m+[m[32m        "estraverse": "^4.1.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint-utils": {[m
+[32m+[m[32m      "version": "3.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/eslint-utils/-/eslint-utils-3.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "eslint-visitor-keys": "^2.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^10.0.0 || ^12.0.0 || >= 14.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/mysticatea"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "eslint": ">=5"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint-utils/node_modules/eslint-visitor-keys": {[m
+[32m+[m[32m      "version": "2.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-2.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint-visitor-keys": {[m
+[32m+[m[32m      "version": "3.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-3.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint/node_modules/debug": {[m
+[32m+[m[32m      "version": "4.3.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ms": "2.1.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "supports-color": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint/node_modules/eslint-scope": {[m
+[32m+[m[32m      "version": "7.1.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/eslint-scope/-/eslint-scope-7.1.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-QKQM/UXpIiHcLqJ5AOyIW7XZmzjkzQXYE54n1++wb0u9V/abW3l9uQnxX8Z5Xd18xyKIMTUAyQ0k1e8pz6LUrw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "esrecurse": "^4.3.0",[m
+[32m+[m[32m        "estraverse": "^5.2.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint/node_modules/estraverse": {[m
+[32m+[m[32m      "version": "5.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/estraverse/-/estraverse-5.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=4.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint/node_modules/glob-parent": {[m
+[32m+[m[32m      "version": "6.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-6.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "is-glob": "^4.0.3"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10.13.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eslint/node_modules/ms": {[m
+[32m+[m[32m      "version": "2.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/espree": {[m
+[32m+[m[32m      "version": "9.3.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/espree/-/espree-9.3.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-bvdyLmJMfwkV3NCRl5ZhJf22zBFo1y8bYh3VYb+bfzqNB4Je68P2sSuXyuFquzWLebHpNd2/d5uv7yoP9ISnGQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "acorn": "^8.7.0",[m
+[32m+[m[32m        "acorn-jsx": "^5.3.1",[m
+[32m+[m[32m        "eslint-visitor-keys": "^3.3.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/esquery": {[m
+[32m+[m[32m      "version": "1.4.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/esquery/-/esquery-1.4.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-cCDispWt5vHHtwMY2YrAQ4ibFkAL8RbH5YGBnZBc90MolvvfkkQcJro/aZiAQUlQ3qgrYS6D6v8Gc5G5CQsc9w==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "estraverse": "^5.1.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.10"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/esquery/node_modules/estraverse": {[m
+[32m+[m[32m      "version": "5.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/estraverse/-/estraverse-5.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=4.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/esrecurse": {[m
+[32m+[m[32m      "version": "4.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/esrecurse/-/esrecurse-4.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-KmfKL3b6G+RXvP8N1vr3Tq1kL/oCFgn2NYXEtqP8/L3pKapUA4G8cFVaoF3SU323CD4XypR/ffioHmkti6/Tag==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "estraverse": "^5.2.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=4.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/esrecurse/node_modules/estraverse": {[m
+[32m+[m[32m      "version": "5.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/estraverse/-/estraverse-5.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=4.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/estraverse": {[m
+[32m+[m[32m      "version": "4.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/estraverse/-/estraverse-4.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=4.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/esutils": {[m
+[32m+[m[32m      "version": "2.0.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/esutils/-/esutils-2.0.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.10.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/eventemitter3": {[m
+[32m+[m[32m      "version": "4.0.7",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/eventemitter3/-/eventemitter3-4.0.7.tgz",[m
+[32m+[m[32m      "integrity": "sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/fast-deep-equal": {[m
+[32m+[m[32m      "version": "3.1.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/fast-glob": {[m
+[32m+[m[32m      "version": "3.2.11",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/fast-glob/-/fast-glob-3.2.11.tgz",[m
+[32m+[m[32m      "integrity": "sha512-xrO3+1bxSo3ZVHAnqzyuewYT6aMFHRAd4Kcs92MAonjwQZLsK9d0SF1IyQ3k5PoirxTW0Oe/RqFgMQ6TcNE5Ew==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "@nodelib/fs.stat": "^2.0.2",[m
+[32m+[m[32m        "@nodelib/fs.walk": "^1.2.3",[m
+[32m+[m[32m        "glob-parent": "^5.1.2",[m
+[32m+[m[32m        "merge2": "^1.3.0",[m
+[32m+[m[32m        "micromatch": "^4.0.4"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8.6.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/fast-json-stable-stringify": {[m
+[32m+[m[32m      "version": "2.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/fast-levenshtein": {[m
+[32m+[m[32m      "version": "2.0.6",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz",[m
+[32m+[m[32m      "integrity": "sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/fastq": {[m
+[32m+[m[32m      "version": "1.13.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/fastq/-/fastq-1.13.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YpkpUnK8od0o1hmeSc7UUs/eB/vIPWJYjKck2QKIzAf71Vm1AAQ3EbuZB3g2JIy+pg+ERD0vqI79KyZiB2e2Nw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "reusify": "^1.0.4"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/file-entry-cache": {[m
+[32m+[m[32m      "version": "6.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-6.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "flat-cache": "^3.0.4"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^10.12.0 || >=12.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/fill-range": {[m
+[32m+[m[32m      "version": "7.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/fill-range/-/fill-range-7.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "to-regex-range": "^5.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/flat-cache": {[m
+[32m+[m[32m      "version": "3.0.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/flat-cache/-/flat-cache-3.0.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "flatted": "^3.1.0",[m
+[32m+[m[32m        "rimraf": "^3.0.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^10.12.0 || >=12.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/flatted": {[m
+[32m+[m[32m      "version": "3.2.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/flatted/-/flatted-3.2.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/follow-redirects": {[m
+[32m+[m[32m      "version": "1.14.9",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.9.tgz",[m
+[32m+[m[32m      "integrity": "sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "funding": [[m
+[32m+[m[32m        {[m
+[32m+[m[32m          "type": "individual",[m
+[32m+[m[32m          "url": "https://github.com/sponsors/RubenVerborgh"[m
+[32m+[m[32m        }[m
+[32m+[m[32m      ],[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=4.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependenciesMeta": {[m
+[32m+[m[32m        "debug": {[m
+[32m+[m[32m          "optional": true[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/fs.realpath": {[m
+[32m+[m[32m      "version": "1.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha1-FQStJSMVjKpA20onh8sBQRmU6k8=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/function-bind": {[m
+[32m+[m[32m      "version": "1.1.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/functional-red-black-tree": {[m
+[32m+[m[32m      "version": "1.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/get-intrinsic": {[m
+[32m+[m[32m      "version": "1.1.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.1.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-kWZrnVM42QCiEA2Ig1bG8zjoIMOgxWwYCEeNdwY6Tv/cOSeGpcoX4pXHfKUxNKVoArnrEr2e9srnAxxGIraS9Q==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "function-bind": "^1.1.1",[m
+[32m+[m[32m        "has": "^1.0.3",[m
+[32m+[m[32m        "has-symbols": "^1.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/ljharb"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/glob": {[m
+[32m+[m[32m      "version": "7.2.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/glob/-/glob-7.2.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "fs.realpath": "^1.0.0",[m
+[32m+[m[32m        "inflight": "^1.0.4",[m
+[32m+[m[32m        "inherits": "2",[m
+[32m+[m[32m        "minimatch": "^3.0.4",[m
+[32m+[m[32m        "once": "^1.3.0",[m
+[32m+[m[32m        "path-is-absolute": "^1.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "*"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/isaacs"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/glob-parent": {[m
+[32m+[m[32m      "version": "5.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "is-glob": "^4.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 6"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/globals": {[m
+[32m+[m[32m      "version": "13.13.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/globals/-/globals-13.13.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-EQ7Q18AJlPwp3vUDL4mKA0KXrXyNIQyWon6T6XQiBQF0XHvRsiCSrWmmeATpUzdJN2HhWZU6Pdl0a9zdep5p6A==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "type-fest": "^0.20.2"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/sindresorhus"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/globby": {[m
+[32m+[m[32m      "version": "11.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/globby/-/globby-11.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "array-union": "^2.1.0",[m
+[32m+[m[32m        "dir-glob": "^3.0.1",[m
+[32m+[m[32m        "fast-glob": "^3.2.9",[m
+[32m+[m[32m        "ignore": "^5.2.0",[m
+[32m+[m[32m        "merge2": "^1.4.1",[m
+[32m+[m[32m        "slash": "^3.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/sindresorhus"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/has": {[m
+[32m+[m[32m      "version": "1.0.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/has/-/has-1.0.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "function-bind": "^1.1.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.4.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/has-flag": {[m
+[32m+[m[32m      "version": "4.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-4.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/has-symbols": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-chXa79rL/UC2KlX17jo3vRGz0azaWEx5tGqZg5pO3NUyEJVB17dMruQlzCCOfUvElghKcm5194+BCRvi2Rv/Gw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.4"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/ljharb"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/he": {[m
+[32m+[m[32m      "version": "1.2.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/he/-/he-1.2.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "he": "bin/he"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/html-encoding-sniffer": {[m
+[32m+[m[32m      "version": "3.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/html-encoding-sniffer/-/html-encoding-sniffer-3.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-oWv4T4yJ52iKrufjnyZPkrN0CH3QnrUqdB6In1g5Fe1mia8GmF36gnfNySxoZtxD5+NmYw1EElVXiBk93UeskA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "whatwg-encoding": "^2.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=12"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/http-proxy": {[m
+[32m+[m[32m      "version": "1.18.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/http-proxy/-/http-proxy-1.18.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "eventemitter3": "^4.0.0",[m
+[32m+[m[32m        "follow-redirects": "^1.0.0",[m
+[32m+[m[32m        "requires-port": "^1.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/http-server": {[m
+[32m+[m[32m      "version": "14.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/http-server/-/http-server-14.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-5lYsIcZtf6pdR8tCtzAHTWrAveo4liUlJdWc7YafwK/maPgYHs+VNP6KpCClmUnSorJrARVMXqtT055zBv11Yg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "basic-auth": "^2.0.1",[m
+[32m+[m[32m        "chalk": "^4.1.2",[m
+[32m+[m[32m        "corser": "^2.0.1",[m
+[32m+[m[32m        "he": "^1.2.0",[m
+[32m+[m[32m        "html-encoding-sniffer": "^3.0.0",[m
+[32m+[m[32m        "http-proxy": "^1.18.1",[m
+[32m+[m[32m        "mime": "^1.6.0",[m
+[32m+[m[32m        "minimist": "^1.2.5",[m
+[32m+[m[32m        "opener": "^1.5.1",[m
+[32m+[m[32m        "portfinder": "^1.0.28",[m
+[32m+[m[32m        "secure-compare": "3.0.1",[m
+[32m+[m[32m        "union": "~0.5.0",[m
+[32m+[m[32m        "url-join": "^4.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "http-server": "bin/http-server"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=12"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/iconv-lite": {[m
+[32m+[m[32m      "version": "0.6.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.6.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "safer-buffer": ">= 2.1.2 < 3.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.10.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/ignore": {[m
+[32m+[m[32m      "version": "5.2.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ignore/-/ignore-5.2.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 4"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/import-fresh": {[m
+[32m+[m[32m      "version": "3.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/import-fresh/-/import-fresh-3.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "parent-module": "^1.0.0",[m
+[32m+[m[32m        "resolve-from": "^4.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/sindresorhus"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/imurmurhash": {[m
+[32m+[m[32m      "version": "0.1.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz",[m
+[32m+[m[32m      "integrity": "sha1-khi5srkoojixPcT7a21XbyMUU+o=",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.8.19"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/inflight": {[m
+[32m+[m[32m      "version": "1.0.6",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz",[m
+[32m+[m[32m      "integrity": "sha1-Sb1jMdfQLQwJvJEKEHW6gWW1bfk=",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "once": "^1.3.0",[m
+[32m+[m[32m        "wrappy": "1"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/inherits": {[m
+[32m+[m[32m      "version": "2.0.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/is-extglob": {[m
+[32m+[m[32m      "version": "2.1.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/is-extglob/-/is-extglob-2.1.1.tgz",[m
+[32m+[m[32m      "integrity": "sha1-qIwCU1eR8C7TfHahueqXc8gz+MI=",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.10.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/is-glob": {[m
+[32m+[m[32m      "version": "4.0.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/is-glob/-/is-glob-4.0.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "is-extglob": "^2.1.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.10.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/is-number": {[m
+[32m+[m[32m      "version": "7.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.12.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/isexe": {[m
+[32m+[m[32m      "version": "2.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/js-yaml": {[m
+[32m+[m[32m      "version": "4.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "argparse": "^2.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "js-yaml": "bin/js-yaml.js"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/json-schema-traverse": {[m
+[32m+[m[32m      "version": "0.4.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/json-stable-stringify-without-jsonify": {[m
+[32m+[m[32m      "version": "1.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/levn": {[m
+[32m+[m[32m      "version": "0.4.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/levn/-/levn-0.4.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "prelude-ls": "^1.2.1",[m
+[32m+[m[32m        "type-check": "~0.4.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.8.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/lodash": {[m
+[32m+[m[32m      "version": "4.17.21",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz",[m
+[32m+[m[32m      "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/lodash.merge": {[m
+[32m+[m[32m      "version": "4.6.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/lru-cache": {[m
+[32m+[m[32m      "version": "6.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "yallist": "^4.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/merge2": {[m
+[32m+[m[32m      "version": "1.4.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/micromatch": {[m
+[32m+[m[32m      "version": "4.0.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/micromatch/-/micromatch-4.0.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-pRmzw/XUcwXGpD9aI9q/0XOwLNygjETJ8y0ao0wdqprrzDa4YnxLcz7fQRZr8voh8V10kGhABbNcHVk5wHgWwg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "braces": "^3.0.1",[m
+[32m+[m[32m        "picomatch": "^2.2.3"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8.6"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/mime": {[m
+[32m+[m[32m      "version": "1.6.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "mime": "cli.js"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=4"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/minimatch": {[m
+[32m+[m[32m      "version": "3.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "brace-expansion": "^1.1.7"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "*"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/minimist": {[m
+[32m+[m[32m      "version": "1.2.6",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.6.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/mkdirp": {[m
+[32m+[m[32m      "version": "0.5.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "minimist": "^1.2.5"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "mkdirp": "bin/cmd.js"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/ms": {[m
+[32m+[m[32m      "version": "2.1.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/natural-compare": {[m
+[32m+[m[32m      "version": "1.4.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz",[m
+[32m+[m[32m      "integrity": "sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/object-inspect": {[m
+[32m+[m[32m      "version": "1.12.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.12.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Ho2z80bVIvJloH+YzRmpZVQe87+qASmBUKZDWgx9cu+KDrX2ZDH/3tMy+gXbZETVGs2M8YdxObOh7XAtim9Y0g==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/ljharb"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/once": {[m
+[32m+[m[32m      "version": "1.4.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",[m
+[32m+[m[32m      "integrity": "sha1-WDsap3WWHUsROsF9nFC6753Xa9E=",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "wrappy": "1"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/opener": {[m
+[32m+[m[32m      "version": "1.5.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/opener/-/opener-1.5.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "opener": "bin/opener-bin.js"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/optionator": {[m
+[32m+[m[32m      "version": "0.9.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/optionator/-/optionator-0.9.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-74RlY5FCnhq4jRxVUPKDaRwrVNXMqsGsiW6AJw4XK8hmtm10wC0ypZBLw5IIp85NZMr91+qd1RvvENwg7jjRFw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "deep-is": "^0.1.3",[m
+[32m+[m[32m        "fast-levenshtein": "^2.0.6",[m
+[32m+[m[32m        "levn": "^0.4.1",[m
+[32m+[m[32m        "prelude-ls": "^1.2.1",[m
+[32m+[m[32m        "type-check": "^0.4.0",[m
+[32m+[m[32m        "word-wrap": "^1.2.3"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.8.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/parent-module": {[m
+[32m+[m[32m      "version": "1.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/parent-module/-/parent-module-1.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "callsites": "^3.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/path-is-absolute": {[m
+[32m+[m[32m      "version": "1.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha1-F0uSaHNVNP+8es5r9TpanhtcX18=",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.10.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/path-key": {[m
+[32m+[m[32m      "version": "3.1.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/path-type": {[m
+[32m+[m[32m      "version": "4.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/picomatch": {[m
+[32m+[m[32m      "version": "2.3.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8.6"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/jonschlinkert"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/portfinder": {[m
+[32m+[m[32m      "version": "1.0.28",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/portfinder/-/portfinder-1.0.28.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Se+2isanIcEqf2XMHjyUKskczxbPH7dQnlMjXX6+dybayyHvAf/TCgyMRlzf/B6QDhAEFOGes0pzRo3by4AbMA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "async": "^2.6.2",[m
+[32m+[m[32m        "debug": "^3.1.1",[m
+[32m+[m[32m        "mkdirp": "^0.5.5"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.12.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/prelude-ls": {[m
+[32m+[m[32m      "version": "1.2.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.8.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/punycode": {[m
+[32m+[m[32m      "version": "2.1.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=6"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/qs": {[m
+[32m+[m[32m      "version": "6.10.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/qs/-/qs-6.10.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-wr7M2E0OFRfIfJZjKGieI8lBKb7fRCH4Fv5KNPEs7gJ8jadvotdsS08PzOKR7opXhZ/Xkjtt3WF9g38drmyRqQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "side-channel": "^1.0.4"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.6"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/ljharb"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/queue-microtask": {[m
+[32m+[m[32m      "version": "1.2.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "funding": [[m
+[32m+[m[32m        {[m
+[32m+[m[32m          "type": "github",[m
+[32m+[m[32m          "url": "https://github.com/sponsors/feross"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        {[m
+[32m+[m[32m          "type": "patreon",[m
+[32m+[m[32m          "url": "https://www.patreon.com/feross"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        {[m
+[32m+[m[32m          "type": "consulting",[m
+[32m+[m[32m          "url": "https://feross.org/support"[m
+[32m+[m[32m        }[m
+[32m+[m[32m      ][m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/regexpp": {[m
+[32m+[m[32m      "version": "3.2.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/regexpp/-/regexpp-3.2.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/mysticatea"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/requires-port": {[m
+[32m+[m[32m      "version": "1.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/requires-port/-/requires-port-1.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/resolve-from": {[m
+[32m+[m[32m      "version": "4.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/resolve-from/-/resolve-from-4.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=4"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/reusify": {[m
+[32m+[m[32m      "version": "1.0.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/reusify/-/reusify-1.0.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "iojs": ">=1.0.0",[m
+[32m+[m[32m        "node": ">=0.10.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/rimraf": {[m
+[32m+[m[32m      "version": "3.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "glob": "^7.1.3"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "rimraf": "bin.js"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/isaacs"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/run-parallel": {[m
+[32m+[m[32m      "version": "1.2.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/run-parallel/-/run-parallel-1.2.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "funding": [[m
+[32m+[m[32m        {[m
+[32m+[m[32m          "type": "github",[m
+[32m+[m[32m          "url": "https://github.com/sponsors/feross"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        {[m
+[32m+[m[32m          "type": "patreon",[m
+[32m+[m[32m          "url": "https://www.patreon.com/feross"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        {[m
+[32m+[m[32m          "type": "consulting",[m
+[32m+[m[32m          "url": "https://feross.org/support"[m
+[32m+[m[32m        }[m
+[32m+[m[32m      ],[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "queue-microtask": "^1.2.2"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/safe-buffer": {[m
+[32m+[m[32m      "version": "5.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/safer-buffer": {[m
+[32m+[m[32m      "version": "2.1.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/secure-compare": {[m
+[32m+[m[32m      "version": "3.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/secure-compare/-/secure-compare-3.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha1-8aAymzCLIh+uN7mXTz1XjQypmeM=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/semver": {[m
+[32m+[m[32m      "version": "7.3.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/semver/-/semver-7.3.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "lru-cache": "^6.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "semver": "bin/semver.js"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/shebang-command": {[m
+[32m+[m[32m      "version": "2.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "shebang-regex": "^3.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/shebang-regex": {[m
+[32m+[m[32m      "version": "3.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/side-channel": {[m
+[32m+[m[32m      "version": "1.0.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/side-channel/-/side-channel-1.0.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "call-bind": "^1.0.0",[m
+[32m+[m[32m        "get-intrinsic": "^1.0.2",[m
+[32m+[m[32m        "object-inspect": "^1.9.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/ljharb"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/slash": {[m
+[32m+[m[32m      "version": "3.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/slash/-/slash-3.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/strip-ansi": {[m
+[32m+[m[32m      "version": "6.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "ansi-regex": "^5.0.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/strip-json-comments": {[m
+[32m+[m[32m      "version": "3.1.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/sindresorhus"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/supports-color": {[m
+[32m+[m[32m      "version": "7.2.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "has-flag": "^4.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/text-table": {[m
+[32m+[m[32m      "version": "0.2.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz",[m
+[32m+[m[32m      "integrity": "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/to-regex-range": {[m
+[32m+[m[32m      "version": "5.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/to-regex-range/-/to-regex-range-5.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "is-number": "^7.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=8.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/tslib": {[m
+[32m+[m[32m      "version": "1.14.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/tsutils": {[m
+[32m+[m[32m      "version": "3.21.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/tsutils/-/tsutils-3.21.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "tslib": "^1.8.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 6"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "typescript": ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/type-check": {[m
+[32m+[m[32m      "version": "0.4.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/type-check/-/type-check-0.4.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "prelude-ls": "^1.2.1"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.8.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/type-fest": {[m
+[32m+[m[32m      "version": "0.20.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/type-fest/-/type-fest-0.20.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=10"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "funding": {[m
+[32m+[m[32m        "url": "https://github.com/sponsors/sindresorhus"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/typescript": {[m
+[32m+[m[32m      "version": "4.6.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/typescript/-/typescript-4.6.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "tsc": "bin/tsc",[m
+[32m+[m[32m        "tsserver": "bin/tsserver"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=4.2.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/union": {[m
+[32m+[m[32m      "version": "0.5.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/union/-/union-0.5.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-N6uOhuW6zO95P3Mel2I2zMsbsanvvtgn6jVqJv4vbVcz/JN0OkL9suomjQGmWtxJQXOCqUJvquc1sMeNz/IwlA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "qs": "^6.4.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 0.8.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/uri-js": {[m
+[32m+[m[32m      "version": "4.4.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/uri-js/-/uri-js-4.4.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "punycode": "^2.1.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/url-join": {[m
+[32m+[m[32m      "version": "4.0.1",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/url-join/-/url-join-4.0.1.tgz",[m
+[32m+[m[32m      "integrity": "sha512-jk1+QP6ZJqyOiuEI9AEWQfju/nB2Pw466kbA0LEZljHwKeMgd9WrAEgEGxjPDD2+TNbbb37rTyhEfrCXfuKXnA==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/v8-compile-cache": {[m
+[32m+[m[32m      "version": "2.3.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/whatwg-encoding": {[m
+[32m+[m[32m      "version": "2.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/whatwg-encoding/-/whatwg-encoding-2.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-p41ogyeMUrw3jWclHWTQg1k05DSVXPLcVxRTYsXUk+ZooOCZLcoYgPZ/HL/D/N+uQPOtcp1me1WhBEaX02mhWg==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "iconv-lite": "0.6.3"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=12"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/which": {[m
+[32m+[m[32m      "version": "2.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/which/-/which-2.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "isexe": "^2.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "node-which": "bin/node-which"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">= 8"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/word-wrap": {[m
+[32m+[m[32m      "version": "1.2.3",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/word-wrap/-/word-wrap-1.2.3.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==",[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": ">=0.10.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/wrappy": {[m
+[32m+[m[32m      "version": "1.0.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",[m
+[32m+[m[32m      "integrity": "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/yallist": {[m
+[32m+[m[32m      "version": "4.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==",[m
+[32m+[m[32m      "dev": true[m
+[32m+[m[32m    }[m
+[32m+[m[32m  },[m
+   "dependencies": {[m
+     "@eslint/eslintrc": {[m
+       "version": "1.2.1",[m
+[36m@@ -289,7 +2261,8 @@[m
+       "version": "5.3.2",[m
+       "resolved": "https://registry.npmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz",[m
+       "integrity": "sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==",[m
+[31m-      "dev": true[m
+[32m+[m[32m      "dev": true,[m
+[32m+[m[32m      "requires": {}[m
+     },[m
+     "ajv": {[m
+       "version": "6.12.6",[m
+[36m@@ -331,9 +2304,9 @@[m
+       "dev": true[m
+     },[m
+     "async": {[m
+[31m-      "version": "2.6.3",[m
+[31m-      "resolved": "https://registry.npmjs.org/async/-/async-2.6.3.tgz",[m
+[31m-      "integrity": "sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==",[m
+[32m+[m[32m      "version": "2.6.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/async/-/async-2.6.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==",[m
+       "dev": true,[m
+       "requires": {[m
+         "lodash": "^4.17.14"[m
+[36m@@ -1038,9 +3011,9 @@[m
+       }[m
+     },[m
+     "minimist": {[m
+[31m-      "version": "1.2.5",[m
+[31m-      "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz",[m
+[31m-      "integrity": "sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==",[m
+[32m+[m[32m      "version": "1.2.6",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.6.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==",[m
+       "dev": true[m
+     },[m
+     "mkdirp": {[m
+
+[33mcommit 8feb547a8d36cd2bddede01d748174febf72150c[m
+Author: alex <mashkal2000@gmail.com>
+Date:   Wed Apr 20 18:04:12 2022 -0400
+
+    Improve SimplePiece getLegalmoves performance.
+
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex 0a8a33b..f1f738a 100755[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -3,3 +3,4 @@[m [mnode_modules/[m
+ dist[m
+ *:Zone.Identifier[m
+ lib/img[m
+[32m+[m[32mvscode-profile-*.cpuprofile[m[41m[m
+[1mdiff --git a/core/perf/minimaxPerformance.ts b/core/perf/minimaxPerformance.ts[m
+[1mindex fe1a788..7f7fabb 100644[m
+[1m--- a/core/perf/minimaxPerformance.ts[m
+[1m+++ b/core/perf/minimaxPerformance.ts[m
+[36m@@ -1,4 +1,5 @@[m
+ import { minimaxAI } from "../ai/minimax";[m
+[32m+[m[32mimport { minimaxAlphaBetaAI } from "../ai/minimaxAB";[m
+ import MyopicMiniMax from "../ai/myopic_minimax";[m
+ import randomAI from "../ai/random";[m
+ import { BoardState, Player, Square } from "../models";[m
+[36m@@ -27,8 +28,8 @@[m [mexport function versus(runs: number) {[m
+ }[m
+ [m
+ [m
+[31m-export function boardValue(strength: number, runs: number, board: BoardState, rules: RuleSet): [number, number, number] {[m
+[31m-    const cpu1 = new minimaxAI(strength);[m
+[32m+[m[32mexport function boardValue(strength: number, runs: number, board: BoardState, rules: RuleSet, prune: boolean): [number, number, number] {[m
+[32m+[m[32m    const cpu1 = prune ? new minimaxAlphaBetaAI(strength) : new minimaxAI(strength);[m
+     const cpu2 = new MyopicMiniMax(new randomAI(), 0.5);[m
+     let wins = 0, losses = 0, max_turns = 0;[m
+     for (let index = 0; index < runs; index++) {[m
+[36m@@ -43,12 +44,12 @@[m [mexport function boardValue(strength: number, runs: number, board: BoardState, ru[m
+     return [wins, losses, max_turns];[m
+ }[m
+ [m
+[31m-export function testBoards(dim: Square, boards: number, runs: number, pieces: number, strength: number, rules: RuleSet) {[m
+[32m+[m[32mexport function testBoards(dim: Square, boards: number, runs: number, pieces: number, strength: number, rules: RuleSet, prune: boolean) {[m
+     const board_wrs = [];[m
+     for (let i = 0; i < boards; i++) {[m
+         const board = generateBoard(dim, pieces, true);[m
+         printBoard(board);[m
+[31m-        const [wins, losses, max_moves] = boardValue(strength, runs, board, rules);[m
+[32m+[m[32m        const [wins, losses, max_moves] = boardValue(strength, runs, board, rules, prune);[m
+         console.log("wins: %d, losses: %d, ties: %d, winrate: %f", wins, losses, runs - wins - losses, wins / runs);[m
+         board_wrs.push([board, wins, losses, max_moves]);[m
+     }[m
+[36m@@ -57,7 +58,7 @@[m [mexport function testBoards(dim: Square, boards: number, runs: number, pieces: nu[m
+ [m
+ [m
+ [m
+[31m-testBoards({ 'file': 2, 'rank': 9 }, 100, 50, 3, 4, new SimpleRuleSet()).forEach(([b, w, l, m]) => {[m
+[32m+[m[32mtestBoards({ 'file': 2, 'rank': 9 }, 100, 50, 3, 4, new SimpleRuleSet(), true).forEach(([b, w, l, m]) => {[m
+     printBoard(b as BoardState);[m
+     console.log(w, l, m);[m
+ });;[m
+[1mdiff --git a/core/rules/simplePieces.ts b/core/rules/simplePieces.ts[m
+[1mindex f8e0bb3..d95e8d0 100644[m
+[1m--- a/core/rules/simplePieces.ts[m
+[1m+++ b/core/rules/simplePieces.ts[m
+[36m@@ -1,5 +1,5 @@[m
+ import { boardToState } from "../game/conversions.js";[m
+[31m-import { nextPlayer } from "../game/gameModel.js";[m
+[32m+[m[32mimport { Game, nextPlayer } from "../game/gameModel.js";[m
+ import { PiecePosition, Square, Move, Player, PieceType, Rules, BoardState } from "../models.js";[m
+ import { GameBoard } from "../game/GameBoard";[m
+ import { blocked, enumeratePositions, pieceAtLocation } from "../utils.js";[m
+[36m@@ -17,9 +17,12 @@[m [mexport abstract class SimplePiece implements GamePiece {[m
+         this.state.position = location;[m
+     }[m
+     abstract legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean;[m
+[32m+[m[32m    potentialMoves(position: GameBoard): Square[] {[m
+[32m+[m[32m        return enumeratePositions(position.boardDimensions);[m
+[32m+[m[32m    }[m
+ [m
+     getLegalMoves(considerCheck: boolean, position: GameBoard): Square[] {[m
+[31m-        return enumeratePositions(position.boardDimensions).filter(x => this.legalMove(x, considerCheck, position));[m
+[32m+[m[32m        return this.potentialMoves(position).filter(x => this.legalMove(x, considerCheck, position));[m
+     }[m
+     locationToMove(to: Square): Move {[m
+         return { "from": this.state.position, "to": to };[m
+[36m@@ -34,6 +37,10 @@[m [mfunction emptyOrOpponent(position: GameBoard, location: Square, current_player:[m
+     return pieceAtLocation(position, location)?.state.player !== current_player;[m
+ }[m
+ [m
+[32m+[m[32mfunction onBoard(s: Square, boardDims: Square) {[m
+[32m+[m[32m    return s.file >= 0 && s.file <= boardDims.file && s.rank >= 0 && s.rank <= boardDims.rank;[m
+[32m+[m[32m}[m
+[32m+[m
+ export function pieceToGamePiece(piece: PiecePosition): GamePiece {[m
+     return piece.piece === PieceType.Bishop ? new SimpleBishop(piece.position, piece.player)[m
+         : piece.piece === PieceType.King ? new SimpleKing(piece.position, piece.player)[m
+[36m@@ -44,7 +51,22 @@[m [mexport function pieceToGamePiece(piece: PiecePosition): GamePiece {[m
+ }[m
+ [m
+ export class SimpleKing extends SimplePiece {[m
+[31m-    legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+[32m+[m[32m    override potentialMoves(position: GameBoard): Square[] {[m
+[32m+[m[32m        const pos = this.state.position;[m
+[32m+[m[32m        const out = [[m
+[32m+[m[32m            { 'file': pos.file - 1, 'rank': pos.rank - 1 },[m
+[32m+[m[32m            { 'file': pos.file - 1, 'rank': pos.rank },[m
+[32m+[m[32m            { 'file': pos.file - 1, 'rank': pos.rank + 1 },[m
+[32m+[m[32m            { 'file': pos.file, 'rank': pos.rank - 1 },[m
+[32m+[m[32m            { 'file': pos.file, 'rank': pos.rank + 1 },[m
+[32m+[m[32m            { 'file': pos.file + 1, 'rank': pos.rank - 1 },[m
+[32m+[m[32m            { 'file': pos.file + 1, 'rank': pos.rank },[m
+[32m+[m[32m            { 'file': pos.file + 1, 'rank': pos.rank + 1 }[m
+[32m+[m[32m        ];[m
+[32m+[m[32m        return out.filter(s => onBoard(s, position.boardDimensions));[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    override legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+         return Math.abs(this.state.position.file - location.file) <= 1[m
+             && Math.abs(this.state.position.rank - location.rank) <= 1[m
+             && emptyOrOpponent(position, location, this.state.player)[m
+[36m@@ -56,7 +78,21 @@[m [mexport class SimpleKing extends SimplePiece {[m
+ }[m
+ [m
+ export class SimpleKnight extends SimplePiece {[m
+[31m-    legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+[32m+[m[32m    override potentialMoves(position: GameBoard): Square[] {[m
+[32m+[m[32m        const pos = this.state.position;[m
+[32m+[m[32m        const out = [[m
+[32m+[m[32m            { 'file': pos.file - 2, 'rank': pos.rank - 1 },[m
+[32m+[m[32m            { 'file': pos.file - 2, 'rank': pos.rank + 1 },[m
+[32m+[m[32m            { 'file': pos.file - 1, 'rank': pos.rank - 2 },[m
+[32m+[m[32m            { 'file': pos.file - 1, 'rank': pos.rank + 2 },[m
+[32m+[m[32m            { 'file': pos.file + 1, 'rank': pos.rank - 2 },[m
+[32m+[m[32m            { 'file': pos.file + 1, 'rank': pos.rank + 2 },[m
+[32m+[m[32m            { 'file': pos.file + 2, 'rank': pos.rank - 1 },[m
+[32m+[m[32m            { 'file': pos.file + 2, 'rank': pos.rank + 1 },[m
+[32m+[m[32m        ];[m
+[32m+[m[32m        return out.filter(s => onBoard(s, position.boardDimensions));[m
+[32m+[m[32m    }[m
+[32m+[m[32m    override legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+         return (Math.abs(this.state.position.file - location.file) === 2 && Math.abs(this.state.position.rank - location.rank) === 1[m
+             || Math.abs(this.state.position.file - location.file) === 1 && Math.abs(this.state.position.rank - location.rank) === 2)[m
+             && emptyOrOpponent(position, location, this.state.player)[m
+[36m@@ -68,7 +104,7 @@[m [mexport class SimpleKnight extends SimplePiece {[m
+ }[m
+ [m
+ export class SimpleBishop extends SimplePiece {[m
+[31m-    legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+[32m+[m[32m    override legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+         return (this.state.position.file - this.state.position.rank === location.file - location.rank[m
+             || this.state.position.file + this.state.position.rank === location.file + location.rank)[m
+             && emptyOrOpponent(position, location, this.state.player)[m
+[36m@@ -81,7 +117,7 @@[m [mexport class SimpleBishop extends SimplePiece {[m
+ }[m
+ [m
+ export class SimpleQueen extends SimplePiece {[m
+[31m-    legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+[32m+[m[32m    override legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+         return (this.state.position.file - this.state.position.rank === location.file - location.rank[m
+             || this.state.position.file + this.state.position.rank === location.file + location.rank[m
+             || this.state.position.file === location.file || this.state.position.rank === location.rank)[m
+[36m@@ -95,7 +131,7 @@[m [mexport class SimpleQueen extends SimplePiece {[m
+ }[m
+ [m
+ export class SimpleRook extends SimplePiece {[m
+[31m-    legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+[32m+[m[32m    override legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+         return (this.state.position.file === location.file || this.state.position.rank === location.rank)[m
+             && emptyOrOpponent(position, location, this.state.player)[m
+             && !blocked(boardToState(position), this.state.position, location)[m
+[36m@@ -107,7 +143,19 @@[m [mexport class SimpleRook extends SimplePiece {[m
+ }[m
+ [m
+ export class SimplePawn extends SimplePiece {[m
+[31m-    legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+[32m+[m[32m    override potentialMoves(position: GameBoard): Square[] {[m
+[32m+[m[32m        const rankMult: -1 | 1 = this.state.player === Player.White ? 1 : -1;[m
+[32m+[m[32m        const pos = this.state.position;[m
+[32m+[m[32m        const out = [[m
+[32m+[m[32m            { 'file': pos.file, 'rank': pos.rank + rankMult },[m
+[32m+[m[32m            { 'file': pos.file, 'rank': pos.rank + rankMult * 2 },[m
+[32m+[m[32m            { 'file': pos.file - 1, 'rank': pos.rank + rankMult },[m
+[32m+[m[32m            { 'file': pos.file + 1, 'rank': pos.rank + rankMult },[m
+[32m+[m[32m        ];[m
+[32m+[m[32m        return out.filter(s => onBoard(s, position.boardDimensions));[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    override legalMove(location: Square, considerCheck: boolean, position: GameBoard): boolean {[m
+         const rankMult: -1 | 1 = this.state.player === Player.White ? 1 : -1;[m
+         const twoMoveRank = this.state.player === Player.White ? 1 : position.boardDimensions.rank - 2;[m
+         const curPos: Square = this.state.position;[m
+[1mdiff --git a/core/utils.ts b/core/utils.ts[m
+[1mindex 875eca0..7023a3d 100755[m
+[1m--- a/core/utils.ts[m
+[1m+++ b/core/utils.ts[m
+[36m@@ -1,15 +1,17 @@[m
+[31m-import { BoardState, Square, Player, PiecePosition } from "./models.js";[m
+[32m+[m[32mimport { fileToLetter, unparsePieceColour } from "./game/conversions.js";[m[41m[m
+ import { GameBoard } from "./game/GameBoard";[m
+[32m+[m[32mimport { BoardState, PiecePosition, Player, Square } from "./models.js";[m[41m[m
+ import { GamePiece } from "./rules/piece.js";[m
+[31m-import { fileToLetter, unparsePieceColour } from "./game/conversions.js";[m
+ [m
+ [m
+[31m-// Return a list of possible positions within dimensions[m
+[32m+[m[32m// Return a list of possible positions within dimensions.[m[41m[m
+[32m+[m[32m// Iterative implementation is much faster than functional implementation[m[41m[m
+ export function enumeratePositions(dimensions: Square): Square[] {[m
+[31m-    const ranks = range(dimensions.rank);[m
+[31m-    const files = range(dimensions.file);[m
+[31m-    // 2-ary Cartesian product[m
+[31m-    return ranks.flatMap(x => files.map(y => { return { rank: x, file: y } as Square }));[m
+[32m+[m[32m    const out = [];[m[41m[m
+[32m+[m[32m    for (let i = 0; i < dimensions.file; i++)[m[41m[m
+[32m+[m[32m        for (let j = 0; j < dimensions.rank; j++)[m[41m[m
+[32m+[m[32m            out.push({ 'file': i, 'rank': j });[m[41m[m
+[32m+[m[32m    return out;[m[41m[m
+ }[m
+ [m
+ [m
+
+[33mcommit bcd581d22a277d2f7e8766219f96412f516418af[m
+Author: alex <mashkal2000@gmail.com>
+Date:   Wed Apr 20 16:59:00 2022 -0400
+
+    Add minimaxAB tests.
+    Refactor AI, myopic minimax AI.
+    Add deterministic AI.
+
+[1mdiff --git a/.vscode/launch.json b/.vscode/launch.json[m
+[1mindex d597a6b..644a546 100644[m
+[1m--- a/.vscode/launch.json[m
+[1m+++ b/.vscode/launch.json[m
+[36m@@ -46,6 +46,17 @@[m
+       "type": "pwa-node",[m
+       "preLaunchTask": "build core"[m
+     },[m
+[32m+[m[32m    {[m
+[32m+[m[32m      "name": "Test Minimax pruning",[m
+[32m+[m[32m      "program": "${workspaceFolder}/core/perf/test_minimaxPruning.ts",[m
+[32m+[m[32m      "request": "launch",[m
+[32m+[m[32m      "console": "integratedTerminal",[m
+[32m+[m[32m      "skipFiles": [[m
+[32m+[m[32m        "<node_internals>/**"[m
+[32m+[m[32m      ],[m
+[32m+[m[32m      "type": "pwa-node",[m
+[32m+[m[32m      "preLaunchTask": "build core"[m
+[32m+[m[32m    },[m
+     {[m
+       "name": "Minimax Performance",[m
+       "program": "${workspaceFolder}/core/perf/minimaxPerformance.ts",[m
+[1mdiff --git a/core/ai/interface.ts b/core/ai/base.ts[m
+[1msimilarity index 66%[m
+[1mrename from core/ai/interface.ts[m
+[1mrename to core/ai/base.ts[m
+[1mindex 1d3ecac..8a904f0 100755[m
+[1m--- a/core/ai/interface.ts[m
+[1m+++ b/core/ai/base.ts[m
+[36m@@ -4,10 +4,13 @@[m [mimport { GameBoard } from "../game/GameBoard";[m
+ [m
+ [m
+ export abstract class AIPlayer {[m
+[31m-    protected difficulty: number;[m
+[31m-    constructor(difficulty: number) {[m
+[32m+[m[32m    protected readonly difficulty: number[];[m[41m[m
+[32m+[m[32m    constructor(...difficulty: number[]) {[m[41m[m
+         this.difficulty = difficulty;[m
+     }[m
+[32m+[m[32m    protected difficulty_param(index: number): number {[m[41m[m
+[32m+[m[32m        return this.difficulty[index] || 0;[m[41m[m
+[32m+[m[32m    }[m[41m[m
+     abstract move(position: GameBoard, player: Player): Move;[m
+     abstract draft(rules: DraftRules, board: BoardState, player: Player, points: number): PiecePosition;[m
+ }[m
+[1mdiff --git a/core/ai/deterministic.ts b/core/ai/deterministic.ts[m
+[1mnew file mode 100755[m
+[1mindex 0000000..c701cc8[m
+[1m--- /dev/null[m
+[1m+++ b/core/ai/deterministic.ts[m
+[36m@@ -0,0 +1,29 @@[m
+[32m+[m[32mimport { DraftRules } from "../draft/draftRules.js";[m[41m[m
+[32m+[m[32mimport { GameBoard } from "../game/GameBoard";[m[41m[m
+[32m+[m[32mimport { BoardState, Move, PiecePosition, PieceType, Player, Square } from "../models.js";[m[41m[m
+[32m+[m[32mimport { nextEmptySquare } from "../utils.js";[m[41m[m
+[32m+[m[32mimport { AIPlayer } from "./base.js";[m[41m[m
+[32m+[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mexport default class determinsticAI extends AIPlayer {[m[41m[m
+[32m+[m[32m    private randomState = this.difficulty_param(0) || 1;[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    move(position: GameBoard, player: Player): Move {[m[41m[m
+[32m+[m[32m        const b = position.gamePieces.filter(p => p.state.player === player)[m[41m[m
+[32m+[m[32m            .flatMap(p => p.getLegalMoves(position.rules.rules.kingCheck, position)[m[41m[m
+[32m+[m[32m                .map(to => { return { 'from': p.state.position, 'to': to }; }));[m[41m[m
+[32m+[m[32m        return b[Math.floor(this.prng() * b.length)] as Move;[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    draft(rules: DraftRules, board: BoardState, player: Player, points: number): PiecePosition {[m[41m[m
+[32m+[m[32m        const pieces = Object.values(PieceType).filter(p => rules.pieceCost[p] <= points);[m[41m[m
+[32m+[m[32m        const piece = pieces[Math.floor(this.prng() * pieces.length)] as PieceType;[m[41m[m
+[32m+[m[32m        return { 'piece': piece, 'player': player, 'position': nextEmptySquare(board, player) as Square };[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    // simple PRNG taken from https://stackoverflow.com/a/19303725/9074788[m[41m[m
+[32m+[m[32m    private prng() {[m[41m[m
+[32m+[m[32m        const x = Math.sin(this.randomState++) * 10000;[m[41m[m
+[32m+[m[32m        return x - Math.floor(x);[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/core/ai/minimax.ts b/core/ai/minimax.ts[m
+[1mindex 941e5dc..7fb387e 100755[m
+[1m--- a/core/ai/minimax.ts[m
+[1m+++ b/core/ai/minimax.ts[m
+[36m@@ -1,10 +1,8 @@[m
+[31m-import { DraftRules } from "../draft/draftRules.js";[m
+ import { boardToState } from "../game/conversions.js";[m
+[31m-import { checkGameState, cloneBoard, GameStatus, nextPlayer, updateWithMove } from "../game/gameModel.js";[m
+[31m-import { Player, Move, BoardState, PiecePosition } from "../models.js";[m
+ import { GameBoard } from "../game/GameBoard";[m
+[32m+[m[32mimport { checkGameState, cloneBoard, GameStatus, nextPlayer, updateWithMove } from "../game/gameModel.js";[m[41m[m
+[32m+[m[32mimport { Move, Player } from "../models.js";[m[41m[m
+ import { countPieces, printBoard } from "../utils.js";[m
+[31m-import { AIPlayer } from "./interface.js";[m
+ import randomAI from "./random.js";[m
+ [m
+ interface MoveVal {[m
+[36m@@ -14,16 +12,16 @@[m [minterface MoveVal {[m
+ [m
+ const DEBUG = false;[m
+ [m
+[31m-export class minimaxAI extends AIPlayer {[m
+[31m-    move(position: GameBoard, player: Player): Move {[m
+[31m-        const move = this._minimax(position, player, 0, this.difficulty) as MoveVal;[m
+[32m+[m[32mexport class minimaxAI extends randomAI {[m[41m[m
+[32m+[m[32m    public val = 0;[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    override move(position: GameBoard, player: Player): Move {[m[41m[m
+[32m+[m[32m        const move = this._minimax(position, player, 0, this.difficulty_param(0)) as MoveVal;[m[41m[m
+         DEBUG && console.log("Eval:", move.val);[m
+[32m+[m[32m        this.val = move.val;[m[41m[m
+         return move.move;[m
+     }[m
+ [m
+[31m-    draft(rules: DraftRules, board: BoardState, player: Player, points: number): PiecePosition {[m
+[31m-        return random.draft(rules, board, player, points);[m
+[31m-    }[m
+ [m
+     _minimax(position: GameBoard, player: Player, depth: number, max_depth: number): number | MoveVal {[m
+         const state = checkGameState(position, player);[m
+[36m@@ -68,9 +66,8 @@[m [mexport class minimaxAI extends AIPlayer {[m
+     }[m
+ }[m
+ [m
+[31m-const random = new randomAI(0);[m
+ [m
+[31m-function possibleMoves(position: GameBoard, player: Player): Move[] {[m
+[32m+[m[32mexport function possibleMoves(position: GameBoard, player: Player): Move[] {[m[41m[m
+     return position.gamePieces[m
+         .filter(p => p.state.player === player)[m
+         .flatMap(p => p.getLegalMoves(position.rules.rules.kingCheck, position)[m
+[1mdiff --git a/core/ai/minimaxAB.ts b/core/ai/minimaxAB.ts[m
+[1mindex 16d2e74..12e2614 100755[m
+[1m--- a/core/ai/minimaxAB.ts[m
+[1m+++ b/core/ai/minimaxAB.ts[m
+[36m@@ -1,10 +1,7 @@[m
+[31m-import { DraftRules } from "../draft/draftRules.js";[m
+[31m-import { boardToState } from "../game/conversions.js";[m
+[31m-import { checkGameState, cloneBoard, GameStatus, nextPlayer, updateWithMove } from "../game/gameModel.js";[m
+[31m-import { Player, Move, BoardState, PiecePosition } from "../models.js";[m
+ import { GameBoard } from "../game/GameBoard";[m
+[31m-import { countPieces, printBoard } from "../utils.js";[m
+[31m-import { AIPlayer } from "./interface.js";[m
+[32m+[m[32mimport { checkGameState, cloneBoard, nextPlayer, updateWithMove } from "../game/gameModel.js";[m[41m[m
+[32m+[m[32mimport { Move, Player } from "../models.js";[m[41m[m
+[32m+[m[32mimport { evaluate, possibleMoves } from "./minimax.js";[m[41m[m
+ import randomAI from "./random.js";[m
+ [m
+ interface MoveVal {[m
+[36m@@ -12,26 +9,23 @@[m [minterface MoveVal {[m
+     val: number[m
+ }[m
+ [m
+[31m-const DEBUG = true;[m
+[32m+[m[32mconst DEBUG = false;[m[41m[m
+ [m
+[31m-export class minimaxAlphaBetaAI extends AIPlayer {[m
+[32m+[m[32mexport class minimaxAlphaBetaAI extends randomAI {[m[41m[m
+     private skips = 0;[m
+     private visits = 0;[m
+[32m+[m[32m    public val = 0;[m[41m[m
+ [m
+[31m-    move(position: GameBoard, player: Player): Move {[m
+[32m+[m[32m    override move(position: GameBoard, player: Player): Move {[m[41m[m
+         this.skips = 0;[m
+         this.visits = 0;[m
+[31m-[m
+[31m-        const move = this.minimax(position, player, 0, this.difficulty, -Infinity, Infinity) as MoveVal;[m
+[32m+[m[32m        const move = this.minimax(position, player, 0, this.difficulty_param(0), -Infinity, Infinity) as MoveVal;[m[41m[m
+         DEBUG && console.log("Eval:", move.val);[m
+         DEBUG && console.log("Visited %d, skipped %d", this.visits, this.skips);[m
+[32m+[m[32m        this.val = move.val;[m[41m[m
+         return move.move;[m
+     }[m
+ [m
+[31m-    draft(rules: DraftRules, board: BoardState, player: Player, points: number): PiecePosition {[m
+[31m-        return random.draft(rules, board, player, points);[m
+[31m-    }[m
+[31m-[m
+     private minimax(position: GameBoard, player: Player, depth: number, max_depth: number, alpha: number, beta: number): number | MoveVal {[m
+         const state = checkGameState(position, player);[m
+         // leaf node[m
+[36m@@ -75,26 +69,3 @@[m [mexport class minimaxAlphaBetaAI extends AIPlayer {[m
+         }[m
+     }[m
+ }[m
+[31m-[m
+[31m-const random = new randomAI(0);[m
+[31m-[m
+[31m-[m
+[31m-function possibleMoves(position: GameBoard, player: Player): Move[] {[m
+[31m-    return position.gamePieces[m
+[31m-        .filter(p => p.state.player === player)[m
+[31m-        .flatMap(p => p.getLegalMoves(position.rules.rules.kingCheck, position)[m
+[31m-            .map(to => { return { 'from': p.state.position, 'to': to }; }));[m
+[31m-}[m
+[31m-[m
+[31m-// evaluate game state based on advantage for White[m
+[31m-export function evaluate(position: GameBoard, player: Player, status?: GameStatus): number {[m
+[31m-    status = status || checkGameState(position, player);[m
+[31m-    const board = boardToState(position);[m
+[31m-    const max_val = board.boardDimensions.file * board.boardDimensions.rank;[m
+[31m-    if (status.status === "draw")[m
+[31m-        return 0;[m
+[31m-    else if (status.status === "loss")[m
+[31m-        return player === Player.White ? -max_val : max_val;[m
+[31m-    else[m
+[31m-        return 2 * (position.gamePieces.length / 2 - countPieces(board, p => p.player === Player.Black));[m
+[31m-}[m
+[1mdiff --git a/core/ai/myopic_minimax.ts b/core/ai/myopic_minimax.ts[m
+[1mnew file mode 100755[m
+[1mindex 0000000..a72ebd1[m
+[1m--- /dev/null[m
+[1m+++ b/core/ai/myopic_minimax.ts[m
+[36m@@ -0,0 +1,25 @@[m
+[32m+[m[32mimport { DraftRules } from "../draft/draftRules.js";[m[41m[m
+[32m+[m[32mimport { Player, Move, BoardState, PiecePosition } from "../models.js";[m[41m[m
+[32m+[m[32mimport { GameBoard } from "../game/GameBoard";[m[41m[m
+[32m+[m[32mimport { AIPlayer } from "./base.js";[m[41m[m
+[32m+[m[32mimport randomAI from "./random.js";[m[41m[m
+[32m+[m[32mimport { minimaxAlphaBetaAI } from "./minimaxAB.js";[m[41m[m
+[32m+[m[41m[m
+[32m+[m[41m[m
+[32m+[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mexport default class MyopicMiniMax extends minimaxAlphaBetaAI {[m[41m[m
+[32m+[m[32m    private ai;[m[41m[m
+[32m+[m[32m    constructor(ai: AIPlayer = new randomAI(), ...difficulty: number[]) {[m[41m[m
+[32m+[m[32m        super(1, ...difficulty);[m[41m[m
+[32m+[m[32m        this.ai = ai;[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[32m    override move(position: GameBoard, player: Player): Move {[m[41m[m
+[32m+[m[32m        return Math.random() > this.difficulty_param(1) ? this.ai.move(position, player) : super.move(position, player);[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    draft(rules: DraftRules, board: BoardState, player: Player, points: number): PiecePosition {[m[41m[m
+[32m+[m[32m        return this.ai.draft(rules, board, player, points);[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/core/ai/myopic_minimax_random.ts b/core/ai/myopic_minimax_random.ts[m
+[1mdeleted file mode 100755[m
+[1mindex c56e580..0000000[m
+[1m--- a/core/ai/myopic_minimax_random.ts[m
+[1m+++ /dev/null[m
+[36m@@ -1,20 +0,0 @@[m
+[31m-import { DraftRules } from "../draft/draftRules.js";[m
+[31m-import { Player, Move, BoardState, PiecePosition } from "../models.js";[m
+[31m-import { GameBoard } from "../game/GameBoard";[m
+[31m-import { AIPlayer } from "./interface.js";[m
+[31m-import randomAI from "./random.js";[m
+[31m-import { minimaxAI } from "./minimax.js";[m
+[31m-[m
+[31m-const random = new randomAI(0);[m
+[31m-const myopicMiniMax = new minimaxAI(1);[m
+[31m-[m
+[31m-export default class MyopicMiniMaxRandom extends AIPlayer {[m
+[31m-    move(position: GameBoard, player: Player): Move {[m
+[31m-        return Math.random() > this.difficulty ? random.move(position, player) : myopicMiniMax.move(position, player);[m
+[31m-    }[m
+[31m-[m
+[31m-    draft(rules: DraftRules, board: BoardState, player: Player, points: number): PiecePosition {[m
+[31m-        return random.draft(rules, board, player, points);[m
+[31m-    }[m
+[31m-[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/core/ai/random.ts b/core/ai/random.ts[m
+[1mindex 67353d8..779d413 100755[m
+[1m--- a/core/ai/random.ts[m
+[1m+++ b/core/ai/random.ts[m
+[36m@@ -2,7 +2,7 @@[m [mimport { DraftRules } from "../draft/draftRules.js";[m
+ import { Player, Move, BoardState, PiecePosition, PieceType, Square } from "../models.js";[m
+ import { GameBoard } from "../game/GameBoard";[m
+ import { nextEmptySquare, randItem } from "../utils.js";[m
+[31m-import { AIPlayer } from "./interface.js";[m
+[32m+[m[32mimport { AIPlayer } from "./base.js";[m[41m[m
+ [m
+ [m
+ export default class randomAI extends AIPlayer {[m
+[1mdiff --git a/core/draft/draftController.ts b/core/draft/draftController.ts[m
+[1mindex 9993570..2335168 100644[m
+[1m--- a/core/draft/draftController.ts[m
+[1m+++ b/core/draft/draftController.ts[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import { AIPlayer } from "../ai/interface.js";[m
+[32m+[m[32mimport { AIPlayer } from "../ai/base.js";[m
+ import randomAI from "../ai/random.js";[m
+ import { unparseSquare } from "../game/conversions.js";[m
+ import { BoardState, PiecePosition, Player } from "../models.js";[m
+[36m@@ -18,7 +18,7 @@[m [mexport function validateDraftChoice(rules: DraftRules, board: BoardState, player[m
+ [m
+ // this is a draft controller. It's really only useful for CLI games - do not use this for event-driven uses[m
+ export async function runAIDraft(draftRules: DraftRules, board: BoardState, choosePiece: (rules: DraftRules, board: BoardState, player: Player, points: number) => Promise<PiecePosition>): Promise<BoardState> {[m
+[31m-    const ai: AIPlayer = new randomAI(0);[m
+[32m+[m[32m    const ai: AIPlayer = new randomAI();[m
+     const draft = new Draft(board, draftRules, Player.White);[m
+ [m
+     for (let round = 0; round < draftRules.rounds; round++) {[m
+[1mdiff --git a/core/game/gameCLI.ts b/core/game/gameCLI.ts[m
+[1mindex b52e80b..132dbda 100644[m
+[1m--- a/core/game/gameCLI.ts[m
+[1m+++ b/core/game/gameCLI.ts[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import { AIPlayer } from "../ai/interface.js";[m
+[32m+[m[32mimport { AIPlayer } from "../ai/base.js";[m
+ import randomAI from "../ai/random.js";[m
+ import { BoardState, Move, Player } from "../models.js";[m
+ import { RuleSet } from "../rules/piece.js";[m
+[1mdiff --git a/core/perf/AIVersusGame.ts b/core/perf/AIVersusGame.ts[m
+[1mindex 3b30025..388ed6c 100644[m
+[1m--- a/core/perf/AIVersusGame.ts[m
+[1m+++ b/core/perf/AIVersusGame.ts[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import { AIPlayer } from "../ai/interface.js";[m
+[32m+[m[32mimport { AIPlayer } from "../ai/base.js";[m
+ import { Game, GameStatus } from "../game/gameModel.js";[m
+ import { BoardState, Player } from "../models.js";[m
+ import { RuleSet } from "../rules/piece.js";[m
+[1mdiff --git a/core/perf/minimaxPerformance.ts b/core/perf/minimaxPerformance.ts[m
+[1mindex db3225f..fe1a788 100644[m
+[1m--- a/core/perf/minimaxPerformance.ts[m
+[1m+++ b/core/perf/minimaxPerformance.ts[m
+[36m@@ -1,5 +1,5 @@[m
+ import { minimaxAI } from "../ai/minimax";[m
+[31m-import MyopicMiniMaxRandom from "../ai/myopic_minimax_random";[m
+[32m+[m[32mimport MyopicMiniMax from "../ai/myopic_minimax";[m
+ import randomAI from "../ai/random";[m
+ import { BoardState, Player, Square } from "../models";[m
+ import X8_rooks_knight from "../positions/2x8_rooks_knight";[m
+[36m@@ -10,14 +10,9 @@[m [mimport runAIVersus from "./AIVersusGame";[m
+ import generateBoard from "./generateBoard";[m
+ [m
+ [m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+ export function versus(runs: number) {[m
+     const cpu1 = new minimaxAI(5);[m
+[31m-    const cpu2 = new randomAI(3);[m
+[32m+[m[32m    const cpu2 = new randomAI();[m
+     let wins = 0, losses = 0;[m
+     for (let index = 0; index < runs; index++) {[m
+         const result = runAIVersus(X8_rooks_knight(), new SimpleRuleSet(), cpu1, cpu2);[m
+[36m@@ -34,7 +29,7 @@[m [mexport function versus(runs: number) {[m
+ [m
+ export function boardValue(strength: number, runs: number, board: BoardState, rules: RuleSet): [number, number, number] {[m
+     const cpu1 = new minimaxAI(strength);[m
+[31m-    const cpu2 = new MyopicMiniMaxRandom(0.5);[m
+[32m+[m[32m    const cpu2 = new MyopicMiniMax(new randomAI(), 0.5);[m
+     let wins = 0, losses = 0, max_turns = 0;[m
+     for (let index = 0; index < runs; index++) {[m
+         const result = runAIVersus(board, rules, cpu1, cpu2);[m
+[1mdiff --git a/core/perf/test_minimaxPruning.ts b/core/perf/test_minimaxPruning.ts[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d9b302a[m
+[1m--- /dev/null[m
+[1m+++ b/core/perf/test_minimaxPruning.ts[m
+[36m@@ -0,0 +1,40 @@[m
+[32m+[m[32mimport deterministicAI from "../ai/deterministic";[m
+[32m+[m[32mimport { minimaxAI } from "../ai/minimax";[m
+[32m+[m[32mimport { minimaxAlphaBetaAI } from "../ai/minimaxAB";[m
+[32m+[m[32mimport MyopicMiniMax from "../ai/myopic_minimax";[m
+[32m+[m[32mimport { Game, GameStatus } from "../game/gameModel.js";[m
+[32m+[m[32mimport { BoardState, Player } from "../models.js";[m
+[32m+[m[32mimport { RuleSet } from "../rules/piece.js";[m
+[32m+[m[32mimport { SimpleRuleSet } from "../rules/simplePieces";[m
+[32m+[m[32mimport { moveEq } from "../tests/utils/moveEq";[m
+[32m+[m[32mimport newBoard from "./generateBoard.js";[m
+[32m+[m
+[32m+[m
+[32m+[m[32m// both players make a ply -> 1 move[m
+[32m+[m[32mconst MAX_MOVES = 100;[m
+[32m+[m
+[32m+[m[32mexport function testMiniMaxes(board: BoardState, ruleSet: RuleSet, depth: number): [GameStatus, number] {[m
+[32m+[m
+[32m+[m[32m    const minimax = new minimaxAI(depth);[m
+[32m+[m[32m    const minimaxAB = new minimaxAlphaBetaAI(depth);[m
+[32m+[m[32m    const cpu3 = new MyopicMiniMax(new deterministicAI(1), 0.7);[m
+[32m+[m[32m    const game: Game = new Game(ruleSet, board);[m
+[32m+[m[32m    let move_count = 0;[m
+[32m+[m[32m    while (game.gameStatus.status === "playing" && move_count < MAX_MOVES) {[m
+[32m+[m[32m        const move1 = minimax.move(game.gameBoard, Player.White);[m
+[32m+[m[32m        const move2 = minimaxAB.move(game.gameBoard, Player.White);[m
+[32m+[m[32m        console.assert(moveEq, "", move1, move2);[m
+[32m+[m[32m        console.assert(minimax.val === minimaxAB.val, "", minimax.val, minimaxAB.val);[m
+[32m+[m[32m        console.log("passed", move_count);[m
+[32m+[m[32m        game.makeMove(Player.White, move1);[m
+[32m+[m[32m        if (game.gameStatus.status !== "playing")[m
+[32m+[m[32m            break;[m
+[32m+[m[32m        game.makeMove(Player.Black, cpu3.move(game.gameBoard, Player.Black));[m
+[32m+[m[32m        move_count++;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    if (move_count === MAX_MOVES)[m
+[32m+[m[32m        game.gameStatus.status = "draw";[m
+[32m+[m[32m    return [game.gameStatus, move_count];[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mtestMiniMaxes(newBoard({ 'file': 3, 'rank': 9 }, 6, true), new SimpleRuleSet(), 3);[m
+\ No newline at end of file[m
+[1mdiff --git a/core/tests/test_parseSquare.ts b/core/tests/test_parseSquare.ts[m
+[1mindex b4fcc9c..40dbb6e 100644[m
+[1m--- a/core/tests/test_parseSquare.ts[m
+[1m+++ b/core/tests/test_parseSquare.ts[m
+[36m@@ -1,6 +1,8 @@[m
+ [m
+ import { parseMove, parseSquare } from "../game/conversions.js";[m
+ import { Move, Square } from "../models.js";[m
+[32m+[m[32mimport { moveEq } from "./utils/moveEq";[m
+[32m+[m[32mimport { squareEq } from "./utils/squareEq";[m
+ [m
+ [m
+ export default () => {[m
+[36m@@ -54,16 +56,3 @@[m [mexport default () => {[m
+ [m
+ }[m
+ [m
+[31m-function squareEq(s1: Square | null, s2: Square | null) {[m
+[31m-    return s1 && s2[m
+[31m-        && s1.file === s2.file[m
+[31m-        && s1.rank === s2.rank;[m
+[31m-}[m
+[31m-[m
+[31m-function moveEq(m1: Move | null, m2: Move | null) {[m
+[31m-    return m1 && m2[m
+[31m-        && m1.from && m1.to[m
+[31m-        && m2.from && m2.to[m
+[31m-        && squareEq(m1.from, m2.from)[m
+[31m-        && squareEq(m1.to, m2.to);[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/core/tests/utils/moveEq.ts b/core/tests/utils/moveEq.ts[m
+[1mnew file mode 100644[m
+[1mindex 0000000..dcdfe0a[m
+[1m--- /dev/null[m
+[1m+++ b/core/tests/utils/moveEq.ts[m
+[36m@@ -0,0 +1,10 @@[m
+[32m+[m[32mimport { Move } from "../../models.js";[m
+[32m+[m[32mimport { squareEq } from "./squareEq";[m
+[32m+[m
+[32m+[m[32mexport function moveEq(m1: Move | null, m2: Move | null) {[m
+[32m+[m[32m    return m1 && m2[m
+[32m+[m[32m        && m1.from && m1.to[m
+[32m+[m[32m        && m2.from && m2.to[m
+[32m+[m[32m        && squareEq(m1.from, m2.from)[m
+[32m+[m[32m        && squareEq(m1.to, m2.to);[m
+[32m+[m[32m}[m
+[1mdiff --git a/core/tests/utils/squareEq.ts b/core/tests/utils/squareEq.ts[m
+[1mnew file mode 100644[m
+[1mindex 0000000..02e777f[m
+[1m--- /dev/null[m
+[1m+++ b/core/tests/utils/squareEq.ts[m
+[36m@@ -0,0 +1,8 @@[m
+[32m+[m[32mimport { Square } from "../../models.js";[m
+[32m+[m
+[32m+[m
+[32m+[m[32mexport function squareEq(s1: Square | null, s2: Square | null) {[m
+[32m+[m[32m    return s1 && s2[m
+[32m+[m[32m        && s1.file === s2.file[m
+[32m+[m[32m        && s1.rank === s2.rank;[m
+[32m+[m[32m}[m
+[1mdiff --git a/front-end/controller.ts b/front-end/controller.ts[m
+[1mindex 58c460c..523ef34 100644[m
+[1m--- a/front-end/controller.ts[m
+[1m+++ b/front-end/controller.ts[m
+[36m@@ -1,24 +1,32 @@[m
+ [m
+ [m
+ [m
+[31m-import chessboard from "../lib/chessboard.js";[m
+[31m-import { Game, MoveStatus } from "../core/game/gameModel.js";[m
+[32m+[m[32mimport { AIPlayer } from "../core/ai/base.js";[m
+[32m+[m[32mimport randomAI from "../core/ai/random.js";[m
+[32m+[m[32mimport draftRules1D from "../core/draft/1dDraftRules.js";[m
+[32m+[m[32mimport { Draft } from "../core/draft/draftModel.js";[m
+[32m+[m[32mimport { DraftRules } from "../core/draft/draftRules.js";[m
+ import { parseSquare, unparseMove, unparseSquare } from "../core/game/conversions.js";[m
+[31m-import starting_position from "../core/positions/1d_standard.js";[m
+[31m-import empty_position from "../core/positions/1x8_empty.js";[m
+[32m+[m[32mimport { Game, MoveStatus } from "../core/game/gameModel.js";[m
+ import { BoardState, Player } from "../core/models.js";[m
+[31m-import { Draft } from "../core/draft/draftModel.js";[m
+[31m-import { AIPlayer } from "../core/ai/interface.js";[m
+[31m-import randomAI from "../core/ai/random.js";[m
+[32m+[m[32mimport empty_position from "../core/positions/empty";[m
+[32m+[m[32mimport starting_position from "../core/positions/normal_chess";[m
+ import { RuleSet } from "../core/rules/piece.js";[m
+ import { SimpleRuleSet1D } from "../core/rules/simplePieces1D.js";[m
+[32m+[m[32mimport chessboard from "../lib/chessboard.js";[m
+ import { objToBoardObj, parseObjPiece, unparseObjPiece } from "./core_adapter.js";[m
+[31m-import { DraftRules } from "../core/draft/draftRules.js";[m
+[31m-import draftRules1D from "../core/draft/1dDraftRules.js";[m
+ [m
+ type action = "snapback" | "trash" | "drop";[m
+ [m
+ [m
+[32m+[m[32m// global state[m
+[32m+[m[32mlet game: Game;[m
+[32m+[m[32mlet draft: Draft;[m
+[32m+[m[32mconst CPU: AIPlayer = new randomAI();[m
+[32m+[m[32mconst draftRules: DraftRules = draftRules1D;[m
+[32m+[m[32mlet _element: Node | string;[m
+[32m+[m[32mlet destroy: { (): void } | undefined;[m
+[32m+[m
+ [m
+ // When a move is made via the UI, send that move and wait for a response move[m
+ function onMove(source: string, target: string, _piece: string,[m
+[36m@@ -59,15 +67,6 @@[m [mfunction checkStatus() {[m
+ [m
+ }[m
+ [m
+[31m-[m
+[31m-// global state[m
+[31m-let game: Game;[m
+[31m-let draft: Draft;[m
+[31m-const CPU: AIPlayer = new randomAI(0);[m
+[31m-const draftRules: DraftRules = draftRules1D;[m
+[31m-let _element: Node | string;[m
+[31m-let destroy: { (): void } | undefined;[m
+[31m-[m
+ export function startGame(element: string | Node) {[m
+     const files = 1;[m
+     const ranks = 8;[m
+[36m@@ -91,7 +90,7 @@[m [mexport function startDraftGame(element: string | Node) {[m
+     const files = 1;[m
+     const ranks = 8;[m
+ [m
+[31m-    const board: BoardState = empty_position();[m
+[32m+[m[32m    const board: BoardState = empty_position({ 'file': files, 'rank': ranks });[m
+     const draftConfig = {[m
+         'columns': files,[m
+         'rows': ranks,[m
+
+[33mcommit 39512adde34a5ece411a7ef67a363fa33a333f45[m
+Author: alex <mashkal2000@gmail.com>
+Date:   Wed Apr 20 15:10:00 2022 -0400
+
+    Add AB pruning for MiniMax
+
+[1mdiff --git a/core/ai/minimaxAB.ts b/core/ai/minimaxAB.ts[m
+[1mnew file mode 100755[m
+[1mindex 0000000..16d2e74[m
+[1m--- /dev/null[m
+[1m+++ b/core/ai/minimaxAB.ts[m
+[36m@@ -0,0 +1,100 @@[m
+[32m+[m[32mimport { DraftRules } from "../draft/draftRules.js";[m[41m[m
+[32m+[m[32mimport { boardToState } from "../game/conversions.js";[m[41m[m
+[32m+[m[32mimport { checkGameState, cloneBoard, GameStatus, nextPlayer, updateWithMove } from "../game/gameModel.js";[m[41m[m
+[32m+[m[32mimport { Player, Move, BoardState, PiecePosition } from "../models.js";[m[41m[m
+[32m+[m[32mimport { GameBoard } from "../game/GameBoard";[m[41m[m
+[32m+[m[32mimport { countPieces, printBoard } from "../utils.js";[m[41m[m
+[32m+[m[32mimport { AIPlayer } from "./interface.js";[m[41m[m
+[32m+[m[32mimport randomAI from "./random.js";[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32minterface MoveVal {[m[41m[m
+[32m+[m[32m    move: Move[m[41m[m
+[32m+[m[32m    val: number[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mconst DEBUG = true;[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mexport class minimaxAlphaBetaAI extends AIPlayer {[m[41m[m
+[32m+[m[32m    private skips = 0;[m[41m[m
+[32m+[m[32m    private visits = 0;[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    move(position: GameBoard, player: Player): Move {[m[41m[m
+[32m+[m[32m        this.skips = 0;[m[41m[m
+[32m+[m[32m        this.visits = 0;[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m        const move = this.minimax(position, player, 0, this.difficulty, -Infinity, Infinity) as MoveVal;[m[41m[m
+[32m+[m[32m        DEBUG && console.log("Eval:", move.val);[m[41m[m
+[32m+[m[32m        DEBUG && console.log("Visited %d, skipped %d", this.visits, this.skips);[m[41m[m
+[32m+[m[32m        return move.move;[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    draft(rules: DraftRules, board: BoardState, player: Player, points: number): PiecePosition {[m[41m[m
+[32m+[m[32m        return random.draft(rules, board, player, points);[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    private minimax(position: GameBoard, player: Player, depth: number, max_depth: number, alpha: number, beta: number): number | MoveVal {[m[41m[m
+[32m+[m[32m        const state = checkGameState(position, player);[m[41m[m
+[32m+[m[32m        // leaf node[m[41m[m
+[32m+[m[32m        if (depth === max_depth || state.status !== "playing") {[m[41m[m
+[32m+[m[32m            this.visits++;[m[41m[m
+[32m+[m[32m            const val = evaluate(position, player, state);[m[41m[m
+[32m+[m[32m            if (DEBUG) {[m[41m[m
+[32m+[m[32m                console.log("Evaluation:", val);[m[41m[m
+[32m+[m[32m                // printBoard(boardToState(position));[m[41m[m
+[32m+[m[32m            }[m[41m[m
+[32m+[m[32m            return val;[m[41m[m
+[32m+[m[32m        }[m[41m[m
+[32m+[m[32m        else {[m[41m[m
+[32m+[m[32m            const moves = possibleMoves(position, player);[m[41m[m
+[32m+[m[32m            const moveVal = moves.reduce<MoveVal>((prev, cur) => {[m[41m[m
+[32m+[m[32m                if (alpha >= beta) {[m[41m[m
+[32m+[m[32m                    this.skips++;[m[41m[m
+[32m+[m[32m                    DEBUG && console.log("Skipped at depth", depth);[m[41m[m
+[32m+[m[32m                    return prev;[m[41m[m
+[32m+[m[32m                }[m[41m[m
+[32m+[m[32m                const move_board = cloneBoard(position);[m[41m[m
+[32m+[m[32m                updateWithMove(move_board, cur);[m[41m[m
+[32m+[m[32m                const result = this.minimax(move_board, nextPlayer(player), depth + 1, max_depth, alpha, beta);[m[41m[m
+[32m+[m[32m                const resultVal = typeof result === "number" ? result : result.val; // need to absorb leaf node values[m[41m[m
+[32m+[m[32m                // get min/max move value[m[41m[m
+[32m+[m[32m                if (player === Player.White && resultVal > alpha) {[m[41m[m
+[32m+[m[32m                    DEBUG && console.log("Found better MAX: %d > %d", resultVal, alpha);[m[41m[m
+[32m+[m[32m                    alpha = resultVal;[m[41m[m
+[32m+[m[32m                    return { 'move': cur, 'val': resultVal };[m[41m[m
+[32m+[m[32m                }[m[41m[m
+[32m+[m[32m                else if (player === Player.Black && resultVal < beta) {[m[41m[m
+[32m+[m[32m                    DEBUG && console.log("Found better MIN: %d < %d", resultVal, beta);[m[41m[m
+[32m+[m[32m                    beta = resultVal;[m[41m[m
+[32m+[m[32m                    return { 'move': cur, 'val': resultVal };[m[41m[m
+[32m+[m[32m                }[m[41m[m
+[32m+[m[32m                else {[m[41m[m
+[32m+[m[32m                    return prev;[m[41m[m
+[32m+[m[32m                }[m[41m[m
+[32m+[m[32m            }, { 'move': { 'from': { 'file': 0, 'rank': 0 }, 'to': { 'file': 0, 'rank': 0 } }, 'val': player === Player.White ? alpha : beta });[m[41m[m
+[32m+[m[32m            return moveVal;[m[41m[m
+[32m+[m[32m        }[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mconst random = new randomAI(0);[m[41m[m
+[32m+[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mfunction possibleMoves(position: GameBoard, player: Player): Move[] {[m[41m[m
+[32m+[m[32m    return position.gamePieces[m[41m[m
+[32m+[m[32m        .filter(p => p.state.player === player)[m[41m[m
+[32m+[m[32m        .flatMap(p => p.getLegalMoves(position.rules.rules.kingCheck, position)[m[41m[m
+[32m+[m[32m            .map(to => { return { 'from': p.state.position, 'to': to }; }));[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m// evaluate game state based on advantage for White[m[41m[m
+[32m+[m[32mexport function evaluate(position: GameBoard, player: Player, status?: GameStatus): number {[m[41m[m
+[32m+[m[32m    status = status || checkGameState(position, player);[m[41m[m
+[32m+[m[32m    const board = boardToState(position);[m[41m[m
+[32m+[m[32m    const max_val = board.boardDimensions.file * board.boardDimensions.rank;[m[41m[m
+[32m+[m[32m    if (status.status === "draw")[m[41m[m
+[32m+[m[32m        return 0;[m[41m[m
+[32m+[m[32m    else if (status.status === "loss")[m[41m[m
+[32m+[m[32m        return player === Player.White ? -max_val : max_val;[m[41m[m
+[32m+[m[32m    else[m[41m[m
+[32m+[m[32m        return 2 * (position.gamePieces.length / 2 - countPieces(board, p => p.player === Player.Black));[m[41m[m
+[32m+[m[32m}[m[41m[m
+[1mdiff --git a/core/perf/minimaxPerformance.ts b/core/perf/minimaxPerformance.ts[m
+[1mindex 3759b87..db3225f 100644[m
+[1m--- a/core/perf/minimaxPerformance.ts[m
+[1m+++ b/core/perf/minimaxPerformance.ts[m
+[36m@@ -54,7 +54,7 @@[m [mexport function testBoards(dim: Square, boards: number, runs: number, pieces: nu[m
+         const board = generateBoard(dim, pieces, true);[m
+         printBoard(board);[m
+         const [wins, losses, max_moves] = boardValue(strength, runs, board, rules);[m
+[31m-        console.log("wins: %d, losses: %d, ties: %d, winrate: %f", wins, losses, runs - wins + losses, wins / runs);[m
+[32m+[m[32m        console.log("wins: %d, losses: %d, ties: %d, winrate: %f", wins, losses, runs - wins - losses, wins / runs);[m
+         board_wrs.push([board, wins, losses, max_moves]);[m
+     }[m
+     return board_wrs;[m
+
+[33mcommit a9b7171d2eb0164592e20e39d9f126412a44964f[m
+Author: alex <mashkal2000@gmail.com>
+Date:   Mon Apr 18 15:48:17 2022 -0400
+
+    Add proper test to look for interesting boards
+
+[1mdiff --git a/core/ai/myopic_minimax_random.ts b/core/ai/myopic_minimax_random.ts[m
+[1mnew file mode 100755[m
+[1mindex 0000000..c56e580[m
+[1m--- /dev/null[m
+[1m+++ b/core/ai/myopic_minimax_random.ts[m
+[36m@@ -0,0 +1,20 @@[m
+[32m+[m[32mimport { DraftRules } from "../draft/draftRules.js";[m[41m[m
+[32m+[m[32mimport { Player, Move, BoardState, PiecePosition } from "../models.js";[m[41m[m
+[32m+[m[32mimport { GameBoard } from "../game/GameBoard";[m[41m[m
+[32m+[m[32mimport { AIPlayer } from "./interface.js";[m[41m[m
+[32m+[m[32mimport randomAI from "./random.js";[m[41m[m
+[32m+[m[32mimport { minimaxAI } from "./minimax.js";[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mconst random = new randomAI(0);[m[41m[m
+[32m+[m[32mconst myopicMiniMax = new minimaxAI(1);[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mexport default class MyopicMiniMaxRandom extends AIPlayer {[m[41m[m
+[32m+[m[32m    move(position: GameBoard, player: Player): Move {[m[41m[m
+[32m+[m[32m        return Math.random() > this.difficulty ? random.move(position, player) : myopicMiniMax.move(position, player);[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    draft(rules: DraftRules, board: BoardState, player: Player, points: number): PiecePosition {[m[41m[m
+[32m+[m[32m        return random.draft(rules, board, player, points);[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/core/perf/generateBoard.ts b/core/perf/generateBoard.ts[m
+[1mindex 43a603d..c20d65e 100644[m
+[1m--- a/core/perf/generateBoard.ts[m
+[1m+++ b/core/perf/generateBoard.ts[m
+[36m@@ -1,9 +1,9 @@[m
+[31m-import { PieceType, Player, Square } from "../models";[m
+[32m+[m[32mimport { BoardState, PieceType, Player, Square } from "../models";[m
+ import empty from "../positions/empty";[m
+ import { nextEmptySquare, randItem } from "../utils";[m
+ [m
+ [m
+[31m-export default (dim: Square, pieces: number, symmetric: boolean) => {[m
+[32m+[m[32mexport default (dim: Square, pieces: number, symmetric: boolean): BoardState => {[m
+     const board = empty(dim);[m
+     board.pieces.push({ 'piece': PieceType.King, 'player': Player.White, 'position': nextEmptySquare(board, Player.White) as Square });[m
+     board.pieces.push({ 'piece': PieceType.King, 'player': Player.Black, 'position': nextEmptySquare(board, Player.Black) as Square });[m
+[36m@@ -19,8 +19,11 @@[m [mexport default (dim: Square, pieces: number, symmetric: boolean) => {[m
+                 const piece2 = randItem(Object.values(PieceType));[m
+                 board.pieces.push({ 'piece': piece2, 'player': Player.Black, 'position': nextEmptySquare(board, Player.Black) as Square });[m
+             }[m
+[32m+[m[32m            pieces--;[m
+         } catch (error) {[m
+             console.error(error);[m
+[32m+[m[32m            break;[m
+         }[m
+     }[m
+[32m+[m[32m    return board;[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/core/perf/minimaxPerformance.ts b/core/perf/minimaxPerformance.ts[m
+[1mindex 6b3b319..3759b87 100644[m
+[1m--- a/core/perf/minimaxPerformance.ts[m
+[1m+++ b/core/perf/minimaxPerformance.ts[m
+[36m@@ -1,9 +1,13 @@[m
+ import { minimaxAI } from "../ai/minimax";[m
+[32m+[m[32mimport MyopicMiniMaxRandom from "../ai/myopic_minimax_random";[m
+ import randomAI from "../ai/random";[m
+[31m-import { Player } from "../models";[m
+[32m+[m[32mimport { BoardState, Player, Square } from "../models";[m
+ import X8_rooks_knight from "../positions/2x8_rooks_knight";[m
+[32m+[m[32mimport { RuleSet } from "../rules/piece";[m
+ import { SimpleRuleSet } from "../rules/simplePieces";[m
+[32m+[m[32mimport { printBoard } from "../utils";[m
+ import runAIVersus from "./AIVersusGame";[m
+[32m+[m[32mimport generateBoard from "./generateBoard";[m
+ [m
+ [m
+ [m
+[36m@@ -11,7 +15,7 @@[m [mimport runAIVersus from "./AIVersusGame";[m
+ [m
+ [m
+ [m
+[31m-export default function run(runs: number) {[m
+[32m+[m[32mexport function versus(runs: number) {[m
+     const cpu1 = new minimaxAI(5);[m
+     const cpu2 = new randomAI(3);[m
+     let wins = 0, losses = 0;[m
+[36m@@ -24,8 +28,41 @@[m [mexport default function run(runs: number) {[m
+             else[m
+                 wins++;[m
+     }[m
+[31m-    console.log("wins: %s, losses: %s, winrate: %f", wins, losses, wins/runs);[m
+[32m+[m[32m    console.log("wins: %s, losses: %s, winrate: %f", wins, losses, wins / runs);[m
+ }[m
+ [m
+ [m
+[31m-run(100);[m
+[32m+[m[32mexport function boardValue(strength: number, runs: number, board: BoardState, rules: RuleSet): [number, number, number] {[m
+[32m+[m[32m    const cpu1 = new minimaxAI(strength);[m
+[32m+[m[32m    const cpu2 = new MyopicMiniMaxRandom(0.5);[m
+[32m+[m[32m    let wins = 0, losses = 0, max_turns = 0;[m
+[32m+[m[32m    for (let index = 0; index < runs; index++) {[m
+[32m+[m[32m        const result = runAIVersus(board, rules, cpu1, cpu2);[m
+[32m+[m[32m        console.log(index, result);[m
+[32m+[m[32m        if (result[0].status === "loss")[m
+[32m+[m[32m            if (result[0].player === Player.Black)[m
+[32m+[m[32m                wins++;[m
+[32m+[m[32m            else losses++;[m
+[32m+[m[32m        max_turns = Math.max(max_turns, result[1]);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    return [wins, losses, max_turns];[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mexport function testBoards(dim: Square, boards: number, runs: number, pieces: number, strength: number, rules: RuleSet) {[m
+[32m+[m[32m    const board_wrs = [];[m
+[32m+[m[32m    for (let i = 0; i < boards; i++) {[m
+[32m+[m[32m        const board = generateBoard(dim, pieces, true);[m
+[32m+[m[32m        printBoard(board);[m
+[32m+[m[32m        const [wins, losses, max_moves] = boardValue(strength, runs, board, rules);[m
+[32m+[m[32m        console.log("wins: %d, losses: %d, ties: %d, winrate: %f", wins, losses, runs - wins + losses, wins / runs);[m
+[32m+[m[32m        board_wrs.push([board, wins, losses, max_moves]);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    return board_wrs;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32mtestBoards({ 'file': 2, 'rank': 9 }, 100, 50, 3, 4, new SimpleRuleSet()).forEach(([b, w, l, m]) => {[m
+[32m+[m[32m    printBoard(b as BoardState);[m
+[32m+[m[32m    console.log(w, l, m);[m
+[32m+[m[32m});;[m
