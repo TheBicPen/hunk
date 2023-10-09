@@ -175,6 +175,13 @@ fn process_lines(search_pattern: String, mut input: Box<dyn io::Read>) {
                         hunks: Vec::new(),
                     });
                     state = State::FileHeader;
+                } else if line_stripped.starts_with("commit ") {
+                    process_hunk(&search_pattern, &hunk);
+                    patch = Patch {
+                        patch_header: chunk_from(line),
+                        files: Vec::new(),
+                    };
+                    state = State::PatchHeader;
                 } else {
                     panic!("Unknown state in hunk body");
                 }
