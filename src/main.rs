@@ -46,16 +46,16 @@ fn chunk_empty() -> Chunk {
 }
 
 fn print_hunk(hunk: &Hunk) {
-    println!("{}", hunk.header);
+    print!("{}", hunk.header);
     for line in &hunk.context_head.lines {
-        println!("{}", line);
+        print!("{}", line);
     }
     for diff in &hunk.diffs {
         for line in &diff.diff.lines {
-            println!("{}", line);
+            print!("{}", line);
         }
         for line in &diff.context_tail.lines {
-            println!("{}", line);
+            print!("{}", line);
         }
     }
 }
@@ -87,24 +87,34 @@ fn main() {
     let search_pattern = std::env::args()
         .nth(1)
         .expect("Provide a string to search hunks for.");
-    process_lines(search_pattern, Box::new(io::stdin()))
+    process_lines(search_pattern, Box::new(io::stdin().lock()))
 }
 
-fn process_lines(search_pattern: String, mut input: Box<dyn io::Read>) {
+fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>) {
     let mut _line_num = 0;
-    let mut content = String::new();
-    input.read_to_string(&mut content).expect("failed to read");
-    let lines = content.lines();
     let mut state = State::Start;
     // store only 1 patch worth of context
     let mut patch = Patch {
         patch_header: Chunk { lines: Vec::new() },
         files: Vec::new(),
     };
-    for unowned_line in lines {
+
+    loop {
+        let mut line = String::new();
+        if reader.read_line(&mut line).expect("Failed to read.") == 0 {
+            break;
+        }
         _line_num += 1;
-        let line = unowned_line.to_string();
-        let line_stripped = strip_ansi_codes(&line);
+
+        let line_ansi_stripped = strip_ansi_codes(&line);
+        let mut line_stripped = line_ansi_stripped.into_owned();
+        if line_stripped.ends_with("\n") {
+            line_stripped.pop();
+            if line_stripped.ends_with("\r") {
+                line_stripped.pop();
+            }
+        }
+
         match state {
             State::Start => {
                 if line_stripped.starts_with("commit ") {
