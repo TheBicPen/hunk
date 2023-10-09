@@ -87,7 +87,6 @@ fn main() {
     let search_pattern = std::env::args()
         .nth(1)
         .expect("Provide a string to search hunks for.");
-    println!("{}", search_pattern);
     process_lines(search_pattern, Box::new(io::stdin()))
 }
 
