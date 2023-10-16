@@ -1,6 +1,8 @@
+mod parse_args;
 mod test;
 
 use console::strip_ansi_codes;
+use parse_args::parse_program_args;
 use std::io;
 
 struct Chunk {
@@ -84,10 +86,8 @@ fn process_hunk(pattern: &String, hunk: &Hunk) {
 }
 
 fn main() {
-    let search_pattern = std::env::args()
-        .nth(1)
-        .expect("Provide a string to search hunks for.");
-    process_lines(search_pattern, Box::new(io::stdin().lock()))
+    let config = parse_program_args(&mut std::env::args());
+    process_lines(config.search_string, Box::new(io::stdin().lock()))
 }
 
 fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>) {
