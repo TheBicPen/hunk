@@ -1,6 +1,6 @@
 [package]
-name = "hunk"
-version = "0.2.0"
+name = "hunktool"
+version = "0.2.1"
 edition = "2021"
 description = "A tool for finding strings in git patches/history"
 license = "MPL-2.0"
