@@ -54,4 +54,9 @@ mod tests {
     fn test_parse_match_on_invalid() {
         parse_args(&vec!["asd", "--match-on", "qwe"]);
     }
+
+    #[test]
+    fn test_parse_help() {
+        parse_args(&vec!["asd", "-h"]);
+    }
 }

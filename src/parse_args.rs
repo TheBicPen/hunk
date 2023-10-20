@@ -1,4 +1,4 @@
-use std::{env::Args, process};
+use std::{env::Args, process, collections::HashMap};
 
 pub struct PatchSections {
     pub diff: bool,
@@ -26,46 +26,75 @@ fn parse_patch_sections(input: &str) -> PatchSections {
             "context" => sections.context = true,
             "file_header" => sections.file_header = true,
             "patch_header" => sections.patch_header = true,
-            other => panic!("Unknown patch section '{}'", other),
+            other => panic!("Unknown patch section '{}'. Run `hunk -h` for help", other),
         }
     }
 
     sections
 }
 
-pub fn parse_args(args: &[&str]) -> Config {
-    if args.len() > 0 && (args[0] == "-h" || args[0] == "--help") {
-        println!("Usage: hunk PATTERN [OPTION...]");
-        println!("");
-        println!("See src/test.rs for up-to-date examples of option usage");
-        process::exit(0);
+fn print_help() {
+    struct HelpData {
+        two_arg_params: HashMap<&'static str, &'static str>,
+        one_arg_params: HashMap<&'static str, &'static str>,
+        positional_params: HashMap<&'static str, &'static str>,
     }
 
+    let help_data = HelpData {
+        two_arg_params: HashMap::from([
+            ("--match-fields", "Which fields of the patch to search for the string. Takes a comma-separated list of values. Valid values are 'diff', 'context', 'file_header', and 'patch_header'"),
+            ("--print-fields", "Which fields of the patch to print to stdout when a match is found. Takes a comma-separated list of values. Valid values are 'diff', 'context', 'file_header', and 'patch_header'"),
+        ]),
+        one_arg_params: HashMap::from([
+            ("--help, -h", "Show this message and exit")
+        ]),
+        positional_params: HashMap::from([
+            ("PATTERN", "The string to search for")
+        ]),
+    };
+    println!("Usage: hunk PATTERN [OPTION...]");
+    println!("");
+    for (k, v) in help_data.positional_params {
+        println!("{:15}: {}", k, v)
+    }
+    println!("");
+    println!("OPTIONS:");
+    for (k, v) in help_data.one_arg_params {
+        println!("{:15}: {}", k, v)
+    }
+    for (k, v) in help_data.two_arg_params {
+        println!("{:15}: {}", k, v)
+    }
+    process::exit(0);
+}
+
+pub fn parse_args(args: &[&str]) -> Config {
     struct ParsingState {
         has_search_string: bool,
     }
 
     fn parse_slice(args: &[&str], state: &mut ParsingState, config: &mut Config) {
         match &args {
-            ["--match-fields", print_fields, rest @ ..] => {
-                config.match_on = parse_patch_sections(print_fields);
+            ["--match-fields", match_fields, rest @ ..] => {
+                config.match_on = parse_patch_sections(match_fields);
                 parse_slice(rest, state, config);
             }
-            ["--match-fields"] => panic!("Expected argument for 'match-fields'"),
+            ["--match-fields"] => panic!("Expected argument for 'match-fields'. Run `hunk -h` for help"),
 
             ["--print-fields", print_fields, rest @ ..] => {
                 config.print_sections = parse_patch_sections(print_fields);
                 parse_slice(rest, state, config);
             }
-            ["--print-fields"] => panic!("Expected argument for 'print-fields'"),
+            ["--print-fields"] => panic!("Expected argument for 'print-fields'. Run `hunk -h` for help"),
+            ["--help"] | ["-h"] => print_help(),
 
             [arg, rest @ ..] if !state.has_search_string => {
                 config.search_string = arg.to_string();
                 state.has_search_string = true;
                 parse_slice(rest, state, config);
             }
-            [arg, ..] => panic!("Unexpected arg: {}", arg),
-            [] if !state.has_search_string => panic!("Expected a string to search for"),
+            [arg, ..] => panic!("Unexpected arg: {}. Run `hunk -h` for help", arg),
+            [] if !state.has_search_string => panic!("Expected a string to search for. Run `hunk -h` for help"),
             [] => {}
         }
     }
