@@ -16,6 +16,13 @@ mod tests {
     }
 
     #[test]
+    #[ignore = "Invalid unicode handling is not implemented"]
+    fn test_invalid_unicode() {
+        let file = fs::File::open("test_data/invalid_unicode.diff").unwrap();
+        process_lines("changeLog".to_string(), Box::new(BufReader::new(file)))
+    }
+
+    #[test]
     fn test_parse_args() {
         let config = parse_args(&vec!["asd"]);
         assert_eq!(config.search_string, "asd");

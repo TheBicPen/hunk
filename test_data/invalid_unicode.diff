@@ -1,0 +1,15 @@
+commit 90ed66f0f43983121eb0aac1fbdde794485e41da
+Author: REDACTED <REDACTED@REDACTED.com>
+Date:   Sat Aug 17 10:41:14 2019 +0800
+
+    修复安装包许可协议乱码问题
+
+diff --git a/publish/changeLog.md b/publish/changeLog.md
+index a2622e29..145bf85f 100644
+--- a/publish/changeLog.md
++++ b/publish/changeLog.md
+@@ -1,3 +1,3 @@
+ ### 修复
+
+-- 修复更新弹窗的内容显示问题
++- 修复安装包许可协议乱码问题
