@@ -63,6 +63,7 @@ mod tests {
     }
 
     #[test]
+    #[should_panic]
     fn test_parse_help() {
         parse_args(&vec!["asd", "-h"]);
     }

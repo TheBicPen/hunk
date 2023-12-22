@@ -1,4 +1,4 @@
-use std::{env::Args, process, collections::HashMap};
+use std::{env::Args, collections::HashMap};
 
 pub struct PatchSections {
     pub diff: bool,
@@ -65,7 +65,7 @@ fn print_help() {
     for (k, v) in help_data.two_arg_params {
         println!("{:15}: {}", k, v)
     }
-    process::exit(0);
+    panic!();
 }
 
 pub fn parse_args(args: &[&str]) -> Config {
