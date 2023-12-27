@@ -1,0 +1,71 @@
+commit 52f52e5ae4937de2bc798828c47c49f469b2cc85
+Author: REDACTED <REDACTED@REDACTED>
+Date:   Mon Nov 11 13:03:41 2019 +0700
+
+    sequencer: reencode commit message for am/rebase --show-current-patch
+    
+    The message file will be used as commit message for the
+    git-{am,rebase} --continue.
+    
+    Signed-off-by: REDACTED <REDACTED@REDACTED>
+    Signed-off-by: REDACTED <REDACTED@REDACTED>
+
+diff --git a/sequencer.c b/sequencer.c
+index d735d09f98..4d12ad3cc6 100644
+--- a/sequencer.c
++++ b/sequencer.c
+@@ -2972,7 +2972,8 @@ static int make_patch(struct repository *r,
+ 
+ 	strbuf_addf(&buf, "%s/message", get_dir(opts));
+ 	if (!file_exists(buf.buf)) {
+-		const char *commit_buffer = get_commit_buffer(commit, NULL);
++		const char *encoding = get_commit_output_encoding();
++		const char *commit_buffer = logmsg_reencode(commit, NULL, encoding);
+ 		find_commit_subject(commit_buffer, &subject);
+ 		res |= write_message(subject, strlen(subject), buf.buf, 1);
+ 		unuse_commit_buffer(commit, commit_buffer);
+diff --git a/t/t3434-rebase-i18n.sh b/t/t3434-rebase-i18n.sh
+index c6c16373eb..4b5b128cd6 100755
+--- a/t/t3434-rebase-i18n.sh
++++ b/t/t3434-rebase-i18n.sh
+@@ -54,4 +54,31 @@ test_expect_failure 'rebase --rebase-merges update encoding eucJP to ISO-2022-JP
+ 	compare_msg eucJP.txt eucJP ISO-2022-JP
+ '
+ 
++test_rebase_continue_update_encode () {
++	old=$1
++	new=$2
++	msgfile=$3
++	test_expect_success "rebase --continue update from $old to $new" '
++		(git rebase --abort || : abort current git-rebase failure) &&
++		git switch -c conflict-$old-$new one &&
++		echo for-conflict >two.t &&
++		git add two.t &&
++		git config i18n.commitencoding $old &&
++		git commit -F "$TEST_DIRECTORY/t3434/$msgfile" &&
++		git config i18n.commitencoding $new &&
++		test_must_fail git rebase -m master &&
++		test -f .git/rebase-merge/message &&
++		git stripspace <.git/rebase-merge/message >two.t &&
++		git add two.t &&
++		git rebase --continue &&
++		compare_msg $msgfile $old $new &&
++		: git-commit assume invalid utf-8 is latin1 &&
++		test_cmp expect two.t
++	'
++}
++
++test_rebase_continue_update_encode ISO-8859-1 UTF-8 ISO8859-1.txt
++test_rebase_continue_update_encode eucJP UTF-8 eucJP.txt
++test_rebase_continue_update_encode eucJP ISO-2022-JP eucJP.txt
++
+ test_done
+diff --git a/t/t3434/ISO8859-1.txt b/t/t3434/ISO8859-1.txt
+new file mode 100644
+index 0000000000..7cbef0ee6f
+--- /dev/null
++++ b/t/t3434/ISO8859-1.txt
+@@ -0,0 +1,3 @@
++ÄËÑÏÖ
++
++Ábçdèfg

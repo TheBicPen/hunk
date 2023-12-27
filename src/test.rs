@@ -16,9 +16,16 @@ mod tests {
     }
 
     #[test]
-    #[ignore = "Invalid unicode handling is not implemented"]
-    fn test_invalid_unicode() {
+    fn test_invalid_unicode_1() {
+        // file may not actually contain invalid unicode
         let file = fs::File::open("test_data/invalid_unicode.diff").unwrap();
+        process_lines("changeLog".to_string(), Box::new(BufReader::new(file)))
+    }
+
+    #[test]
+    #[ignore = "Invalid unicode handling is not implemented"]
+    fn test_invalid_unicode_2() {
+        let file = fs::File::open("test_data/invalid_unicode_2.diff").unwrap();
         process_lines("changeLog".to_string(), Box::new(BufReader::new(file)))
     }
 
