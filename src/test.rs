@@ -30,6 +30,13 @@ mod tests {
     }
 
     #[test]
+    #[ignore = "Empty file section handling is not implemented"]
+    fn test_empty_file_section() {
+        let file = fs::File::open("test_data/empty_file_section.diff").unwrap();
+        process_lines("mingw".to_string(), Box::new(BufReader::new(file)))
+    }
+
+    #[test]
     fn test_parse_args() {
         let config = parse_args(&vec!["asd"]);
         assert_eq!(config.search_string, "asd");
