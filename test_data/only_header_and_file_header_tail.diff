@@ -1,0 +1,37 @@
+commit a9b7171d2eb0164592e20e39d9f126412a44964f
+Author: alex <mashkal2000@gmail.com>
+Date:   Mon Apr 18 15:48:17 2022 -0400
+
+    Add proper test to look for interesting boards
+
+diff --git a/core/ai/myopic_minimax_random.ts b/core/ai/myopic_minimax_random.ts
+new file mode 100755
+index 0000000..c56e580
+--- /dev/null
++++ b/core/ai/myopic_minimax_random.ts
+commit 0700db91e451a93ff8d4c4fbd238e2eff873c947
+Author: Alex <mashkal2000@gmail.com>
+Date:   Sat Dec 30 13:04:51 2023 -0800
+
+    Test empty file
+
+diff --git a/src/test.rs b/src/test.rs
+index 08cfbc3..2eadbd2 100644
+--- a/src/test.rs
++++ b/src/test.rs
+@@ -47,6 +47,12 @@ mod tests {
+         //TODO: assert that the string is found
+     }
+ 
++    #[test]
++    fn test_empty() {
++        let file = fs::File::open("test_data/empty.diff").unwrap();
++        process_lines("hello".to_string(), Box::new(BufReader::new(file)))
++    }
++
+     #[test]
+     fn test_parse_args() {
+         let config = parse_args(&vec!["asd"]);
+diff --git a/test_data/empty.diff b/test_data/empty.diff
+new file mode 100644
+index 0000000..e69de29

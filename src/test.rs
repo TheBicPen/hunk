@@ -60,6 +60,12 @@ mod tests {
     }
 
     #[test]
+    fn test_only_header_and_file_header_tail() {
+        let file = fs::File::open("test_data/only_header_and_file_header_tail.diff").unwrap();
+        process_lines("hi".to_string(), Box::new(BufReader::new(file)))
+    }
+
+    #[test]
     fn test_parse_args() {
         let config = parse_args(&vec!["asd"]);
         assert_eq!(config.search_string, "asd");

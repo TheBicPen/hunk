@@ -241,10 +241,10 @@ fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>) {
         .last_mut()
         // merge commits can have an empty file section - skip processing those
         .map(|file| {
-            let hunk = file
+            file
                 .hunks
                 .last_mut()
-                .expect("Expected a hunk. Was the input empty?");
-            process_hunk(&search_pattern, &hunk);
+                // file section can have empty hunks - skip those
+                .map(|hunk| process_hunk(&search_pattern, &hunk))
         });
 }
