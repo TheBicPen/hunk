@@ -54,6 +54,12 @@ mod tests {
     }
 
     #[test]
+    fn test_only_header() {
+        let file = fs::File::open("test_data/only_header.diff").unwrap();
+        process_lines("hello".to_string(), Box::new(BufReader::new(file)))
+    }
+
+    #[test]
     fn test_parse_args() {
         let config = parse_args(&vec!["asd"]);
         assert_eq!(config.search_string, "asd");
