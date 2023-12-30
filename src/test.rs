@@ -22,9 +22,9 @@ mod tests {
     }
 
     #[test]
-    fn test_invalid_unicode_1() {
+    fn test_unicode_chars_cjk() {
         // file may not actually contain invalid unicode
-        let file = fs::File::open("test_data/invalid_unicode.diff").unwrap();
+        let file = fs::File::open("test_data/unicode_chars_CJK.diff").unwrap();
         process_lines(
             "changeLog".to_string(),
             Box::new(BufReader::new(file)),
@@ -33,8 +33,8 @@ mod tests {
 
     #[test]
     #[should_panic]
-    fn test_invalid_unicode_2_panic() {
-        let file = fs::File::open("test_data/invalid_unicode_2.diff").unwrap();
+    fn test_invalid_unicode_hunk_panic() {
+        let file = fs::File::open("test_data/invalid_unicode_hunk.diff").unwrap();
         process_lines(
             "fg".to_string(),
             Box::new(BufReader::new(file)),
@@ -42,8 +42,8 @@ mod tests {
     }
 
     #[test]
-    fn test_invalid_unicode_2_skip_line() {
-        let file = fs::File::open("test_data/invalid_unicode_2.diff").unwrap();
+    fn test_invalid_unicode_hunk_skip_line() {
+        let file = fs::File::open("test_data/invalid_unicode_hunk.diff").unwrap();
         process_lines(
             "fg".to_string(),
             Box::new(BufReader::new(file)),
@@ -52,8 +52,8 @@ mod tests {
     }
 
     #[test]
-    fn test_invalid_unicode_2_lossy() {
-        let file = fs::File::open("test_data/invalid_unicode_2.diff").unwrap();
+    fn test_invalid_unicode_hunk_lossy() {
+        let file = fs::File::open("test_data/invalid_unicode_hunk.diff").unwrap();
         process_lines(
             "fg".to_string(),
             Box::new(BufReader::new(file)),
