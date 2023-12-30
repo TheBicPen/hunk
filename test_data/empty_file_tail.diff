@@ -1,0 +1,29 @@
+commit 7fd9fd94fb8f23b86578ed86906b8caf0417db82
+Merge: 5fa0f5238b d9589d4051
+Author: REDACTED <REDACTED@REDACTED>
+Date:   Wed Dec 4 23:06:31 2019 +0100
+
+    Sync with 2.22.2
+    
+    * maint-2.22: (43 commits)
+      Git 2.22.2
+      Git 2.21.1
+      mingw: sh arguments need quoting in more circumstances
+      mingw: fix quoting of empty arguments for `sh`
+      mingw: use MSYS2 quoting even when spawning shell scripts
+      mingw: detect when MSYS2's sh is to be spawned more robustly
+      t7415: drop v2.20.x-specific work-around
+      Git 2.20.2
+      t7415: adjust test for dubiously-nested submodule gitdirs for v2.20.x
+      Git 2.19.3
+      Git 2.18.2
+      Git 2.17.3
+      Git 2.16.6
+      test-drop-caches: use `has_dos_drive_prefix()`
+      Git 2.15.4
+      Git 2.14.6
+      mingw: handle `subst`-ed "DOS drives"
+      mingw: refuse to access paths with trailing spaces or periods
+      mingw: refuse to access paths with illegal characters
+      unpack-trees: let merged_entry() pass through do_add_entry()'s errors
+      ...

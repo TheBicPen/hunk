@@ -1,0 +1,72 @@
+commit a9b7171d2eb0164592e20e39d9f126412a44964f
+Author: alex <mashkal2000@gmail.com>
+Date:   Mon Apr 18 15:48:17 2022 -0400
+
+    Add proper test to look for interesting boards
+
+diff --git a/core/ai/myopic_minimax_random.ts b/core/ai/myopic_minimax_random.ts
+new file mode 100755
+index 0000000..c56e580
+--- /dev/null
++++ b/core/ai/myopic_minimax_random.ts
+@@ -0,0 +1,20 @@
++import { DraftRules } from "../draft/draftRules.js";
++}
+\ No newline at end of file
+diff --git a/core/perf/generateBoard.ts b/core/perf/generateBoard.ts
+index 43a603d..c20d65e 100644
+--- a/core/perf/generateBoard.ts
++++ b/core/perf/generateBoard.ts
+@@ -1,9 +1,9 @@
+-import { PieceType, Player, Square } from "../models";
++import { BoardState, PieceType, Player, Square } from "../models";
+ import empty from "../positions/empty";
+ import { nextEmptySquare, randItem } from "../utils";
+ 
+ 
+-export default (dim: Square, pieces: number, symmetric: boolean) => {
++export default (dim: Square, pieces: number, symmetric: boolean): BoardState => {
+     const board = empty(dim);
+     board.pieces.push({ 'piece': PieceType.King, 'player': Player.White, 'position': nextEmptySquare(board, Player.White) as Square });
+     board.pieces.push({ 'piece': PieceType.King, 'player': Player.Black, 'position': nextEmptySquare(board, Player.Black) as Square });
+@@ -19,8 +19,11 @@ export default (dim: Square, pieces: number, symmetric: boolean) => {
+                 const piece2 = randItem(Object.values(PieceType));
+                 board.pieces.push({ 'piece': piece2, 'player': Player.Black, 'position': nextEmptySquare(board, Player.Black) as Square });
+             }
++            pieces--;
+         } catch (error) {
+             console.error(error);
++            break;
+         }
+     }
++    return board;
+ }
+\ No newline at end of file
+diff --git a/core/perf/minimaxPerformance.ts b/core/perf/minimaxPerformance.ts
+index 6b3b319..3759b87 100644
+--- a/core/perf/minimaxPerformance.ts
++++ b/core/perf/minimaxPerformance.ts
+@@ -1,9 +1,13 @@
+ import { minimaxAI } from "../ai/minimax";
++import MyopicMiniMaxRandom from "../ai/myopic_minimax_random";
+ import randomAI from "../ai/random";
+-import { Player } from "../models";
++import { BoardState, Player, Square } from "../models";
+ import X8_rooks_knight from "../positions/2x8_rooks_knight";
++import { RuleSet } from "../rules/piece";
+ import { SimpleRuleSet } from "../rules/simplePieces";
++import { printBoard } from "../utils";
+ import runAIVersus from "./AIVersusGame";
++import generateBoard from "./generateBoard";
+ 
+@@ -24,8 +28,41 @@ export default function run(runs: number) {
+             else
+                 wins++;
+     }
+-    console.log("wins: %s, losses: %s, winrate: %f", wins, losses, wins/runs);
++    console.log("wins: %s, losses: %s, winrate: %f", wins, losses, wins / runs);
+ }
++testBoards({ 'file': 2, 'rank': 9 }, 100, 50, 3, 4, new SimpleRuleSet()).forEach(([b, w, l, m]) => {
++    printBoard(b as BoardState);
++    console.log(w, l, m);
++});;

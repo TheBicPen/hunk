@@ -30,10 +30,21 @@ mod tests {
     }
 
     #[test]
-    #[ignore = "Empty file section handling is not implemented"]
     fn test_empty_file_section() {
         let file = fs::File::open("test_data/empty_file_section.diff").unwrap();
         process_lines("mingw".to_string(), Box::new(BufReader::new(file)))
+    }
+    #[test]
+    fn test_empty_file_tail() {
+        let file = fs::File::open("test_data/empty_file_tail.diff").unwrap();
+        process_lines("mingw".to_string(), Box::new(BufReader::new(file)))
+    }
+
+    #[test]
+    fn test_tail() {
+        let file = fs::File::open("test_data/unique_tail.diff").unwrap();
+        process_lines("console.log(w, l, m);".to_string(), Box::new(BufReader::new(file)))
+        //TODO: assert that the string is found
     }
 
     #[test]

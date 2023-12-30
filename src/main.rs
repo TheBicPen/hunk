@@ -236,13 +236,15 @@ fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>) {
             }
         };
     }
-    let file = patch
+    patch
         .files
         .last_mut()
-        .expect("Expected a file diff. Was the input empty?");
-    let hunk = file
-        .hunks
-        .last_mut()
-        .expect("Expected a hunk. Was the input empty?");
-    process_hunk(&search_pattern, &hunk);
+        // merge commits can have an empty file section - skip processing those
+        .map(|file| {
+            let hunk = file
+                .hunks
+                .last_mut()
+                .expect("Expected a hunk. Was the input empty?");
+            process_hunk(&search_pattern, &hunk);
+        });
 }
