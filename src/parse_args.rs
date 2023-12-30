@@ -1,5 +1,11 @@
 use std::{env::Args, collections::HashMap};
 
+pub enum UTF8Strategy {
+    Panic,
+    Lossy,
+    SkipLine
+}
+
 pub struct PatchSections {
     pub diff: bool,
     pub context: bool,
@@ -11,6 +17,7 @@ pub struct Config {
     pub match_on: PatchSections,
     pub print_sections: PatchSections,
     pub search_string: String,
+    pub decode_stategy: UTF8Strategy
 }
 
 fn parse_patch_sections(input: &str) -> PatchSections {
@@ -44,6 +51,7 @@ fn print_help() {
         two_arg_params: HashMap::from([
             ("--match-fields", "Which fields of the patch to search for the string. Takes a comma-separated list of values. Valid values are 'diff', 'context', 'file_header', and 'patch_header'"),
             ("--print-fields", "Which fields of the patch to print to stdout when a match is found. Takes a comma-separated list of values. Valid values are 'diff', 'context', 'file_header', and 'patch_header'"),
+            ("--invalid-utf8", "How to handle invalid UTF-8 lines. Specify one of 'lossy', 'panic', or 'skip-line'")
         ]),
         one_arg_params: HashMap::from([
             ("--help, -h", "Show this message and exit")
@@ -86,6 +94,16 @@ pub fn parse_args(args: &[&str]) -> Config {
                 parse_slice(rest, state, config);
             }
             ["--print-fields"] => panic!("Expected argument for 'print-fields'. Run `hunk -h` for help"),
+            ["--invalid-utf8", decode_strategy_str, rest @ ..] => {
+                config.decode_stategy = match decode_strategy_str {
+                    &"lossy" => UTF8Strategy::Lossy,
+                    &"panic" => UTF8Strategy::Panic,
+                    &"skip-line" => UTF8Strategy::SkipLine,
+                    other => panic!("Unknown value '{}'. Run `hunk -h` for help", other)
+                };
+                parse_slice(rest, state, config);
+            }
+            ["--invalid-utf8"] => panic!("Expected argument for 'invalid-utf8'. Run `hunk -h` for help"),
             ["--help"] | ["-h"] => print_help(),
 
             [arg, rest @ ..] if !state.has_search_string => {
@@ -100,6 +118,7 @@ pub fn parse_args(args: &[&str]) -> Config {
     }
 
     let mut config = Config {
+        decode_stategy: UTF8Strategy::Panic,
         match_on: PatchSections {
             diff: true,
             context: false,

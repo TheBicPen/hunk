@@ -2,7 +2,7 @@ mod parse_args;
 mod test;
 
 use console::strip_ansi_codes;
-use parse_args::parse_program_args;
+use parse_args::{parse_program_args, UTF8Strategy};
 use std::io;
 
 struct Chunk {
@@ -87,10 +87,10 @@ fn process_hunk(pattern: &String, hunk: &Hunk) {
 
 fn main() {
     let config = parse_program_args(&mut std::env::args());
-    process_lines(config.search_string, Box::new(io::stdin().lock()))
+    process_lines(config.search_string, Box::new(io::stdin().lock()), config.decode_stategy)
 }
 
-fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>) {
+fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>, decode_strategy: UTF8Strategy) {
     let mut _line_num = 0;
     let mut state = State::Start;
     // store only 1 patch worth of context
@@ -100,12 +100,28 @@ fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>) {
     };
 
     loop {
-        let mut line = String::new();
-        if reader.read_line(&mut line).expect("Failed to read.") == 0 {
+        let mut line_buf: Vec<u8> = Vec::new();
+        if reader.read_until(b'\n', &mut line_buf).expect("Failed to read.") == 0 {
             break;
         }
         _line_num += 1;
-
+        
+        let line = match decode_strategy {
+            UTF8Strategy::Lossy => String::from_utf8_lossy(&line_buf).into_owned(),
+            UTF8Strategy::Panic => String::from_utf8(line_buf).expect(
+                &format!("Invalid UTF-8 on line {_line_num}")),
+            UTF8Strategy::SkipLine => {
+                // Choose the default value based on the state to avoid taking
+                // an unnecesary state transition or adding extra rules to the
+                // state machine to handle this edge case.
+                let default_value = match state {
+                    State::HunkHead => "+",
+                    _ => " "
+                }.to_string();
+                String::from_utf8(line_buf).unwrap_or(default_value)
+            }
+        };
+        
         let line_ansi_stripped = strip_ansi_codes(&line);
         let mut line_stripped = line_ansi_stripped.into_owned();
         if line_stripped.ends_with("\n") {
