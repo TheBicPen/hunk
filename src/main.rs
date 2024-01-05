@@ -47,50 +47,67 @@ fn chunk_empty() -> Chunk {
     Chunk { lines: Vec::new() }
 }
 
-fn print_hunk(hunk: &Hunk) {
-    print!("{}", hunk.header);
+fn print_hunk<'a>(
+    hunk: &Hunk,
+    writer: &mut Box<dyn std::io::Write + 'a>
+) -> std::io::Result<()> {
+    write!(writer, "{}", hunk.header)?;
     for line in &hunk.context_head.lines {
-        print!("{}", line);
+        write!(writer, "{}", line)?;
     }
     for diff in &hunk.diffs {
         for line in &diff.diff.lines {
-            print!("{}", line);
+            write!(writer, "{}", line)?;
         }
         for line in &diff.context_tail.lines {
-            print!("{}", line);
+            write!(writer, "{}", line)?;
         }
     }
+    Ok(())
 }
 
-fn process_hunk(pattern: &String, hunk: &Hunk) {
+fn process_hunk<'a>(
+    pattern: &String,
+    hunk: &Hunk, writer: &mut Box<dyn io::Write + 'a>
+) -> std::io::Result<()> {
     if hunk.header.contains(pattern) {
-        print_hunk(hunk);
+        print_hunk(hunk, writer)?;
     }
     for line in &hunk.context_head.lines {
         if line.contains(pattern) {
-            print_hunk(hunk);
+            print_hunk(hunk, writer)?;
         }
     }
     for diff in &hunk.diffs {
         for line in &diff.diff.lines {
             if line.contains(pattern) {
-                print_hunk(hunk);
+                print_hunk(hunk, writer)?;
             }
         }
         for line in &diff.context_tail.lines {
             if line.contains(pattern) {
-                print_hunk(hunk);
+                print_hunk(hunk, writer)?;
             }
         }
     }
+    Ok(())
 }
 
-fn main() {
+fn main() -> std::io::Result<()> {
     let config = parse_program_args(&mut std::env::args());
-    process_lines(config.search_string, Box::new(io::stdin().lock()), config.decode_stategy)
+    process_lines(
+        Box::new(io::stdin().lock()), 
+        Box::new(io::stdout().lock()), 
+        config.search_string, 
+        config.decode_stategy)
 }
 
-fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>, decode_strategy: UTF8Strategy) {
+fn process_lines<'a>(
+        mut reader: Box<dyn io::BufRead + 'a>,
+        mut writer: Box<dyn io::Write + 'a>,
+        search_pattern: String,
+        decode_strategy: UTF8Strategy
+) -> std::io::Result<()> {
     let mut _line_num = 0;
     let mut state = State::Start;
     // store only 1 patch worth of context
@@ -195,14 +212,14 @@ fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>, decod
                     hunk_diff.context_tail.lines.push(line);
                     state = State::HunkBodyTail;
                 } else if line_stripped.starts_with("diff --git") {
-                    process_hunk(&search_pattern, &hunk);
+                    process_hunk(&search_pattern, &hunk, &mut writer)?;
                     patch.files.push(FileDiff {
                         file_header: chunk_from(line),
                         hunks: Vec::new(),
                     });
                     state = State::FileHeader;
                 } else if line_stripped.starts_with("commit ") {
-                    process_hunk(&search_pattern, &hunk);
+                    process_hunk(&search_pattern, &hunk, &mut writer)?;
                     patch = Patch {
                         patch_header: chunk_from(line),
                         files: Vec::new(),
@@ -225,7 +242,7 @@ fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>, decod
                     hunk_diff.diff.lines.push(line);
                     state = State::HunkBodyDiff;
                 } else if line_stripped.starts_with("@@") {
-                    process_hunk(&search_pattern, &hunk);
+                    process_hunk(&search_pattern, &hunk, &mut writer)?;
                     file.hunks.push(Hunk {
                         header: line,
                         context_head: chunk_empty(),
@@ -233,14 +250,14 @@ fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>, decod
                     });
                     state = State::HunkHead;
                 } else if line_stripped.starts_with("diff --git") {
-                    process_hunk(&search_pattern, &hunk);
+                    process_hunk(&search_pattern, &hunk, &mut writer)?;
                     patch.files.push(FileDiff {
                         file_header: chunk_from(line),
                         hunks: Vec::new(),
                     });
                     state = State::FileHeader;
                 } else if line_stripped.starts_with("commit ") {
-                    process_hunk(&search_pattern, &hunk);
+                    process_hunk(&search_pattern, &hunk, &mut writer)?;
                     patch = Patch {
                         patch_header: chunk_from(line),
                         files: Vec::new(),
@@ -261,6 +278,7 @@ fn process_lines(search_pattern: String, mut reader: Box<dyn io::BufRead>, decod
                 .hunks
                 .last_mut()
                 // file section can have empty hunks - skip those
-                .map(|hunk| process_hunk(&search_pattern, &hunk))
+                .map(|hunk| process_hunk(&search_pattern, &hunk, &mut writer))
         });
+    Ok(())
 }
