@@ -17,13 +17,13 @@ pub struct Config {
     pub match_on: PatchSections,
     pub print_sections: PatchSections,
     pub search_string: String,
-    pub decode_stategy: UTF8Strategy
+    pub decode_strategy: UTF8Strategy
 }
 
 impl Default for Config {
     fn default() -> Self {
         Self {
-            decode_stategy: UTF8Strategy::Panic,
+            decode_strategy: UTF8Strategy::Panic,
             match_on: PatchSections {
                 diff: true,
                 context: false,
@@ -116,7 +116,7 @@ pub fn parse_args(args: &[&str]) -> Config {
             }
             ["--print-fields"] => panic!("Expected argument for 'print-fields'. Run `hunk -h` for help"),
             ["--invalid-utf8", decode_strategy_str, rest @ ..] => {
-                config.decode_stategy = match decode_strategy_str {
+                config.decode_strategy = match decode_strategy_str {
                     &"lossy" => UTF8Strategy::Lossy,
                     &"panic" => UTF8Strategy::Panic,
                     &"skip-line" => UTF8Strategy::SkipLine,
