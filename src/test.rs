@@ -10,30 +10,12 @@ mod tests {
         patch_header: true
     };
 
-    fn get_test_config(search_string: &str) -> Config {
-        Config {
-            match_on: PatchSections {
-                diff: false,
-                context: false,
-                file_header: false,
-                patch_header: false
-            },
-            print_sections: PatchSections {
-                diff: false,
-                context: false,
-                file_header: false,
-                patch_header: false
-            },
-            search_string: search_string.to_string(),
-            decode_strategy: UTF8Strategy::Panic
-        }
-    }
-
     #[test]
     fn test_1() {
         let file = fs::File::open("test_data/1.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("AIPlayer");
+        let mut config = Config::default();
+        config.search_string = "AIPlayer".to_string();
         config.match_on.diff = true;
         config.print_sections.diff = true;
         process_lines(
@@ -49,7 +31,8 @@ mod tests {
     fn test_1_color() {
         let file = fs::File::open("test_data/1_color.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("AIPlayer");
+        let mut config = Config::default();
+        config.search_string = "AIPlayer".to_string();
         config.match_on.diff = true;
         config.print_sections.diff = true;
         process_lines(
@@ -66,7 +49,8 @@ mod tests {
         // file may not actually contain invalid unicode
         let file = fs::File::open("test_data/unicode_chars_CJK.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("修复安装包许可协议乱码问题");
+        let mut config = Config::default();
+        config.search_string = "修复安装包许可协议乱码问题".to_string();
         config.match_on.diff = true;
         config.print_sections.diff = true;
         process_lines(
@@ -83,7 +67,8 @@ mod tests {
     fn test_invalid_unicode_hunk_panic() {
         let file = fs::File::open("test_data/invalid_unicode_hunk.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let config = get_test_config("fg");
+        let mut config = Config::default();
+        config.search_string = "fg".to_string();
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -95,7 +80,8 @@ mod tests {
     fn test_invalid_unicode_hunk_skip_line() {
         let file = fs::File::open("test_data/invalid_unicode_hunk.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("fg");
+        let mut config = Config::default();
+        config.search_string = "fg".to_string();
         config.decode_strategy = UTF8Strategy::SkipLine;
         process_lines(
             Box::new(BufReader::new(file)),
@@ -111,7 +97,8 @@ mod tests {
     fn test_invalid_unicode_hunk_lossy() {
         let file = fs::File::open("test_data/invalid_unicode_hunk.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("fg");
+        let mut config = Config::default();
+        config.search_string = "fg".to_string();
         config.decode_strategy = UTF8Strategy::Lossy;
         config.match_on.diff = true;
         config.print_sections.diff = true;
@@ -129,7 +116,8 @@ mod tests {
     fn test_invalid_unicode_whole_hunk_panic() {
         let file = fs::File::open("test_data/invalid_unicode_whole_hunk.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let config = get_test_config("Invalid");
+        let mut config = Config::default();
+        config.search_string = "Invalid".to_string();
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -141,7 +129,8 @@ mod tests {
     fn test_invalid_unicode_whole_hunk_skip_line() {
         let file = fs::File::open("test_data/invalid_unicode_whole_hunk.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("Invalid");
+        let mut config = Config::default();
+        config.search_string = "Invalid".to_string();
         config.decode_strategy = UTF8Strategy::SkipLine;
         process_lines(
             Box::new(BufReader::new(file)),
@@ -157,7 +146,8 @@ mod tests {
     fn test_invalid_unicode_whole_hunk_lossy() {
         let file = fs::File::open("test_data/invalid_unicode_whole_hunk.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("Invalid");
+        let mut config = Config::default();
+        config.search_string = "Invalid".to_string();
         config.decode_strategy = UTF8Strategy::Lossy;
         config.match_on.diff = true;
         config.print_sections.diff = true;
@@ -175,7 +165,8 @@ mod tests {
     fn test_empty_file_section() {
         let file = fs::File::open("test_data/empty_file_section.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("mingw");
+        let mut config = Config::default();
+        config.search_string = "mingw".to_string();
         config.match_on.patch_header = true;
         config.print_sections.patch_header = true;
         process_lines(
@@ -191,7 +182,8 @@ mod tests {
     fn test_empty_file_tail() {
         let file = fs::File::open("test_data/empty_file_tail.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("mingw");
+        let mut config = Config::default();
+        config.search_string = "mingw".to_string();
         config.match_on.patch_header = true;
         config.print_sections.patch_header = true;
         process_lines(
@@ -207,7 +199,8 @@ mod tests {
     fn test_tail() {
         let file = fs::File::open("test_data/unique_tail.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("console.log(w, l, m);");
+        let mut config = Config::default();
+        config.search_string = "console.log(w, l, m);".to_string();
         config.match_on.diff = true;
         config.print_sections.diff = true;
         process_lines(
@@ -223,7 +216,8 @@ mod tests {
     fn test_empty() {
         let file = fs::File::open("test_data/empty.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("hello");
+        let mut config = Config::default();
+        config.search_string = "hello".to_string();
         config.match_on = PATCH_SECTIONS_ALL;
         config.print_sections = PATCH_SECTIONS_ALL;
         process_lines(
@@ -239,7 +233,8 @@ mod tests {
     fn test_only_header() {
         let file = fs::File::open("test_data/only_header.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("hello");
+        let mut config = Config::default();
+        config.search_string = "hello".to_string();
         config.match_on.patch_header = true;
         config.print_sections.patch_header = true;
         process_lines(
@@ -255,7 +250,8 @@ mod tests {
     fn test_only_header_and_file_header_tail() {
         let file = fs::File::open("test_data/only_header_and_file_header_tail.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
-        let mut config = get_test_config("hi");
+        let mut config = Config::default();
+        config.search_string = "hi".to_string();
         config.match_on.diff = true;
         config.print_sections.diff = true;
         process_lines(

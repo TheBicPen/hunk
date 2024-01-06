@@ -1,11 +1,14 @@
 use std::{env::Args, collections::HashMap};
 
+#[derive(Default)]
 pub enum UTF8Strategy {
+    #[default]
     Panic,
     Lossy,
     SkipLine
 }
 
+#[derive(Default)]
 pub struct PatchSections {
     pub diff: bool,
     pub context: bool,
@@ -13,32 +16,12 @@ pub struct PatchSections {
     pub patch_header: bool,
 }
 
+#[derive(Default)]
 pub struct Config {
     pub match_on: PatchSections,
     pub print_sections: PatchSections,
     pub search_string: String,
     pub decode_strategy: UTF8Strategy
-}
-
-impl Default for Config {
-    fn default() -> Self {
-        Self {
-            decode_strategy: UTF8Strategy::Panic,
-            match_on: PatchSections {
-                diff: true,
-                context: false,
-                file_header: false,
-                patch_header: false,
-            },
-            print_sections: PatchSections {
-                diff: true,
-                context: true,
-                file_header: true,
-                patch_header: true,
-            },
-            search_string: "".to_string(),
-        }
-    }
 }
 
 fn parse_patch_sections(input: &str) -> PatchSections {
@@ -138,7 +121,22 @@ pub fn parse_args(args: &[&str]) -> Config {
         }
     }
 
-    let mut config = Config::default();
+    let mut config = Config {
+        decode_strategy: UTF8Strategy::Panic,
+        match_on: PatchSections {
+            diff: true,
+            context: false,
+            file_header: false,
+            patch_header: false,
+        },
+        print_sections: PatchSections {
+            diff: true,
+            context: true,
+            file_header: true,
+            patch_header: true,
+        },
+        search_string: "".to_string(),
+    };
     let mut parsing_state = ParsingState {
         has_search_string: false,
     };
