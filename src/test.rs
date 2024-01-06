@@ -161,7 +161,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore = "broken"]
     fn test_empty_file_section() {
         let file = fs::File::open("test_data/empty_file_section.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
@@ -178,7 +177,6 @@ mod tests {
         assert!(out_str.contains(&config.search_string));
     }
     #[test]
-    #[ignore = "broken"]
     fn test_empty_file_tail() {
         let file = fs::File::open("test_data/empty_file_tail.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();

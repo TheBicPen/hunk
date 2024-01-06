@@ -2,7 +2,7 @@ mod parse_args;
 mod test;
 
 use console::strip_ansi_codes;
-use parse_args::{parse_program_args, UTF8Strategy, Config};
+use parse_args::{parse_program_args, UTF8Strategy, Config, PatchSections};
 use std::io;
 
 struct Chunk {
@@ -47,51 +47,91 @@ fn chunk_empty() -> Chunk {
     Chunk { lines: Vec::new() }
 }
 
-fn print_hunk<'a>(
-    hunk: &Hunk,
-    writer: &mut Box<dyn std::io::Write + 'a>
+fn print_patch<'a>(
+    print_sections: &PatchSections,
+    patch: &Patch,
+    writer: &mut Box<dyn io::Write + 'a>
 ) -> std::io::Result<()> {
-    write!(writer, "{}", hunk.header)?;
-    for line in &hunk.context_head.lines {
-        write!(writer, "{}", line)?;
-    }
-    for diff in &hunk.diffs {
-        for line in &diff.diff.lines {
+    if print_sections.patch_header {
+        for line in &patch.patch_header.lines {
             write!(writer, "{}", line)?;
         }
-        for line in &diff.context_tail.lines {
-            write!(writer, "{}", line)?;
+    }
+    for file in &patch.files {
+        if print_sections.file_header {
+            for line in &file.file_header.lines {
+                write!(writer, "{}", line)?;
+            }
+        }
+        for hunk in &file.hunks {
+            if print_sections.context {
+                write!(writer, "{}", hunk.header)?;
+                for line in &hunk.context_head.lines {
+                    write!(writer, "{}", line)?;
+                }
+            }
+            for diff in &hunk.diffs {
+                if print_sections.diff {
+                    for line in &diff.diff.lines {
+                        write!(writer, "{}", line)?;
+                    }
+                }
+                if print_sections.context {
+                    for line in &diff.context_tail.lines {
+                        write!(writer, "{}", line)?;
+                    }
+                }
+            }
         }
     }
     Ok(())
 }
 
-fn process_hunk<'a>(
+fn process_patch<'a>(
     config: &Config,
-    hunk: &Hunk, writer: &mut Box<dyn io::Write + 'a>
+    patch: &Patch,
+    writer: &mut Box<dyn io::Write + 'a>
 ) -> std::io::Result<()> {
-    if config.match_on.patch_header && hunk.header.contains(&config.search_string) {
-        print_hunk(hunk, writer)?;
-    }
-    if config.match_on.context {
-        for line in &hunk.context_head.lines {
+    let mut process_lines = |lines: &Vec<String>| -> std::io::Result<bool> {
+        for line in lines {
             if line.contains(&config.search_string) {
-                print_hunk(hunk, writer)?;
+                print_patch(&config.print_sections, patch, writer)?;
+                return Ok(true);
             }
         }
+        Ok(false)
+    };
+
+    if config.match_on.patch_header {
+        if process_lines(&patch.patch_header.lines)? {
+            return Ok(());
+        }
     }
-    for diff in &hunk.diffs {
-        if config.match_on.diff {
-            for line in &diff.diff.lines {
-                if line.contains(&config.search_string) {
-                    print_hunk(hunk, writer)?;
+    for file in &patch.files {
+        if config.match_on.file_header {
+            if process_lines(&file.file_header.lines)? {
+                return Ok(());
+            }
+        }
+        for hunk in &file.hunks {
+            if config.match_on.context && hunk.header.contains(&config.search_string) {
+                return print_patch(&config.print_sections, patch, writer);
+            }
+            if config.match_on.context {
+                if process_lines(&hunk.context_head.lines)? {
+                    return Ok(());
                 }
             }
-        }
-        if config.match_on.context {
-            for line in &diff.context_tail.lines {
-                if line.contains(&config.search_string) {
-                    print_hunk(hunk, writer)?;
+            for diff in &hunk.diffs {
+                if config.match_on.diff {
+                    if process_lines(&diff.diff.lines)? {
+                        return Ok(());
+                    }
+                }
+                if config.match_on.context {
+                    if process_lines(&diff.context_tail.lines)? {
+                        return Ok(());
+                    }
                 }
             }
         }
@@ -216,14 +256,12 @@ fn process_lines<'a>(
                     hunk_diff.context_tail.lines.push(line);
                     state = State::HunkBodyTail;
                 } else if line_stripped.starts_with("diff --git") {
-                    process_hunk(&config, &hunk, &mut writer)?;
                     patch.files.push(FileDiff {
                         file_header: chunk_from(line),
                         hunks: Vec::new(),
                     });
                     state = State::FileHeader;
                 } else if line_stripped.starts_with("commit ") {
-                    process_hunk(&config, &hunk, &mut writer)?;
                     patch = Patch {
                         patch_header: chunk_from(line),
                         files: Vec::new(),
@@ -246,7 +284,6 @@ fn process_lines<'a>(
                     hunk_diff.diff.lines.push(line);
                     state = State::HunkBodyDiff;
                 } else if line_stripped.starts_with("@@") {
-                    process_hunk(&config, &hunk, &mut writer)?;
                     file.hunks.push(Hunk {
                         header: line,
                         context_head: chunk_empty(),
@@ -254,14 +291,13 @@ fn process_lines<'a>(
                     });
                     state = State::HunkHead;
                 } else if line_stripped.starts_with("diff --git") {
-                    process_hunk(&config, &hunk, &mut writer)?;
                     patch.files.push(FileDiff {
                         file_header: chunk_from(line),
                         hunks: Vec::new(),
                     });
                     state = State::FileHeader;
                 } else if line_stripped.starts_with("commit ") {
-                    process_hunk(&config, &hunk, &mut writer)?;
+                    process_patch(config, &patch, &mut writer)?;
                     patch = Patch {
                         patch_header: chunk_from(line),
                         files: Vec::new(),
@@ -273,16 +309,6 @@ fn process_lines<'a>(
             }
         };
     }
-    patch
-        .files
-        .last_mut()
-        // merge commits can have an empty file section - skip processing those
-        .map(|file| {
-            file
-                .hunks
-                .last_mut()
-                // file section can have empty hunks - skip those
-                .map(|hunk| process_hunk(&config, &hunk, &mut writer))
-        });
+    process_patch(config, &patch, &mut writer)?;
     Ok(())
 }
