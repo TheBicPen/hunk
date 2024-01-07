@@ -130,9 +130,9 @@ pub fn parse_args(args: &[&str]) -> Config {
             patch_header: false,
         },
         print_sections: PatchSections {
-            diff: true,
-            context: true,
-            file_header: true,
+            diff: false,
+            context: false,
+            file_header: false,
             patch_header: true,
         },
         search_string: "".to_string(),
