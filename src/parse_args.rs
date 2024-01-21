@@ -75,7 +75,7 @@ fn print_help() {
             ("PATTERN", "The string to search for")
         ]),
     };
-    println!("Usage: hunk PATTERN [OPTION...]");
+    println!("Usage: hunk [OPTION...] [--] PATTERN");
     println!("");
     for (k, v) in help_data.positional_params {
         println!("{:15}: {}", k, v)
@@ -94,10 +94,16 @@ fn print_help() {
 pub fn parse_args(args: &[&str]) -> Config {
     struct ParsingState {
         has_search_string: bool,
+        no_more_options: bool
     }
 
     fn parse_slice(args: &[&str], state: &mut ParsingState, config: &mut Config) {
         match &args {
+            [arg, rest @ ..] if state.no_more_options => {
+                config.search_string = arg.to_string();
+                state.has_search_string = true;
+                parse_slice(rest, state, config);
+            }
             ["--match-fields", match_fields, rest @ ..] => {
                 config.match_on = parse_patch_sections(match_fields);
                 parse_slice(rest, state, config);
@@ -121,6 +127,10 @@ pub fn parse_args(args: &[&str]) -> Config {
             ["--invalid-utf8"] => panic!("Expected argument for 'invalid-utf8'. Run `hunk -h` for help"),
             ["--help"] | ["-h"] => print_help(),
 
+            ["--", rest @ ..] if !state.has_search_string => {
+                state.no_more_options = true;
+                parse_slice(rest, state, config);
+            }
             [arg, rest @ ..] if !state.has_search_string => {
                 config.search_string = arg.to_string();
                 state.has_search_string = true;
@@ -145,6 +155,7 @@ pub fn parse_args(args: &[&str]) -> Config {
     };
     let mut parsing_state = ParsingState {
         has_search_string: false,
+        no_more_options: false,
     };
     parse_slice(args, &mut parsing_state, &mut config);
 

@@ -325,6 +325,42 @@ mod tests {
 
     #[test]
     #[should_panic]
+    fn test_parse_extra_positional_explicit() {
+        parse_args(&vec!["asd", "--", "qwe"]);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_parse_trailing_explicit() {
+        parse_args(&vec!["asd", "--"]);
+    }
+
+    #[test]
+    fn test_parse_explicit() {
+        let config = parse_args(&vec!["--", "asd"]);
+        assert!(config.search_string == "asd");
+    }
+
+    #[test]
+    fn test_parse_explicit_flag_like() {
+        let config = parse_args(&vec!["--", "-h"]);
+        assert!(config.search_string == "-h");
+    }
+    
+    #[test]
+    fn test_parse_explicit_duplicate_flag_like() {
+        let config = parse_args(&vec!["--match-fields", "diff", "--", "-h"]);
+        assert!(config.search_string == "-h");
+    }
+    
+    #[test]
+    fn test_parse_explicit_duplicate_flag_like_with_arg() {
+        let config = parse_args(&vec!["--match-fields", "diff", "--", "--match-fields"]);
+        assert!(config.search_string == "--match-fields");
+    }
+
+    #[test]
+    #[should_panic]
     fn test_parse_no_program_name() {
         parse_args(&vec![]);
     }
