@@ -1,6 +1,6 @@
 use std::{env::Args, collections::HashMap};
 
-#[derive(Default)]
+#[derive(Default, PartialEq, Debug)]
 pub enum UTF8Strategy {
     #[default]
     Panic,

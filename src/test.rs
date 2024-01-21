@@ -401,7 +401,9 @@ mod tests {
 
     #[test]
     fn test_parse_utf8_valid() {
-        parse_args(&vec!["asd", "--invalid-utf8", "skip-line"]);
+        let config = parse_args(&vec!["asd", "--invalid-utf8", "skip-line"]);
+        assert_eq!(config.search_string, "asd");
+        assert_eq!(config.decode_strategy, UTF8Strategy::SkipLine);
     }
 
     #[test]
