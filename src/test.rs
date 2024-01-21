@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use crate::{parse_args::{parse_args, UTF8Strategy, Config, PatchSections}, process_lines};
+    use crate::{parse_args::{parse_args, UTF8Strategy, Config, PatchSections, OutputConfig}, process_lines};
     use std::{fs, io::BufReader};
 
     const PATCH_SECTIONS_ALL: PatchSections = PatchSections {
@@ -10,6 +10,13 @@ mod tests {
         patch_header: true
     };
 
+    const PATCH_SECTIONS_NONE: PatchSections = PatchSections {
+        context: false,
+        diff: false,
+        file_header: false,
+        patch_header: false
+    };
+
     #[test]
     fn test_1() {
         let file = fs::File::open("test_data/1.diff").unwrap();
@@ -17,7 +24,9 @@ mod tests {
         let mut config = Config::default();
         config.search_string = "AIPlayer".to_string();
         config.match_on.diff = true;
-        config.print_sections.diff = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.diff = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -34,7 +43,9 @@ mod tests {
         let mut config = Config::default();
         config.search_string = "AIPlayer".to_string();
         config.match_on.diff = true;
-        config.print_sections.diff = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.diff = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -45,6 +56,29 @@ mod tests {
     }
 
     #[test]
+    fn test_1_commit_hash() {
+        let file = fs::File::open("test_data/1_color.diff").unwrap();
+        let mut out_vec: Vec<u8> = Vec::new();
+        let mut config = Config::default();
+        config.search_string = "AIPlayer".to_string();
+        config.match_on.diff = true;
+        config.output = OutputConfig::CommitHash;
+        process_lines(
+            Box::new(BufReader::new(file)),
+            Box::new(&mut out_vec),
+            &config
+        ).unwrap();
+        let out_str = String::from_utf8(out_vec).unwrap();
+        let out_lines: Vec<&str> = out_str.split('\n').collect();
+        assert!(out_lines.len() == 4);
+        assert!(out_lines[0] == "bcd581d22a277d2f7e8766219f96412f516418af");
+        assert!(out_lines[1] == "39512adde34a5ece411a7ef67a363fa33a333f45");
+        assert!(out_lines[2] == "a9b7171d2eb0164592e20e39d9f126412a44964f");
+        assert!(out_lines[3] == "");
+
+    }
+
+    #[test]
     fn test_unicode_chars_cjk() {
         // file may not actually contain invalid unicode
         let file = fs::File::open("test_data/unicode_chars_CJK.diff").unwrap();
@@ -52,7 +86,9 @@ mod tests {
         let mut config = Config::default();
         config.search_string = "修复安装包许可协议乱码问题".to_string();
         config.match_on.diff = true;
-        config.print_sections.diff = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.diff = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -101,7 +137,9 @@ mod tests {
         config.search_string = "fg".to_string();
         config.decode_strategy = UTF8Strategy::Lossy;
         config.match_on.diff = true;
-        config.print_sections.diff = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.diff = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -150,7 +188,9 @@ mod tests {
         config.search_string = "Invalid".to_string();
         config.decode_strategy = UTF8Strategy::Lossy;
         config.match_on.diff = true;
-        config.print_sections.diff = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.diff = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -167,7 +207,9 @@ mod tests {
         let mut config = Config::default();
         config.search_string = "mingw".to_string();
         config.match_on.patch_header = true;
-        config.print_sections.patch_header = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.patch_header = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -183,7 +225,9 @@ mod tests {
         let mut config = Config::default();
         config.search_string = "mingw".to_string();
         config.match_on.patch_header = true;
-        config.print_sections.patch_header = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.patch_header = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -200,7 +244,9 @@ mod tests {
         let mut config = Config::default();
         config.search_string = "console.log(w, l, m);".to_string();
         config.match_on.diff = true;
-        config.print_sections.diff = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.diff = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -217,7 +263,7 @@ mod tests {
         let mut config = Config::default();
         config.search_string = "hello".to_string();
         config.match_on = PATCH_SECTIONS_ALL;
-        config.print_sections = PATCH_SECTIONS_ALL;
+        config.output = OutputConfig::Sections(PATCH_SECTIONS_ALL);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -234,7 +280,9 @@ mod tests {
         let mut config = Config::default();
         config.search_string = "hello".to_string();
         config.match_on.patch_header = true;
-        config.print_sections.patch_header = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.patch_header = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
@@ -251,7 +299,9 @@ mod tests {
         let mut config = Config::default();
         config.search_string = "hi".to_string();
         config.match_on.diff = true;
-        config.print_sections.diff = true;
+        let mut output_sections = PATCH_SECTIONS_NONE;
+        output_sections.diff = true;
+        config.output = OutputConfig::Sections(output_sections);
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),

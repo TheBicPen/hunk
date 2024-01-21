@@ -2,7 +2,7 @@ mod parse_args;
 mod test;
 
 use console::strip_ansi_codes;
-use parse_args::{parse_program_args, UTF8Strategy, Config, PatchSections};
+use parse_args::{parse_program_args, UTF8Strategy, Config, OutputConfig};
 use std::io;
 
 struct Chunk {
@@ -48,41 +48,51 @@ fn chunk_empty() -> Chunk {
 }
 
 fn print_patch<'a>(
-    print_sections: &PatchSections,
+    output_config: &OutputConfig,
     patch: &Patch,
     writer: &mut Box<dyn io::Write + 'a>
 ) -> std::io::Result<()> {
-    if print_sections.patch_header {
-        for line in &patch.patch_header.lines {
-            write!(writer, "{}", line)?;
-        }
-    }
-    for file in &patch.files {
-        if print_sections.file_header {
-            for line in &file.file_header.lines {
-                write!(writer, "{}", line)?;
-            }
-        }
-        for hunk in &file.hunks {
-            if print_sections.context {
-                write!(writer, "{}", hunk.header)?;
-                for line in &hunk.context_head.lines {
+    match output_config {
+        OutputConfig::CommitHash => {
+            let commit_line = strip_ansi_codes(&patch.patch_header.lines[0]);
+            let commit_hash = commit_line.strip_prefix("commit ")
+                        .expect("invalid commit message line").to_string();
+            write!(writer, "{}", commit_hash)?
+        },
+        OutputConfig::Sections(print_sections) => {
+            if print_sections.patch_header {
+                for line in &patch.patch_header.lines {
                     write!(writer, "{}", line)?;
                 }
             }
-            for diff in &hunk.diffs {
-                if print_sections.diff {
-                    for line in &diff.diff.lines {
+            for file in &patch.files {
+                if print_sections.file_header {
+                    for line in &file.file_header.lines {
                         write!(writer, "{}", line)?;
                     }
                 }
-                if print_sections.context {
-                    for line in &diff.context_tail.lines {
-                        write!(writer, "{}", line)?;
+                for hunk in &file.hunks {
+                    if print_sections.context {
+                        write!(writer, "{}", hunk.header)?;
+                        for line in &hunk.context_head.lines {
+                            write!(writer, "{}", line)?;
+                        }
+                    }
+                    for diff in &hunk.diffs {
+                        if print_sections.diff {
+                            for line in &diff.diff.lines {
+                                write!(writer, "{}", line)?;
+                            }
+                        }
+                        if print_sections.context {
+                            for line in &diff.context_tail.lines {
+                                write!(writer, "{}", line)?;
+                            }
+                        }
                     }
                 }
             }
-        }
+        },
     }
     Ok(())
 }
@@ -95,7 +105,7 @@ fn process_patch<'a>(
     let mut process_lines = |lines: &Vec<String>| -> std::io::Result<bool> {
         for line in lines {
             if line.contains(&config.search_string) {
-                print_patch(&config.print_sections, patch, writer)?;
+                print_patch(&config.output, patch, writer)?;
                 return Ok(true);
             }
         }
@@ -115,7 +125,7 @@ fn process_patch<'a>(
         }
         for hunk in &file.hunks {
             if config.match_on.context && hunk.header.contains(&config.search_string) {
-                return print_patch(&config.print_sections, patch, writer);
+                return print_patch(&config.output, patch, writer);
             }
             if config.match_on.context {
                 if process_lines(&hunk.context_head.lines)? {

@@ -16,10 +16,21 @@ pub struct PatchSections {
     pub patch_header: bool,
 }
 
+pub enum OutputConfig {
+    Sections(PatchSections),
+    CommitHash,
+}
+
+impl Default for OutputConfig {
+    fn default() -> Self {
+        Self::Sections(PatchSections::default())
+    }
+}
+
 #[derive(Default)]
 pub struct Config {
     pub match_on: PatchSections,
-    pub print_sections: PatchSections,
+    pub output: OutputConfig,
     pub search_string: String,
     pub decode_strategy: UTF8Strategy
 }
@@ -94,7 +105,7 @@ pub fn parse_args(args: &[&str]) -> Config {
             ["--match-fields"] => panic!("Expected argument for 'match-fields'. Run `hunk -h` for help"),
 
             ["--print-fields", print_fields, rest @ ..] => {
-                config.print_sections = parse_patch_sections(print_fields);
+                config.output = OutputConfig::Sections(parse_patch_sections(print_fields));
                 parse_slice(rest, state, config);
             }
             ["--print-fields"] => panic!("Expected argument for 'print-fields'. Run `hunk -h` for help"),
@@ -129,12 +140,7 @@ pub fn parse_args(args: &[&str]) -> Config {
             file_header: false,
             patch_header: false,
         },
-        print_sections: PatchSections {
-            diff: false,
-            context: false,
-            file_header: false,
-            patch_header: true,
-        },
+        output: OutputConfig::CommitHash,
         search_string: "".to_string(),
     };
     let mut parsing_state = ParsingState {
