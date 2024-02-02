@@ -389,6 +389,18 @@ mod tests {
 
     #[test]
     #[should_panic]
+    fn test_parse_print_fields_commit() {
+        parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_parse_commit_print_fields() {
+        parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]);
+    }
+
+    #[test]
+    #[should_panic]
     fn test_parse_utf8_invalid() {
         parse_args(&vec!["asd", "--invalid-utf8", "qwe"]);
     }

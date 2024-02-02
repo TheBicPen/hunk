@@ -69,6 +69,7 @@ fn print_help() {
             ("--invalid-utf8", "How to handle invalid UTF-8 lines. Specify one of 'lossy', 'panic', or 'skip-line'")
         ]),
         one_arg_params: HashMap::from([
+            ("--print-commits", "Print only the hashes of commits that contain the string"),
             ("--help, -h", "Show this message and exit")
         ]),
         positional_params: HashMap::from([
@@ -94,7 +95,8 @@ fn print_help() {
 pub fn parse_args(args: &[&str]) -> Config {
     struct ParsingState {
         has_search_string: bool,
-        no_more_options: bool
+        no_more_options: bool,
+        has_print_option: bool,
     }
 
     fn parse_slice(args: &[&str], state: &mut ParsingState, config: &mut Config) {
@@ -109,12 +111,25 @@ pub fn parse_args(args: &[&str]) -> Config {
                 parse_slice(rest, state, config);
             }
             ["--match-fields"] => panic!("Expected argument for 'match-fields'. Run `hunk -h` for help"),
-
             ["--print-fields", print_fields, rest @ ..] => {
-                config.output = OutputConfig::Sections(parse_patch_sections(print_fields));
-                parse_slice(rest, state, config);
+                if state.has_print_option { 
+                    panic!("Cannot have both print-commits and print-fields. Run `hunk -h` for help");
+                } else {
+                    config.output = OutputConfig::Sections(parse_patch_sections(print_fields));
+                    state.has_print_option = true;
+                    parse_slice(rest, state, config);
+                }
             }
             ["--print-fields"] => panic!("Expected argument for 'print-fields'. Run `hunk -h` for help"),
+            ["--print-commits", rest @ ..] => {
+                if state.has_print_option { 
+                    panic!("Cannot have both print-commits and print-fields. Run `hunk -h` for help");
+                } else {
+                    config.output = OutputConfig::CommitHash;
+                    state.has_print_option = true;
+                    parse_slice(rest, state, config);
+                }
+            }
             ["--invalid-utf8", decode_strategy_str, rest @ ..] => {
                 config.decode_strategy = match decode_strategy_str {
                     &"lossy" => UTF8Strategy::Lossy,
@@ -126,7 +141,6 @@ pub fn parse_args(args: &[&str]) -> Config {
             }
             ["--invalid-utf8"] => panic!("Expected argument for 'invalid-utf8'. Run `hunk -h` for help"),
             ["--help"] | ["-h"] => print_help(),
-
             ["--", rest @ ..] if !state.has_search_string => {
                 state.no_more_options = true;
                 parse_slice(rest, state, config);
@@ -156,6 +170,7 @@ pub fn parse_args(args: &[&str]) -> Config {
     let mut parsing_state = ParsingState {
         has_search_string: false,
         no_more_options: false,
+        has_print_option: false,
     };
     parse_slice(args, &mut parsing_state, &mut config);
 
