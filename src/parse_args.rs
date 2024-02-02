@@ -164,7 +164,12 @@ pub fn parse_args(args: &[&str]) -> Config {
             file_header: false,
             patch_header: false,
         },
-        output: OutputConfig::CommitHash,
+        output: OutputConfig::Sections(PatchSections{
+            diff: false,
+            context: false,
+            file_header: false,
+            patch_header: true,
+        }),
         search_string: "".to_string(),
     };
     let mut parsing_state = ParsingState {
