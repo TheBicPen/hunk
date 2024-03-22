@@ -313,61 +313,61 @@ mod tests {
 
     #[test]
     fn test_parse_args() {
-        let config = parse_args(&vec!["asd"]);
+        let config = parse_args(&vec!["asd"]).unwrap();
         assert_eq!(config.search_string, "asd");
     }
 
     #[test]
     #[should_panic]
     fn test_parse_extra_positional() {
-        parse_args(&vec!["asd", "qwe"]);
+        parse_args(&vec!["asd", "qwe"]).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn test_parse_extra_positional_explicit() {
-        parse_args(&vec!["asd", "--", "qwe"]);
+        parse_args(&vec!["asd", "--", "qwe"]).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn test_parse_trailing_explicit() {
-        parse_args(&vec!["asd", "--"]);
+        parse_args(&vec!["asd", "--"]).unwrap();
     }
 
     #[test]
     fn test_parse_explicit() {
-        let config = parse_args(&vec!["--", "asd"]);
+        let config = parse_args(&vec!["--", "asd"]).unwrap();
         assert!(config.search_string == "asd");
     }
 
     #[test]
     fn test_parse_explicit_flag_like() {
-        let config = parse_args(&vec!["--", "-h"]);
+        let config = parse_args(&vec!["--", "-h"]).unwrap();
         assert!(config.search_string == "-h");
     }
     
     #[test]
     fn test_parse_explicit_duplicate_flag_like() {
-        let config = parse_args(&vec!["--match-fields", "diff", "--", "-h"]);
+        let config = parse_args(&vec!["--match-fields", "diff", "--", "-h"]).unwrap();
         assert!(config.search_string == "-h");
     }
     
     #[test]
     fn test_parse_explicit_duplicate_flag_like_with_arg() {
-        let config = parse_args(&vec!["--match-fields", "diff", "--", "--match-fields"]);
+        let config = parse_args(&vec!["--match-fields", "diff", "--", "--match-fields"]).unwrap();
         assert!(config.search_string == "--match-fields");
     }
 
     #[test]
     #[should_panic]
     fn test_parse_no_program_name() {
-        parse_args(&vec![]);
+        parse_args(&vec![]).unwrap();
     }
 
     #[test]
     fn test_parse_match_fields() {
-        let config = parse_args(&vec!["asd", "--match-fields", "diff,context"]);
+        let config = parse_args(&vec!["asd", "--match-fields", "diff,context"]).unwrap();
         assert_eq!(config.search_string, "asd");
         assert_eq!(config.match_on.diff, true);
         assert_eq!(config.match_on.context, true);
@@ -378,42 +378,42 @@ mod tests {
     #[test]
     #[should_panic]
     fn test_parse_match_fields_repeat_positional_after() {
-        parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]);
+        parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn test_parse_match_on_invalid() {
-        parse_args(&vec!["asd", "--match-on", "qwe"]);
+        parse_args(&vec!["asd", "--match-on", "qwe"]).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn test_parse_print_fields_commit() {
-        parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]);
+        parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn test_parse_commit_print_fields() {
-        parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]);
+        parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn test_parse_utf8_invalid() {
-        parse_args(&vec!["asd", "--invalid-utf8", "qwe"]);
+        parse_args(&vec!["asd", "--invalid-utf8", "qwe"]).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn test_parse_utf8_missing() {
-        parse_args(&vec!["asd", "--invalid-utf8"]);
+        parse_args(&vec!["asd", "--invalid-utf8"]).unwrap();
     }
 
     #[test]
     fn test_parse_utf8_valid() {
-        let config = parse_args(&vec!["asd", "--invalid-utf8", "skip-line"]);
+        let config = parse_args(&vec!["asd", "--invalid-utf8", "skip-line"]).unwrap();
         assert_eq!(config.search_string, "asd");
         assert_eq!(config.decode_strategy, UTF8Strategy::SkipLine);
     }
@@ -421,6 +421,6 @@ mod tests {
     #[test]
     #[should_panic]
     fn test_parse_help() {
-        parse_args(&vec!["asd", "-h"]);
+        parse_args(&vec!["asd", "-h"]).unwrap();
     }
 }

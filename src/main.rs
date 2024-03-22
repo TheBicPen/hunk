@@ -3,7 +3,8 @@ mod test;
 
 use console::strip_ansi_codes;
 use parse_args::{parse_program_args, UTF8Strategy, Config, OutputConfig};
-use std::io;
+use simple_error::bail;
+use std::{error::Error, io};
 
 struct Chunk {
     lines: Vec<String>,
@@ -125,7 +126,7 @@ fn process_patch<'a>(
         }
         for hunk in &file.hunks {
             if config.match_on.context && hunk.header.contains(&config.search_string) {
-                return print_patch(&config.output, patch, writer);
+                return Ok(print_patch(&config.output, patch, writer)?);
             }
             if config.match_on.context {
                 if process_lines(&hunk.context_head.lines)? {
@@ -149,19 +150,28 @@ fn process_patch<'a>(
     Ok(())
 }
 
-fn main() -> std::io::Result<()> {
-    let config = parse_program_args(&mut std::env::args());
-    process_lines(
-        Box::new(io::stdin().lock()), 
-        Box::new(io::stdout().lock()), 
-        &config)
+fn main() -> () {
+    real_main().or_else(|err| -> Result<(), Box<dyn Error>> {
+        println!("{}", err);
+        std::process::exit(1)
+    }).expect("process::exit failed to exit");
+}
+
+fn real_main() -> Result<(), Box<dyn Error>> {
+    let config = parse_program_args(&mut std::env::args())?;
+    Ok(
+        process_lines(
+            Box::new(io::stdin().lock()), 
+            Box::new(io::stdout().lock()), 
+            &config)?
+    )
 }
 
 fn process_lines<'a>(
         mut reader: Box<dyn io::BufRead + 'a>,
         mut writer: Box<dyn io::Write + 'a>,
         config: &Config
-) -> std::io::Result<()> {
+) -> Result<(), Box<dyn Error>> {
     let mut line_num = 0;
     let mut state = State::Start;
     // store only 1 patch worth of context
@@ -211,7 +221,7 @@ fn process_lines<'a>(
                     };
                     state = State::PatchHeader;
                 } else {
-                    panic!("Invalid patch. Expected commit message");
+                    bail!("Invalid patch. Expected commit message");
                 }
             }
             State::PatchHeader => {
@@ -250,7 +260,7 @@ fn process_lines<'a>(
                     });
                     state = State::HunkBodyDiff;
                 } else {
-                    panic!("Unknown state in hunk head");
+                    bail!("Unknown state in hunk head");
                 }
             }
             State::HunkBodyDiff => {
@@ -278,7 +288,7 @@ fn process_lines<'a>(
                     };
                     state = State::PatchHeader;
                 } else {
-                    panic!("Unknown state in hunk body");
+                    bail!("Unknown state in hunk body");
                 }
             }
             State::HunkBodyTail => {
@@ -314,7 +324,7 @@ fn process_lines<'a>(
                     };
                     state = State::PatchHeader;
                 } else {
-                    panic!("Unknown state in hunk tail");
+                    bail!("Unknown state in hunk tail");
                 }
             }
         };
