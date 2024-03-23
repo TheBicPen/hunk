@@ -10,6 +10,9 @@ repository = "https://github.com/TheBicPen/hunk.git"
 keywords = ["version-control", "git"]
 categories = ["command-line-utilities", "development-tools"]
 
+[[bin]]
+name = "hunk"
+path = "src/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

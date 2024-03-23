@@ -8,15 +8,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'hunktool'",
+            "name": "Debug executable 'hunk'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=hunktool",
+                    "--bin=hunk",
                     "--package=hunktool"
                 ],
                 "filter": {
-                    "name": "hunktool",
+                    "name": "hunk",
                     "kind": "bin"
                 }
             },
@@ -26,16 +26,16 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'hunktool'",
+            "name": "Debug unit tests in executable 'hunk'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=hunktool",
+                    "--bin=hunk",
                     "--package=hunktool"
                 ],
                 "filter": {
-                    "name": "hunktool",
+                    "name": "hunk",
                     "kind": "bin"
                 }
             },
