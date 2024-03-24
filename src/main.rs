@@ -3,7 +3,7 @@ mod test;
 
 use console::strip_ansi_codes;
 use parse_args::{parse_program_args, UTF8Strategy, Config, OutputConfig};
-use simple_error::bail;
+use simple_error::{bail, SimpleError};
 use std::{error::Error, io};
 
 struct Chunk {
@@ -189,8 +189,9 @@ fn process_lines<'a>(
         
         let line = match config.decode_strategy {
             UTF8Strategy::Lossy => String::from_utf8_lossy(&line_buf).into_owned(),
-            UTF8Strategy::Panic => String::from_utf8(line_buf).expect(
-                &format!("Invalid UTF-8 on line {line_num}")),
+            UTF8Strategy::Panic => String::from_utf8(line_buf).map_err(
+                |err| SimpleError::with(format!("Invalid UTF-8 on line {line_num}").as_str(), err)
+            )?,
             UTF8Strategy::SkipLine => {
                 // Choose the default value based on the state to avoid taking
                 // an unnecesary state transition or adding extra rules to the

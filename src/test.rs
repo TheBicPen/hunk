@@ -99,7 +99,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
     fn test_invalid_unicode_hunk_panic() {
         let file = fs::File::open("test_data/invalid_unicode_hunk.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
@@ -109,7 +108,7 @@ mod tests {
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
             &config
-        ).unwrap();
+        ).err().expect("");
     }
 
     #[test]
@@ -150,7 +149,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
     fn test_invalid_unicode_whole_hunk_panic() {
         let file = fs::File::open("test_data/invalid_unicode_whole_hunk.diff").unwrap();
         let mut out_vec: Vec<u8> = Vec::new();
@@ -160,7 +158,7 @@ mod tests {
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
             &config
-        ).unwrap();
+        ).err().expect("");
     }
 
     #[test]
@@ -318,21 +316,18 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_extra_positional() {
-        parse_args(&vec!["asd", "qwe"]).unwrap();
+        parse_args(&vec!["asd", "qwe"]).err().expect("");
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_extra_positional_explicit() {
-        parse_args(&vec!["asd", "--", "qwe"]).unwrap();
+        parse_args(&vec!["asd", "--", "qwe"]).err().expect("");
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_trailing_explicit() {
-        parse_args(&vec!["asd", "--"]).unwrap();
+        parse_args(&vec!["asd", "--"]).err().expect("");
     }
 
     #[test]
@@ -360,9 +355,8 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_no_program_name() {
-        parse_args(&vec![]).unwrap();
+        parse_args(&vec![]).err().expect("");
     }
 
     #[test]
@@ -376,39 +370,33 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_match_fields_repeat_positional_after() {
-        parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]).unwrap();
+        parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]).err().expect("");
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_match_on_invalid() {
-        parse_args(&vec!["asd", "--match-on", "qwe"]).unwrap();
+        parse_args(&vec!["asd", "--match-on", "qwe"]).err().expect("");
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_print_fields_commit() {
-        parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]).unwrap();
+        parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]).err().expect("");
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_commit_print_fields() {
-        parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]).unwrap();
+        parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]).err().expect("");
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_utf8_invalid() {
-        parse_args(&vec!["asd", "--invalid-utf8", "qwe"]).unwrap();
+        parse_args(&vec!["asd", "--invalid-utf8", "qwe"]).err().expect("");
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_utf8_missing() {
-        parse_args(&vec!["asd", "--invalid-utf8"]).unwrap();
+        parse_args(&vec!["asd", "--invalid-utf8"]).err().expect("");
     }
 
     #[test]
@@ -419,8 +407,7 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
     fn test_parse_help() {
-        parse_args(&vec!["asd", "-h"]).unwrap();
+        parse_args(&vec!["asd", "-h"]).err().expect("");
     }
 }
