@@ -17,6 +17,10 @@ mod tests {
         patch_header: false
     };
 
+    fn expect_err<_T, E: std::error::Error>(result: Result<_T, E>) {
+        println!("{}", result.err().expect("Expected an error"));
+    }
+
     #[test]
     fn test_1() {
         let file = fs::File::open("test_data/1.diff").unwrap();
@@ -33,6 +37,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
     }
 
@@ -52,6 +57,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
     }
 
@@ -69,6 +75,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         let out_lines: Vec<&str> = out_str.split('\n').collect();
         assert!(out_lines.len() == 4);
         assert!(out_lines[0] == "bcd581d22a277d2f7e8766219f96412f516418af");
@@ -95,6 +102,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
     }
 
@@ -124,6 +132,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(!out_str.contains(&config.search_string));
         assert!(out_str.is_empty());
     }
@@ -145,6 +154,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
     }
 
@@ -174,6 +184,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(!out_str.contains(&config.search_string));
         assert!(out_str.is_empty());
     }
@@ -195,6 +206,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
     }
 
@@ -214,6 +226,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
     }
     #[test]
@@ -232,6 +245,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
     }
 
@@ -251,6 +265,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
     }
 
@@ -268,6 +283,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.is_empty());
     }
 
@@ -287,6 +303,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.is_empty());
     }
 
@@ -306,6 +323,7 @@ mod tests {
             &config
         ).unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
+        println!("{}", out_str);
         assert!(out_str.is_empty());
     }
 
@@ -317,17 +335,17 @@ mod tests {
 
     #[test]
     fn test_parse_extra_positional() {
-        parse_args(&vec!["asd", "qwe"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "qwe"]));
     }
 
     #[test]
     fn test_parse_extra_positional_explicit() {
-        parse_args(&vec!["asd", "--", "qwe"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "--", "qwe"]));
     }
 
     #[test]
     fn test_parse_trailing_explicit() {
-        parse_args(&vec!["asd", "--"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "--"]));
     }
 
     #[test]
@@ -356,7 +374,7 @@ mod tests {
 
     #[test]
     fn test_parse_no_program_name() {
-        parse_args(&vec![]).err().expect("");
+        expect_err(parse_args(&vec![]));
     }
 
     #[test]
@@ -371,32 +389,32 @@ mod tests {
 
     #[test]
     fn test_parse_match_fields_repeat_positional_after() {
-        parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]));
     }
 
     #[test]
     fn test_parse_match_on_invalid() {
-        parse_args(&vec!["asd", "--match-on", "qwe"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "--match-on", "qwe"]));
     }
 
     #[test]
     fn test_parse_print_fields_commit() {
-        parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]));
     }
 
     #[test]
     fn test_parse_commit_print_fields() {
-        parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]));
     }
 
     #[test]
     fn test_parse_utf8_invalid() {
-        parse_args(&vec!["asd", "--invalid-utf8", "qwe"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "--invalid-utf8", "qwe"]));
     }
 
     #[test]
     fn test_parse_utf8_missing() {
-        parse_args(&vec!["asd", "--invalid-utf8"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "--invalid-utf8"]));
     }
 
     #[test]
@@ -408,6 +426,6 @@ mod tests {
 
     #[test]
     fn test_parse_help() {
-        parse_args(&vec!["asd", "-h"]).err().expect("");
+        expect_err(parse_args(&vec!["asd", "-h"]));
     }
 }
