@@ -22,3 +22,9 @@ echo ''
 echo "git push origin $1"
 echo 'cargo publish'
 echo ''
+echo ''
+echo 'To undo, run:'
+echo ''
+echo "git tag --delete $1"
+echo "git reset HEAD^"
+echo ''
