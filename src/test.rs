@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use crate::{parse_args::{parse_args, UTF8Strategy, Config, PatchSections, OutputConfig}, process_lines};
+    use crate::{parse_args::{self, parse_args, Config, OutputConfig, ParseArgsResult, PatchSections, UTF8Strategy}, process_lines};
     use std::{fs, io::BufReader};
 
     const PATCH_SECTIONS_ALL: PatchSections = PatchSections {
@@ -16,10 +16,6 @@ mod tests {
         file_header: false,
         patch_header: false
     };
-
-    fn expect_err<_T, E: std::error::Error>(result: Result<_T, E>) {
-        println!("{}", result.err().expect("Expected an error"));
-    }
 
     #[test]
     fn test_1() {
@@ -329,103 +325,131 @@ mod tests {
 
     #[test]
     fn test_parse_args() {
-        let config = parse_args(&vec!["asd"]).unwrap();
-        assert_eq!(config.search_string, "asd");
+        match parse_args(&vec!["asd"]) {
+            parse_args::ParseArgsResult::Config(config) => {
+                assert_eq!(config.search_string, "asd")
+            },
+            _ => assert!(false),
+        }
     }
 
     #[test]
     fn test_parse_extra_positional() {
-        expect_err(parse_args(&vec!["asd", "qwe"]));
+        matches!(parse_args(&vec!["asd", "qwe"]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_extra_positional_explicit() {
-        expect_err(parse_args(&vec!["asd", "--", "qwe"]));
+        matches!(parse_args(&vec!["asd", "--", "qwe"]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_trailing_explicit() {
-        expect_err(parse_args(&vec!["asd", "--"]));
+        matches!(parse_args(&vec!["asd", "--"]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_explicit() {
-        let config = parse_args(&vec!["--", "asd"]).unwrap();
-        assert!(config.search_string == "asd");
+        match parse_args(&vec!["--", "asd"]) {
+            parse_args::ParseArgsResult::Config(config) => {
+                assert_eq!(config.search_string, "asd")
+            },
+            _ => assert!(false),
+        }
     }
 
     #[test]
     fn test_parse_explicit_flag_like() {
-        let config = parse_args(&vec!["--", "-h"]).unwrap();
-        assert!(config.search_string == "-h");
+        match parse_args(&vec!["--", "-h"]) {
+            parse_args::ParseArgsResult::Config(config) => {
+                assert_eq!(config.search_string, "-h")
+            },
+            _ => assert!(false),
+        }
     }
     
     #[test]
     fn test_parse_explicit_duplicate_flag_like() {
-        let config = parse_args(&vec!["--match-fields", "diff", "--", "-h"]).unwrap();
-        assert!(config.search_string == "-h");
+        match parse_args(&vec!["--match-fields", "diff", "--", "-h"]) {
+            parse_args::ParseArgsResult::Config(config) => {
+                assert_eq!(config.search_string, "-h")
+            },
+            _ => assert!(false),
+        }
     }
     
     #[test]
     fn test_parse_explicit_duplicate_flag_like_with_arg() {
-        let config = parse_args(&vec!["--match-fields", "diff", "--", "--match-fields"]).unwrap();
-        assert!(config.search_string == "--match-fields");
+        match parse_args(&vec!["--match-fields", "diff", "--", "--match-fields"]) {
+            parse_args::ParseArgsResult::Config(config) => {
+                assert!(config.search_string == "--match-fields");
+            },
+            _ => assert!(false),
+        }
     }
 
     #[test]
     fn test_parse_no_program_name() {
-        expect_err(parse_args(&vec![]));
+        matches!(parse_args(&vec![]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_match_fields() {
-        let config = parse_args(&vec!["asd", "--match-fields", "diff,context"]).unwrap();
-        assert_eq!(config.search_string, "asd");
-        assert_eq!(config.match_on.diff, true);
-        assert_eq!(config.match_on.context, true);
-        assert_eq!(config.match_on.file_header, false);
-        assert_eq!(config.match_on.patch_header, false);
+        match parse_args(&vec!["asd", "--match-fields", "diff,context"]) {
+            parse_args::ParseArgsResult::Config(config) => {
+                assert_eq!(config.search_string, "asd");
+                assert_eq!(config.match_on.diff, true);
+                assert_eq!(config.match_on.context, true);
+                assert_eq!(config.match_on.file_header, false);
+                assert_eq!(config.match_on.patch_header, false);
+            },
+            _ => assert!(false),
+        }
     }
 
     #[test]
     fn test_parse_match_fields_repeat_positional_after() {
-        expect_err(parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]));
+        matches!(parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_match_on_invalid() {
-        expect_err(parse_args(&vec!["asd", "--match-on", "qwe"]));
+        matches!(parse_args(&vec!["asd", "--match-on", "qwe"]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_print_fields_commit() {
-        expect_err(parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]));
+        matches!(parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_commit_print_fields() {
-        expect_err(parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]));
+        matches!(parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_utf8_invalid() {
-        expect_err(parse_args(&vec!["asd", "--invalid-utf8", "qwe"]));
+        matches!(parse_args(&vec!["asd", "--invalid-utf8", "qwe"]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_utf8_missing() {
-        expect_err(parse_args(&vec!["asd", "--invalid-utf8"]));
+        matches!(parse_args(&vec!["asd", "--invalid-utf8"]), ParseArgsResult::Error(..));
     }
 
     #[test]
     fn test_parse_utf8_valid() {
-        let config = parse_args(&vec!["asd", "--invalid-utf8", "skip-line"]).unwrap();
-        assert_eq!(config.search_string, "asd");
-        assert_eq!(config.decode_strategy, UTF8Strategy::SkipLine);
+        match parse_args(&vec!["asd", "--invalid-utf8", "skip-line"]) {
+            parse_args::ParseArgsResult::Config(config) => {
+                assert_eq!(config.search_string, "asd");
+                assert_eq!(config.decode_strategy, UTF8Strategy::SkipLine);
+            },
+            _ => assert!(false),
+        }
     }
 
     #[test]
     fn test_parse_help() {
-        expect_err(parse_args(&vec!["asd", "-h"]));
+        matches!(parse_args(&vec!["asd", "-h"]), ParseArgsResult::Help);
     }
 }

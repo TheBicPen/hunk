@@ -158,13 +158,17 @@ fn main() -> () {
 }
 
 fn real_main() -> Result<(), Box<dyn Error>> {
-    let config = parse_program_args(&mut std::env::args())?;
-    Ok(
-        process_lines(
-            Box::new(io::stdin().lock()), 
-            Box::new(io::stdout().lock()), 
-            &config)?
-    )
+    match parse_program_args(&mut std::env::args()) {
+        parse_args::ParseArgsResult::Config(config) => Ok(
+            process_lines(
+                Box::new(io::stdin().lock()), 
+                Box::new(io::stdout().lock()), 
+                &config)?
+        ),
+        parse_args::ParseArgsResult::Error(err) => Err(Box::new(err)),
+        parse_args::ParseArgsResult::Help => Ok(()),
+    }
+    
 }
 
 fn process_lines<'a>(

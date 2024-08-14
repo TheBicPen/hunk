@@ -28,6 +28,17 @@ impl Default for OutputConfig {
     }
 }
 
+pub enum ParseArgsResult {
+    Config(Config),
+    Error(SimpleError),
+    Help,
+}
+enum ParseArgsResultInner {
+    Success,
+    Error(SimpleError),
+    Help,
+}
+
 #[derive(Default)]
 pub struct Config {
     pub match_on: PatchSections,
@@ -91,14 +102,14 @@ fn print_help() {
     }
 }
 
-pub fn parse_args(args: &[&str]) -> Result<Config, SimpleError> {
+pub fn parse_args(args: &[&str]) -> ParseArgsResult {
     struct ParsingState {
         has_search_string: bool,
         no_more_options: bool,
         has_print_option: bool,
     }
 
-    fn parse_slice(args: &[&str], state: &mut ParsingState, config: &mut Config) -> Result<(), SimpleError>{
+    fn parse_slice(args: &[&str], state: &mut ParsingState, config: &mut Config) -> ParseArgsResultInner{
         match &args {
             [arg, rest @ ..] if state.no_more_options => {
                 config.search_string = arg.to_string();
@@ -106,23 +117,33 @@ pub fn parse_args(args: &[&str]) -> Result<Config, SimpleError> {
                 parse_slice(rest, state, config)
             }
             ["--match-fields", match_fields, rest @ ..] => {
-                config.match_on = parse_patch_sections(match_fields)?;
-                parse_slice(rest, state, config)
-            }
-            ["--match-fields"] => Err(simple_error!("Expected argument for 'match-fields'. Run `hunk -h` for help")),
-            ["--print-fields", print_fields, rest @ ..] => {
-                if state.has_print_option { 
-                    Err(simple_error!("Cannot have both print-commits and print-fields. Run `hunk -h` for help"))
-                } else {
-                    config.output = OutputConfig::Sections(parse_patch_sections(print_fields)?);
-                    state.has_print_option = true;
-                    parse_slice(rest, state, config)
+                match parse_patch_sections(match_fields) {
+                    Err(err) => ParseArgsResultInner::Error(err),
+                    Ok(v) => {
+                        config.match_on = v;
+                        parse_slice(rest, state, config)
+                    }
                 }
             }
-            ["--print-fields"] => Err(simple_error!("Expected argument for 'print-fields'. Run `hunk -h` for help")),
+            ["--match-fields"] => ParseArgsResultInner::Error(simple_error!("Expected argument for 'match-fields'. Run `hunk -h` for help")),
+            ["--print-fields", print_fields, rest @ ..] => {
+                if state.has_print_option { 
+                    ParseArgsResultInner::Error(simple_error!("Cannot have both print-commits and print-fields. Run `hunk -h` for help"))
+                } else {
+                    match parse_patch_sections(print_fields) {
+                        Err(err) => ParseArgsResultInner::Error(err),
+                        Ok(v) => {
+                            config.output = OutputConfig::Sections(v);
+                            state.has_print_option = true;
+                            parse_slice(rest, state, config)
+                        }
+                    }
+                }
+            }
+            ["--print-fields"] => ParseArgsResultInner::Error(simple_error!("Expected argument for 'print-fields'. Run `hunk -h` for help")),
             ["--print-commits", rest @ ..] => {
                 if state.has_print_option { 
-                    Err(simple_error!("Cannot have both print-commits and print-fields. Run `hunk -h` for help"))
+                    ParseArgsResultInner::Error(simple_error!("Cannot have both print-commits and print-fields. Run `hunk -h` for help"))
                 } else {
                     config.output = OutputConfig::CommitHash;
                     state.has_print_option = true;
@@ -130,18 +151,28 @@ pub fn parse_args(args: &[&str]) -> Result<Config, SimpleError> {
                 }
             }
             ["--invalid-utf8", decode_strategy_str, rest @ ..] => {
-                config.decode_strategy = match decode_strategy_str {
-                    &"lossy" => UTF8Strategy::Lossy,
-                    &"panic" => UTF8Strategy::Panic,
-                    &"skip-line" => UTF8Strategy::SkipLine,
-                    other => bail!("Unknown value '{}'. Run `hunk -h` for help", other)
-                };
-                parse_slice(rest, state, config)
+                match decode_strategy_str {
+                    &"lossy" => {
+                        config.decode_strategy = UTF8Strategy::Lossy;
+                        parse_slice(rest, state, config)
+                    },
+                    &"panic" => {
+                        config.decode_strategy = UTF8Strategy::Panic;
+                        parse_slice(rest, state, config)
+                    },
+                    &"skip-line" => {
+                        config.decode_strategy = UTF8Strategy::SkipLine;
+                        parse_slice(rest, state, config)
+                    },
+                    other =>  {
+                        ParseArgsResultInner::Error(simple_error!("Unknown value '{}'. Run `hunk -h` for help", other))
+                    }
+                }
             }
-            ["--invalid-utf8"] => Err(simple_error!("Expected argument for 'invalid-utf8'. Run `hunk -h` for help")),
+            ["--invalid-utf8"] => ParseArgsResultInner::Error(simple_error!("Expected argument for 'invalid-utf8'. Run `hunk -h` for help")),
             ["--help"] | ["-h"] => {
                 print_help();
-                Err(simple_error!(""))
+                ParseArgsResultInner::Help
             },
             ["--", rest @ ..] if !state.has_search_string => {
                 state.no_more_options = true;
@@ -152,9 +183,9 @@ pub fn parse_args(args: &[&str]) -> Result<Config, SimpleError> {
                 state.has_search_string = true;
                 parse_slice(rest, state, config)
             }
-            [arg, ..] => Err(simple_error!("Unexpected arg: {}. Run `hunk -h` for help", arg)),
-            [] if !state.has_search_string => Err(simple_error!("Expected a string to search for. Run `hunk -h` for help")),
-            [] => Ok(())
+            [arg, ..] => ParseArgsResultInner::Error(simple_error!("Unexpected arg: {}. Run `hunk -h` for help", arg)),
+            [] if !state.has_search_string => ParseArgsResultInner::Error(simple_error!("Expected a string to search for. Run `hunk -h` for help")),
+            [] => ParseArgsResultInner::Success
         }
     }
 
@@ -179,12 +210,14 @@ pub fn parse_args(args: &[&str]) -> Result<Config, SimpleError> {
         no_more_options: false,
         has_print_option: false,
     };
-    parse_slice(args, &mut parsing_state, &mut config)?;
-
-    Ok(config)
+    match parse_slice(args, &mut parsing_state, &mut config) {
+        ParseArgsResultInner::Error(err) => ParseArgsResult::Error(err),
+        ParseArgsResultInner::Success => ParseArgsResult::Config(config),
+        ParseArgsResultInner::Help => ParseArgsResult::Help,
+    }
 }
 
-pub fn parse_program_args(args: &mut Args) -> Result<Config, SimpleError> {
+pub fn parse_program_args(args: &mut Args) -> ParseArgsResult {
     let args_strings: Vec<String> = args.collect();
     let args: Vec<&str> = args_strings.iter().map(|s| s.as_str()).collect();
 
