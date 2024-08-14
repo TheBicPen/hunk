@@ -2,7 +2,7 @@ mod parse_args;
 mod test;
 
 use console::strip_ansi_codes;
-use parse_args::{parse_program_args, UTF8Strategy, Config, OutputConfig};
+use parse_args::{parse_program_args, Config, OutputConfig, UTF8Strategy};
 use simple_error::{bail, SimpleError};
 use std::{error::Error, io};
 
@@ -51,15 +51,17 @@ fn chunk_empty() -> Chunk {
 fn print_patch<'a>(
     output_config: &OutputConfig,
     patch: &Patch,
-    writer: &mut Box<dyn io::Write + 'a>
+    writer: &mut Box<dyn io::Write + 'a>,
 ) -> std::io::Result<()> {
     match output_config {
         OutputConfig::CommitHash => {
             let commit_line = strip_ansi_codes(&patch.patch_header.lines[0]);
-            let commit_hash = commit_line.strip_prefix("commit ")
-                        .expect("invalid commit message line").to_string();
+            let commit_hash = commit_line
+                .strip_prefix("commit ")
+                .expect("invalid commit message line")
+                .to_string();
             write!(writer, "{}", commit_hash)?
-        },
+        }
         OutputConfig::Sections(print_sections) => {
             if print_sections.patch_header {
                 for line in &patch.patch_header.lines {
@@ -93,7 +95,7 @@ fn print_patch<'a>(
                     }
                 }
             }
-        },
+        }
     }
     Ok(())
 }
@@ -101,7 +103,7 @@ fn print_patch<'a>(
 fn process_patch<'a>(
     config: &Config,
     patch: &Patch,
-    writer: &mut Box<dyn io::Write + 'a>
+    writer: &mut Box<dyn io::Write + 'a>,
 ) -> std::io::Result<()> {
     let mut process_lines = |lines: &Vec<String>| -> std::io::Result<bool> {
         for line in lines {
@@ -151,30 +153,30 @@ fn process_patch<'a>(
 }
 
 fn main() -> () {
-    real_main().or_else(|err| -> Result<(), Box<dyn Error>> {
-        println!("{}", err);
-        std::process::exit(1)
-    }).expect("process::exit failed to exit");
+    real_main()
+        .or_else(|err| -> Result<(), Box<dyn Error>> {
+            println!("{}", err);
+            std::process::exit(1)
+        })
+        .expect("process::exit failed to exit");
 }
 
 fn real_main() -> Result<(), Box<dyn Error>> {
     match parse_program_args(&mut std::env::args()) {
-        parse_args::ParseArgsResult::Config(config) => Ok(
-            process_lines(
-                Box::new(io::stdin().lock()), 
-                Box::new(io::stdout().lock()), 
-                &config)?
-        ),
+        parse_args::ParseArgsResult::Config(config) => Ok(process_lines(
+            Box::new(io::stdin().lock()),
+            Box::new(io::stdout().lock()),
+            &config,
+        )?),
         parse_args::ParseArgsResult::Error(err) => Err(Box::new(err)),
         parse_args::ParseArgsResult::Help => Ok(()),
     }
-    
 }
 
 fn process_lines<'a>(
-        mut reader: Box<dyn io::BufRead + 'a>,
-        mut writer: Box<dyn io::Write + 'a>,
-        config: &Config
+    mut reader: Box<dyn io::BufRead + 'a>,
+    mut writer: Box<dyn io::Write + 'a>,
+    config: &Config,
 ) -> Result<(), Box<dyn Error>> {
     let mut line_num = 0;
     let mut state = State::Start;
@@ -186,28 +188,33 @@ fn process_lines<'a>(
 
     loop {
         let mut line_buf: Vec<u8> = Vec::new();
-        if reader.read_until(b'\n', &mut line_buf).expect("Failed to read.") == 0 {
+        if reader
+            .read_until(b'\n', &mut line_buf)
+            .expect("Failed to read.")
+            == 0
+        {
             break;
         }
         line_num += 1;
-        
+
         let line = match config.decode_strategy {
             UTF8Strategy::Lossy => String::from_utf8_lossy(&line_buf).into_owned(),
-            UTF8Strategy::Panic => String::from_utf8(line_buf).map_err(
-                |err| SimpleError::with(format!("Invalid UTF-8 on line {line_num}").as_str(), err)
-            )?,
+            UTF8Strategy::Panic => String::from_utf8(line_buf).map_err(|err| {
+                SimpleError::with(format!("Invalid UTF-8 on line {line_num}").as_str(), err)
+            })?,
             UTF8Strategy::SkipLine => {
                 // Choose the default value based on the state to avoid taking
                 // an unnecesary state transition or adding extra rules to the
                 // state machine to handle this edge case.
                 let default_value = match state {
                     State::HunkHead => "+",
-                    _ => " "
-                }.to_string();
+                    _ => " ",
+                }
+                .to_string();
                 String::from_utf8(line_buf).unwrap_or(default_value)
             }
         };
-        
+
         let line_ansi_stripped = strip_ansi_codes(&line);
         let mut line_stripped = line_ansi_stripped.into_owned();
         if line_stripped.ends_with("\n") {

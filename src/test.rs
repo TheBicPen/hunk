@@ -1,20 +1,25 @@
 #[cfg(test)]
 mod tests {
-    use crate::{parse_args::{self, parse_args, Config, OutputConfig, ParseArgsResult, PatchSections, UTF8Strategy}, process_lines};
+    use crate::{
+        parse_args::{
+            self, parse_args, Config, OutputConfig, ParseArgsResult, PatchSections, UTF8Strategy,
+        },
+        process_lines,
+    };
     use std::{fs, io::BufReader};
 
     const PATCH_SECTIONS_ALL: PatchSections = PatchSections {
         context: true,
         diff: true,
         file_header: true,
-        patch_header: true
+        patch_header: true,
     };
 
     const PATCH_SECTIONS_NONE: PatchSections = PatchSections {
         context: false,
         diff: false,
         file_header: false,
-        patch_header: false
+        patch_header: false,
     };
 
     #[test]
@@ -30,8 +35,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
@@ -50,8 +56,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
@@ -68,8 +75,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         let out_lines: Vec<&str> = out_str.split('\n').collect();
@@ -78,7 +86,6 @@ mod tests {
         assert!(out_lines[1] == "39512adde34a5ece411a7ef67a363fa33a333f45");
         assert!(out_lines[2] == "a9b7171d2eb0164592e20e39d9f126412a44964f");
         assert!(out_lines[3] == "");
-
     }
 
     #[test]
@@ -95,8 +102,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
@@ -111,8 +119,10 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).err().expect("");
+            &config,
+        )
+        .err()
+        .expect("");
     }
 
     #[test]
@@ -125,8 +135,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(!out_str.contains(&config.search_string));
@@ -147,8 +158,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
@@ -163,8 +175,10 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).err().expect("");
+            &config,
+        )
+        .err()
+        .expect("");
     }
 
     #[test]
@@ -177,8 +191,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(!out_str.contains(&config.search_string));
@@ -199,8 +214,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
@@ -219,8 +235,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
@@ -238,8 +255,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
@@ -258,8 +276,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.contains(&config.search_string));
@@ -276,8 +295,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.is_empty());
@@ -296,8 +316,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.is_empty());
@@ -316,8 +337,9 @@ mod tests {
         process_lines(
             Box::new(BufReader::new(file)),
             Box::new(&mut out_vec),
-            &config
-        ).unwrap();
+            &config,
+        )
+        .unwrap();
         let out_str = String::from_utf8(out_vec).unwrap();
         println!("{}", out_str);
         assert!(out_str.is_empty());
@@ -328,7 +350,7 @@ mod tests {
         match parse_args(&vec!["asd"]) {
             parse_args::ParseArgsResult::Config(config) => {
                 assert_eq!(config.search_string, "asd")
-            },
+            }
             _ => assert!(false),
         }
     }
@@ -340,7 +362,10 @@ mod tests {
 
     #[test]
     fn test_parse_extra_positional_explicit() {
-        matches!(parse_args(&vec!["asd", "--", "qwe"]), ParseArgsResult::Error(..));
+        matches!(
+            parse_args(&vec!["asd", "--", "qwe"]),
+            ParseArgsResult::Error(..)
+        );
     }
 
     #[test]
@@ -353,7 +378,7 @@ mod tests {
         match parse_args(&vec!["--", "asd"]) {
             parse_args::ParseArgsResult::Config(config) => {
                 assert_eq!(config.search_string, "asd")
-            },
+            }
             _ => assert!(false),
         }
     }
@@ -363,27 +388,27 @@ mod tests {
         match parse_args(&vec!["--", "-h"]) {
             parse_args::ParseArgsResult::Config(config) => {
                 assert_eq!(config.search_string, "-h")
-            },
+            }
             _ => assert!(false),
         }
     }
-    
+
     #[test]
     fn test_parse_explicit_duplicate_flag_like() {
         match parse_args(&vec!["--match-fields", "diff", "--", "-h"]) {
             parse_args::ParseArgsResult::Config(config) => {
                 assert_eq!(config.search_string, "-h")
-            },
+            }
             _ => assert!(false),
         }
     }
-    
+
     #[test]
     fn test_parse_explicit_duplicate_flag_like_with_arg() {
         match parse_args(&vec!["--match-fields", "diff", "--", "--match-fields"]) {
             parse_args::ParseArgsResult::Config(config) => {
                 assert!(config.search_string == "--match-fields");
-            },
+            }
             _ => assert!(false),
         }
     }
@@ -402,39 +427,67 @@ mod tests {
                 assert_eq!(config.match_on.context, true);
                 assert_eq!(config.match_on.file_header, false);
                 assert_eq!(config.match_on.patch_header, false);
-            },
+            }
             _ => assert!(false),
         }
     }
 
     #[test]
     fn test_parse_match_fields_repeat_positional_after() {
-        matches!(parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]), ParseArgsResult::Error(..));
+        matches!(
+            parse_args(&vec!["asd", "--match-fields", "diff,context", "qwe"]),
+            ParseArgsResult::Error(..)
+        );
     }
 
     #[test]
     fn test_parse_match_on_invalid() {
-        matches!(parse_args(&vec!["asd", "--match-on", "qwe"]), ParseArgsResult::Error(..));
+        matches!(
+            parse_args(&vec!["asd", "--match-on", "qwe"]),
+            ParseArgsResult::Error(..)
+        );
     }
 
     #[test]
     fn test_parse_print_fields_commit() {
-        matches!(parse_args(&vec!["asd", "--print-fields", "diff,context", "--print-commits"]), ParseArgsResult::Error(..));
+        matches!(
+            parse_args(&vec![
+                "asd",
+                "--print-fields",
+                "diff,context",
+                "--print-commits"
+            ]),
+            ParseArgsResult::Error(..)
+        );
     }
 
     #[test]
     fn test_parse_commit_print_fields() {
-        matches!(parse_args(&vec!["asd", "--print-commits", "--print-fields", "diff,context"]), ParseArgsResult::Error(..));
+        matches!(
+            parse_args(&vec![
+                "asd",
+                "--print-commits",
+                "--print-fields",
+                "diff,context"
+            ]),
+            ParseArgsResult::Error(..)
+        );
     }
 
     #[test]
     fn test_parse_utf8_invalid() {
-        matches!(parse_args(&vec!["asd", "--invalid-utf8", "qwe"]), ParseArgsResult::Error(..));
+        matches!(
+            parse_args(&vec!["asd", "--invalid-utf8", "qwe"]),
+            ParseArgsResult::Error(..)
+        );
     }
 
     #[test]
     fn test_parse_utf8_missing() {
-        matches!(parse_args(&vec!["asd", "--invalid-utf8"]), ParseArgsResult::Error(..));
+        matches!(
+            parse_args(&vec!["asd", "--invalid-utf8"]),
+            ParseArgsResult::Error(..)
+        );
     }
 
     #[test]
@@ -443,7 +496,7 @@ mod tests {
             parse_args::ParseArgsResult::Config(config) => {
                 assert_eq!(config.search_string, "asd");
                 assert_eq!(config.decode_strategy, UTF8Strategy::SkipLine);
-            },
+            }
             _ => assert!(false),
         }
     }
