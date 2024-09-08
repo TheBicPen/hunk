@@ -169,7 +169,7 @@ fn real_main() -> Result<(), Box<dyn Error>> {
             &config,
         )?),
         parse_args::ParseArgsResult::Error(err) => Err(Box::new(err)),
-        parse_args::ParseArgsResult::Help => Ok(()),
+        parse_args::ParseArgsResult::PrintAndExit => Ok(()),
     }
 }
 

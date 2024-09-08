@@ -31,12 +31,12 @@ impl Default for OutputConfig {
 pub enum ParseArgsResult {
     Config(Config),
     Error(SimpleError),
-    Help,
+    PrintAndExit,
 }
 enum ParseArgsResultInner {
     Success,
     Error(SimpleError),
-    Help,
+    PrintAndExit,
 }
 
 #[derive(Default)]
@@ -100,6 +100,10 @@ fn print_help() {
     for (k, v) in help_data.two_arg_params {
         println!("{:15}: {}", k, v)
     }
+}
+
+fn print_version() {
+    println!("hunk v{}", env!("CARGO_PKG_VERSION"));
 }
 
 pub fn parse_args(args: &[&str]) -> ParseArgsResult {
@@ -185,7 +189,11 @@ pub fn parse_args(args: &[&str]) -> ParseArgsResult {
             )),
             ["--help"] | ["-h"] => {
                 print_help();
-                ParseArgsResultInner::Help
+                ParseArgsResultInner::PrintAndExit
+            }
+            ["--version"] => {
+                print_version();
+                ParseArgsResultInner::PrintAndExit
             }
             ["--", rest @ ..] if !state.has_search_string => {
                 state.no_more_options = true;
@@ -231,7 +239,7 @@ pub fn parse_args(args: &[&str]) -> ParseArgsResult {
     match parse_slice(args, &mut parsing_state, &mut config) {
         ParseArgsResultInner::Error(err) => ParseArgsResult::Error(err),
         ParseArgsResultInner::Success => ParseArgsResult::Config(config),
-        ParseArgsResultInner::Help => ParseArgsResult::Help,
+        ParseArgsResultInner::PrintAndExit => ParseArgsResult::PrintAndExit,
     }
 }
 

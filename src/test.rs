@@ -503,6 +503,11 @@ mod tests {
 
     #[test]
     fn test_parse_help() {
-        matches!(parse_args(&vec!["asd", "-h"]), ParseArgsResult::Help);
+        matches!(parse_args(&vec!["asd", "-h"]), ParseArgsResult::PrintAndExit);
+    }
+
+    #[test]
+    fn test_parse_version() {
+        matches!(parse_args(&vec!["hi", "--version"]), ParseArgsResult::PrintAndExit);
     }
 }
